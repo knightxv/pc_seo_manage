@@ -1,0 +1,16 @@
+<div id="newDetail">
+  <nav class="vv_navbar">
+    <a href="#/" class="icon icon_back"></a>
+    <span class="vv_navbar_title">资讯详情</span>
+    <i class="icon"></i>
+  </nav>
+  <div class="vv_container">
+    <div class="vv_content">
+      <article class="vv_article">
+        <div class="vv_news_title">{{ newsDetail.newsTitle }}</div>
+        <div class="vv_news_time">{{ newsDetail.publicTime }}</div>
+        <div class="vv_news_content">{{ newsDetail.newsContent | safe  }}</div>
+      </article>
+    </div>
+  </div>
+</div>
