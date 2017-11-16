@@ -39,6 +39,32 @@ module.exports = app => {
         newsList,
       });
     }
+    async news(ctx) {
+      await ctx.render('news.nj');
+    }
+    async contact(ctx) {
+      await ctx.render('contact.nj');
+    }
+    async games(ctx) {
+      const webPath = ctx.app.config.httpConfig.webServerPath;
+      const [ gameListRes, gameSliderRes ] = await Promise.all([
+        ctx.helper.webHttp.get('/gamePlatform/gameRecommendList'),
+        ctx.helper.webHttp.get('/gamePlatform/navbarSwiperList'),
+      ]);
+      // 推荐游戏列表
+      const gameList = gameListRes.isSuccess ? gameListRes.data : [];
+      // 轮播图片
+      const gameSlider = gameSliderRes.isSuccess ? gameSliderRes.data : [];
+      // 新闻轮播
+      // const newsSliders = newsSlidersRes.isSuccess ? newsSlidersRes.data : [];
+      // 新闻
+      // const newsList = newsListRes.isSuccess ? newsListRes.data : [];
+      await ctx.render('games.nj', {
+        webPath,
+        gameList,
+        gameSlider,
+      });
+    }
     /*
       新闻详情页
       @query : newsId（新闻id）
@@ -55,7 +81,7 @@ module.exports = app => {
         return;
       }
       const newsDetail = newsDetailRes.data;
-      await ctx.render('news.nj', {
+      await ctx.render('/content/news.nj', {
         newsDetail,
       });
     }
@@ -80,7 +106,7 @@ module.exports = app => {
       const gameDetail = gameDetailRes.data;
       const gameListRes = await ctx.helper.webHttp.get('/gamePlatform/gameRecommendList', { page: 0, size: 6 });
       const gameList = gameListRes.isSuccess ? gameListRes.data : [];
-      await ctx.render('game.nj', {
+      await ctx.render('/content/game.nj', {
         gameDetail,
         webPath,
         gameList,
@@ -96,11 +122,12 @@ module.exports = app => {
         return;
       }
       const newsList = newsListRes.data;
-      await ctx.render('newsList.nj', {
+      await ctx.render('/content/newsList.nj', {
         newsList,
         webPath,
       });
     }
+
   }
   return HomeController;
 };

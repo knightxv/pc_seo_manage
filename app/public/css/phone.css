@@ -1,3 +1,16 @@
+section {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.flex {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
 /**
  * GitHub Gist Theme
  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
@@ -89,11 +102,6 @@ pre {
 }
 /* variable */
 /* commonFun start */
-.flex {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
 .icon {
   width: 0.36266667rem;
   height: 0.68266667rem;
@@ -121,10 +129,6 @@ pre {
   background-size: 0.42666667rem 0.42666667rem;
 }
 /* commonFun end */
-.vv_logo {
-  display: none;
-  margin: 0;
-}
 /* base start */
 body {
   font-size: 0.55466667rem;
@@ -153,143 +157,6 @@ a {
 }
 .qrCode_tip {
   display: none;
-}
-/* no phone show */
-@media screen and (min-width: 750px) {
-  .pc {
-    background: url(../i/images/bg.jpg) no-repeat top center;
-  }
-  .pc .vv_footer {
-    text-align: center;
-    color: #359efd;
-    display: block;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-  .pc .vv_header_container {
-    background: #fff;
-    height: 68px;
-    -webkit-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  .pc .vv_header_container .vv_header {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    width: 960px;
-    margin: auto;
-  }
-  .pc .vv_header_container .vv_header .vv_logo {
-    display: block;
-    width: 143px;
-    height: 48px;
-    text-indent: -999px;
-    background: url(../i/images/logo.png) no-repeat;
-  }
-  .pc .vv_body {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .pc .vv_body .vv_phone {
-    height: 100%;
-    border: 1px solid #359efd;
-  }
-  .pc .vv_body .vv_phone_container {
-    box-sizing: content-box;
-    position: relative;
-    width: 375px;
-    height: 656px;
-    z-index: 999;
-    background: #fff;
-    padding: 86px 15px 56px;
-    border-radius: 30px;
-    margin-top: -20px;
-    border: 1px solid #359efd;
-  }
-  .pc .vv_body .vv_phoneTop {
-    position: absolute;
-    width: 140px;
-    height: 8px;
-    top: 46px;
-    left: 50%;
-    margin-left: -70px;
-    border: 2px solid #359efd;
-    border-radius: 5px;
-  }
-  .pc .vv_body .vv_phoneTop:before {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    border: 2px solid #359efd;
-    left: -15px;
-    top: -2px;
-  }
-  .pc .vv_body .vv_phoneTop:after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    border: 2px solid #359efd;
-    left: 50%;
-    margin-left: -4px;
-    top: -16px;
-  }
-  .pc .vv_body .vv_downLeftTip {
-    position: absolute;
-    left: -200px;
-    top: 420px;
-    width: 200px;
-    height: 156px;
-    background: url(../i/images/tip.png) no-repeat;
-  }
-  .pc .vv_body .vv_downRightTip {
-    position: absolute;
-    right: -230px;
-    top: 360px;
-    width: 200px;
-    height: 200px;
-  }
-  .pc .vv_body .vv_downRightTip .qrcode {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .pc .vv_body .vv_downRightTip .qrCode_tip {
-    display: block;
-    color: #359efd;
-    text-align: center;
-    font-size: 18px;
-    line-height: 32px;
-  }
 }
 /* base end */
 /* reset start */
@@ -539,10 +406,10 @@ a {
   color: #333;
 }
 #home .vv_game_intro {
-  color: #999;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #999;
 }
 #home .vv_game_size {
   color: #999;
