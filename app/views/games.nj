@@ -1,4 +1,4 @@
-﻿{% extends "layout/template.nj" %}
+{% extends "layout/template.nj" %}
 
 {% block css %}
   <link rel="stylesheet" href="/public/css/home.css">
@@ -7,22 +7,19 @@
 {% endblock %}
 
 {% block nav %}
-{% call navCreate(1) %}
+{% call navCreate(2) %}
 {{ caller() }}
 {% endcall %}
 {% endblock %}
 
 {% block main %}
 <section class="vv_body">
-
   <section class="vv_phone_container">
     <side class="vv_phoneTop"></side>
     <side class="vv_downLeftTip"></side>
     <!-- 手机主体内容 -->
     <main class="vv_phone" id="home">
-      <div id="navTabs" class="am-tabs vv_phone_tabs" data-am-tabs>
-        <div class="am-tabs-bd am-tabs-bd-ofv">
-          <!-- 游戏 -->
+      <!-- 游戏 -->
           <div class="am-tab-panel am-active vv_tab_panel">
             <div class="scrollWrapper" id="gameScrollWrapper">
               <div class="c_content">
@@ -70,68 +67,6 @@
               </div>
             </div>
           </div>
-          <!-- 新闻 -->
-          <div class="am-tab-panel vv_tab_panel">
-            <div class="scrollWrapper" id="newsScrollWrap">
-              <div class="c_content">
-                {% if newsSliders.length > 0 %}
-                  <div id="newsSlider" class="am-slider am-slider-default vv_slider" data-am-flexslider>
-                    <ul class="am-slides">
-                      {% for newsSlider in newsSliders %}
-                        <li>
-                          <a href="#news/{{ newsSlider.newsId }}">
-                            <img src="{{ webPath + newsSlider.newsIntroImg }}">
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-                <div class="vv_news_wrap" id="newItemWrap">
-                  {% for news in newsList %}
-                  <a class="c_rowList vv_newsItem" href="#news/{{ news.newsId }}">
-                    <div class="vv_news_content">
-                      <div class="vv_news_title">{{ news.newsTitle }}</div>
-                      <div class="vv_news_intro">{{ news.newsIntro }}</div>
-                    </div>
-                    <img class="vv_news_img" src="{{ webPath + news.newsIntroImg }}" alt="{{ news.newsTitle }}">
-                  </a>
-                  {% endfor %}
-                </div>
-                <div class="vv_loading_tip" id="loadingTip">加载中...</div>
-              </div>
-            </div>
-          </div>
-          <!-- 加入我们 -->
-          <div class="am-tab-panel vv_tab_panel">
-            <div class="vv_container">
-              <div class="vv_content vv_join_content">
-                <img src="/public/i/images/join.jpg" width="100%" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <ul class="am-tabs-nav am-nav am-nav-tabs vv_tabs_nav">
-          <li class="vv_tabs_item am-active">
-            <a href="javascript:;" data-index="game">
-              <i class="vv_tabs_icon vv_tabs_icon_game"></i>
-              <span>游戏</span>
-            </a>
-          </li>
-          <li class="vv_tabs_item">
-            <a href="javascript:;" data-index="news">
-              <i class="vv_tabs_icon vv_tabs_icon_news"></i>
-              <span>资讯</span>
-            </a>
-          </li>
-          <li class="vv_tabs_item">
-            <a href="javascript:;" data-index="join">
-              <i class="vv_tabs_icon vv_tabs_icon_join"></i>
-              <span>加入我们</span>
-            </a>
-          </li>
-        </ul>
-      </div>
       <!-- 二级导航 -->
       <div id="routerPicker" style="display: none"></div>
     </main>

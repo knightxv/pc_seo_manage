@@ -1,0 +1,575 @@
+/*初始化*/
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html,
+input {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font: 20px/1.5 Arial, Helvetica, sans-self, "Microsoft YaHei";
+}
+img {
+  border: 0;
+  vertical-align: top;
+}
+li {
+  list-style: none;
+}
+i,
+em {
+  font-style: normal;
+}
+a {
+  text-decoration: none;
+}
+a,
+input,
+select,
+textarea {
+  outline: none;
+}
+input {
+  font-size: .7rem;
+}
+input,
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 5rem #fff inset;
+}
+/*font*/
+/* @font-face {
+    font-family: 'comfont';
+    src: url('../fonts/font_etyzz8r49tg1fw29.eot');
+    src: url('../fonts/font_etyzz8r49tg1fw29.eot') format('embedded-opentype'),
+    url('../fonts/font_etyzz8r49tg1fw29.woff') format('woff'),
+    url('../fonts/font_etyzz8r49tg1fw29.ttf') format('truetype'),
+    url('../fonts/font_etyzz8r49tg1fw29.svg#iconfont') format('svg');
+}
+
+[class^="icod-"] {font-family: 'comfont';}
+.icod-user:before{content:"\e610";}
+.icod-lock:before{content:"\e60a";}
+.icod-yzm:before{content:"\e611";}
+.icod-subyzm:before{content:"\e60f";}
+.icod-mobile:before{content:"\e658";}
+.icod-wechat:before{content:"\e69e";}
+.icod-sina:before{content:"\e609";}
+.icod-qq:before{content:"\e607";}
+.icod-load:before{content:"\e62d";} */
+/*清除浮动*/
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+/*button*/
+.btn {
+  display: inline-block;
+  font-size: .7rem;
+  padding: .4rem .6rem;
+  color: #1381f1;
+  border: .05rem solid currentColor;
+  white-space: nowrap;
+  border-radius: .25rem;
+}
+.r0 {
+  border-radius: 0;
+}
+.r3 {
+  border-radius: .15rem;
+}
+.r5 {
+  border-radius: .25rem;
+}
+.r10 {
+  border-radius: .5rem;
+}
+.r50 {
+  border-radius: 50%;
+}
+.t50 {
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.unselect {
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+/*容器*/
+.flex {
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+}
+/*从上到下显示*/
+.flex-v {
+  -moz-flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+/*从右到左*/
+.flex-end {
+  -webkit-box-pack: end;
+  -moz-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+}
+/*x轴两端对齐*/
+.flex-x-between {
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+/*居中*/
+.flex-x-center {
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+/*右对齐*/
+.flex-x-end {
+  -moz-justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
+/*允许换行*/
+.flex-wrap {
+  -moz-box-lines: multiple;
+  -webkit-box-lines: multiple;
+  box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+/*====子元素====*/
+.flex-list {
+  -ms-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+/*mask*/
+.mask {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.mask > div {
+  position: absolute;
+  z-index: 10000;
+  background: #fff;
+  width: 80%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/*login*/
+.login-mode ol li div,
+.login-mode ol li i {
+  transition: all .2s;
+}
+.login-box > div {
+  font-size: .7rem;
+  text-align: center;
+  color: #3997EE;
+  max-width: 15rem;
+  padding-bottom: .5rem;
+  -webkit-animation: fadeInDown .5s linear;
+  animation: fadeInDown .5s linear;
+}
+.login-box > div > div {
+  width: 84%;
+  margin: 0 auto;
+}
+.login-box fieldset {
+  border: 0;
+  border-top: .05rem solid currentColor;
+  margin: 1.5rem 0 .4rem 0;
+  line-height: 1;
+}
+.login-box fieldset legend {
+  padding: 0 .25rem;
+}
+.login-head {
+  position: relative;
+  border-bottom: .05rem solid #eee;
+  padding: .4rem 0;
+  margin-bottom: 1rem !important;
+  line-height: 2rem;
+  font-size: 1rem;
+  width: 86% !important;
+  color: #333;
+}
+.login-head img {
+  width: 2rem;
+  height: 2rem;
+}
+.login-box .login-hide {
+  display: none !important;
+}
+.login-body > div > div {
+  margin-top: .4rem;
+  border: .05rem solid #eee;
+  position: relative;
+}
+.login-body > div > div i {
+  color: currentColor;
+  padding: .4rem;
+  background: #eee;
+}
+.login-body > div > div em {
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+  margin: auto 0;
+  position: absolute;
+  right: 1.75rem;
+  top: 50%;
+  margin-top: -0.35rem;
+  line-height: 1;
+}
+.login-body > div > div input {
+  border: none;
+  padding-left: .25rem;
+  border-radius: 0;
+}
+.login-body > div > div img {
+  border-radius: 0 .15rem .15rem 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+.login-body > div a {
+  color: currentColor;
+}
+.login-body > div > div a {
+  width: 3.95rem;
+  height: 1.85rem;
+  line-height: 1.85rem;
+}
+.login-body > div > div a.active {
+  cursor: not-allowed;
+  color: #bbb;
+  font-size: .6rem;
+}
+.login-body > div > div.code input {
+  width: 7.05rem;
+  border-right: .05rem solid #eee;
+}
+.login-body > div > div.active {
+  border: .05rem solid currentColor;
+}
+.login-body > div > div,
+.login-body > .btn {
+  border-radius: .15rem;
+}
+.login-body > .btn {
+  width: 100%;
+  background: #3997EE;
+  color: #fff;
+  margin-top: 1rem;
+  font-size: .8rem;
+}
+.login-body p {
+  margin: .75rem 0 0 0;
+  cursor: pointer;
+}
+.login-body > div.flex {
+  margin-top: .8rem;
+}
+.login-mode ol li {
+  display: none;
+  cursor: pointer;
+  line-height: 1;
+}
+.login-mode ol li.list-show {
+  display: block;
+}
+.login-mode ol li div {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: .05rem solid currentColor;
+  color: #00D20D;
+  margin: 0 auto;
+  line-height: 1.9rem;
+}
+.login-mode ol li i {
+  font-size: 1.5rem;
+}
+.login-mode ol li.qq div {
+  color: #4EA9EF;
+}
+.login-mode ol li.sina div {
+  color: #D43039;
+}
+.login-mode ol li.mobile div {
+  color: #47E8C9;
+  line-height: 2rem;
+}
+.login-mode ol.active li div {
+  border: 0;
+  line-height: 1;
+  height: 1.5rem;
+}
+.login-mode ol.active li i {
+  font-size: 1.25rem;
+}
+.login-mode > ol {
+  margin-bottom: 1rem;
+}
+.login-mode > a {
+  display: block;
+  color: #9FABB7;
+  text-decoration: underline;
+}
+/*focus*/
+.focus > div {
+  background: transparent;
+  max-width: 15rem;
+  text-align: center;
+  -webkit-animation: fadeInDown .5s linear;
+  animation: fadeInDown .5s linear;
+}
+.focus > div > div:nth-child(1) {
+  height: 3rem;
+  background: #0aa2ff;
+  border-radius: .25rem .25rem 0 0;
+}
+.focus > div > div:nth-child(1) img {
+  height: 100%;
+}
+.focus > div > div:nth-child(2) {
+  background: #f0f0f6;
+  overflow: hidden;
+  padding: 1.25rem 0;
+  border-radius: 0 0 .25rem .25rem;
+}
+.focus > div > div:nth-child(2) h1 {
+  font-size: .9rem;
+  line-height: 1;
+}
+.focus > div > div:nth-child(2) img {
+  width: 8rem;
+  padding: 1rem 0;
+}
+.focus > div > div:nth-child(2) span {
+  display: block;
+  color: #666;
+  font-size: .7rem;
+}
+/*dialog*/
+.dialog-box > div {
+  max-width: 15rem;
+  -webkit-animation: fadeInDown .5s linear;
+  animation: fadeInDown .5s linear;
+}
+.dialog-box > div > div {
+  text-align: center;
+  font-size: .8rem;
+}
+.dialog-box > div > div:nth-child(1) {
+  padding: 1rem 0 .7rem 0;
+}
+.dialog-box > div > div:nth-child(2) {
+  padding: 0 1rem;
+  color: #888;
+  max-height: 6rem;
+  overflow-y: auto;
+}
+.dialog-box > div > div:nth-child(2) span {
+  color: #00A3FF;
+  font-weight: bold;
+}
+.dialog-box > div > div:nth-child(3) {
+  margin-top: 1rem;
+  border-top: .05rem solid #d5d5d5;
+}
+.dialog-box > div > div:nth-child(3) > a {
+  color: #00A3FF;
+  text-decoration: none;
+  padding: .5rem 0;
+}
+.dialog-box > div > div:nth-child(3) > a.ok {
+  border-left: .05rem solid #d5d5d5;
+}
+.loading {
+  text-align: center;
+}
+.loading > div {
+  background: transparent;
+  margin: 0;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.loading > div > div {
+  background: #fff;
+  width: .2rem;
+  height: 1.75rem;
+  border-radius: .1rem;
+  margin: .1rem;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  display: inline-block;
+  -webkit-animation: loading 0.9s 0s infinite cubic-bezier(0.11, 0.49, 0.38, 0.78);
+  animation: loading 0.9s 0s infinite cubic-bezier(0.11, 0.49, 0.38, 0.78);
+}
+.loading > div > div:nth-child(2),
+.loading > div > div:nth-child(4) {
+  -webkit-animation-delay: 0.25s !important;
+  animation-delay: 0.25s !important;
+}
+.loading > div > div:nth-child(1),
+.loading > div > div:nth-child(5) {
+  -webkit-animation-delay: 0.5s !important;
+  animation-delay: 0.5s !important;
+}
+.share-square > div {
+  top: 5px;
+  margin: 0;
+  background: transparent;
+  width: 100%;
+  right: 0;
+}
+.share-square img {
+  position: absolute;
+  right: 1.35rem;
+  width: 2.5rem;
+}
+.share-square img:nth-child(1) {
+  width: 1.3rem;
+  top: 1rem;
+  z-index: 1;
+  -webkit-animation: share-bounce 0.2s linear infinite alternate;
+  animation: share-bounce 0.2s linear infinite alternate;
+}
+.share-square img:nth-child(2) {
+  right: 1.75rem;
+  z-index: 2;
+}
+.share-square span {
+  position: absolute;
+  right: .25rem;
+  top: 3.4rem;
+  color: #fff;
+  font-size: .7rem;
+}
+.share-square span i {
+  font-size: .8rem;
+  line-height: 1;
+  position: relative;
+  top: -0.05rem;
+}
+/*animation*/
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    top: 40%;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    top: 40%;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes share-bounce {
+  50% {
+    top: .4rem;
+  }
+  100% {
+    top: 1.1rem;
+  }
+}
+@keyframes share-bounce {
+  50% {
+    top: .4rem;
+  }
+  100% {
+    top: 1.1rem;
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+/*loading*/
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1);
+  }
+  80% {
+    -webkit-transform: scaley(0.3);
+    transform: scaley(0.3);
+  }
+  90% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1);
+  }
+}
+@keyframes loading {
+  0% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1);
+  }
+  80% {
+    -webkit-transform: scaley(0.3);
+    transform: scaley(0.3);
+  }
+  90% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1);
+  }
+}
