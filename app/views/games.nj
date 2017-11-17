@@ -1,9 +1,7 @@
 {% extends "layout/template.nj" %}
 
 {% block css %}
-  <link rel="stylesheet" href="/public/css/home.css">
-  <link rel="stylesheet" href="/public/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="/public/css/phone.css">
+  <link rel="stylesheet" href="/public/css/game.css">
 {% endblock %}
 
 {% block nav %}
@@ -13,67 +11,22 @@
 {% endblock %}
 
 {% block main %}
-<section class="vv_body">
-  <section class="vv_phone_container">
-    <side class="vv_phoneTop"></side>
-    <side class="vv_downLeftTip"></side>
-    <!-- 手机主体内容 -->
-    <main class="vv_phone" id="home">
-      <!-- 游戏 -->
-          <div class="am-tab-panel am-active vv_tab_panel">
-            <div class="scrollWrapper" id="gameScrollWrapper">
-              <div class="c_content">
-                {% if gameSlider.length > 0 %}
-                  <div id="gameSlider" class="am-slider am-slider-default vv_slider" data-am-flexslider>
-                    <ul class="am-slides">
-                      {% for slider in gameSlider %}
-                        <li>
-                          <a href="{{ slider.gameLink or 'javascript:;' }}">
-                            <img src="{{ webPath + slider.gamePicture }}" />
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-                    {# <li>
-                      <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
-                    </li> #}
-                <div class="vv_m_container">
-                  <div class="vv_game c_rowList">
-                    <i class="icon_game"></i>
-                    <span class="vv_game_title">新游推荐</span>
-                  </div>
-                  <div id="gameList">
-                    {% if gameList %}
-                      {% for game in gameList %}
-                        <a class="c_rowList vv_game_item" href="#gameDetail/{{ game.gameId }}">
-                          <img class="vv_game_icon" src="{{ webPath + game.gameIcon }}" alt="{{ game.gameName  }}">
-                          <div class="vv_game_info">
-                            <div class="vv_game_name">{{ game.gameName }}</div>
-                            <div>
-                              {% for i in range(0, game.gameStar) -%}
-                                <i class="icon_star"></i>
-                              {%- endfor %}
-                              <span class="vv_game_size">{{ game.gameSize }}</span>
-                            </div>
-                            <div class="vv_game_intro">{{ game.gameBrief }}</div>
-                          </div>
-                        </a>
-                      {% endfor %}
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      <!-- 二级导航 -->
-      <div id="routerPicker" style="display: none"></div>
-    </main>
-    <side class="vv_downRightTip">
-      <img id="qrcode" class="qrcode" src="/public/i/images/qrcode.jpg" />
-      <div class="qrCode_tip">扫一扫 手机畅玩</div>
-    </side>
-  </section>
-</section>
+<section class="game_container">
+	<h2 class="vv_news_title">游戏中心</h2>
+	{# <div class="vv_news_tip">了解新闻资讯，时刻掌握游戏动态，实时更新业内最新新闻和资讯</div> #}
+	<div class="vv_newsList_container">
+		{% for game in gameList %}
+			<div class="game_gameItem">
+				<img
+						class="game_img"
+						src="{{ httpConfig.webServerPath + game.gameIcon }}"
+				/>
+				<section class="vv_newsInfo">
+						<div class="vv_newsItem_title">{{ game.gameName }}</div>
+						<div class="vv_news_content">{{ game.gameBrief }}</div>
+						<a href="/games/{{game.gameId}}" class="vv_news_rightTip">查看游戏&gt;&gt;</a>
+				</section>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

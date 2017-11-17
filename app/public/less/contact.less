@@ -1,0 +1,46 @@
+@import "./base.less";
+
+.contact_container {
+    .f_container();    
+}
+
+.contact_title {
+    .borBot();
+    font-size: 16px;
+    padding: 20px 0 10px;
+}
+.contact_getMore {
+    color: @baseColor;
+    font-size: 16px;
+    padding: 12px 0;
+}
+.contact_label {
+    font-size: 12px;
+}
+.contact_phone {
+    color: @baseColor;
+    font-size: 24px;
+    padding: 16px 0;
+}
+.contact_qrCodeWrap {
+    padding: 30px 0;
+    .borTop();
+    .flexRow(space-around);
+    .contact_qrCode {
+        background: url("../hulema/images/adangkefu.png") no-repeat;
+        // background-size: cover;
+        box-sizing: border-box;
+        display: flex;
+        width: 273px;
+        height: 323px;
+    }
+    .contact_qrcode_img {
+        margin:  50px auto 0;
+        display: block;
+        width: 180px;
+        height: 200px;
+    }
+    .contact_kf_label {
+        text-align: center;
+    }
+}

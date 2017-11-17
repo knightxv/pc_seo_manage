@@ -11,11 +11,14 @@
   "devDependencies": {
     "autod": "^2.10.0",
     "autod-egg": "^1.0.0",
+    "browser-sync": "^2.18.13",
     "egg-bin": "^4.3.0",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.13.0",
     "eslint": "^4.9.0",
     "eslint-config-egg": "^5.1.0",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.2",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {

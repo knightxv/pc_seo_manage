@@ -1,0 +1,22 @@
+{% extends "layout/template.nj" %}
+
+{% block css %}
+<link rel="stylesheet" href="/public/css/news.css">
+{% endblock %}
+
+{% block nav %}
+{% call navCreate(3) %}
+{{ caller() }}
+{% endcall %}
+{% endblock %}
+
+
+{% block main %}
+<section class="news_container">
+	<div class="newsDetail_title">{{ newsTitle }}</div>
+	<div class="newDetail_time">{{ publicTime }}</div>
+	<div class="newDetail_content">
+		{{ newsContent | safe }}
+	</div>
+</section>
+{% endblock %}

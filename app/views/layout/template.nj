@@ -2,7 +2,7 @@
 <html lang="">
 
 <head>
-  <meta charset="utf-8">
+  <meta http-quiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="胡了吗 比鸡 牛牛 斗牛 斗地主 德州扑克 十三水 博饼 当当比鸡 阿当比鸡 阿当斗牛 阿当博饼">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -43,9 +43,9 @@
 {% macro navCreate(pageIndex) %}
   {% set pageArr = [
     { href: '/', label: '首页' },
-    { href: '/games', label: '游戏' },
+    { href: '/games', label: '游戏中心' },
     { href: '/news', label: '新闻资讯' },
-    { href: 'http://ddmh5.com', label: '公司官网' },
+    { href: '/platfrom', label: '平台介绍' },
     { href: '/contact', label: '联系我们' }
     ]
   %}
@@ -75,13 +75,19 @@
       </section>
     </div>
   </nav>
-  {% block main %}
-  {% endblock %}
-  <footer class="vv_footer">
-    <div>闽ICP备16028156号-2</div>
-    <div>Copyright©2016-2017 All Rights Reserved</div>
-    <div>抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
-  </footer>
+  <div class="container">
+    <div class="content_container">
+      <div class="scroll_container">
+        {% block main %}
+        {% endblock %}
+      </div>
+      <footer class="vv_footer">
+        <div>闽ICP备16028156号-2</div>
+        <div>Copyright©2016-2017 All Rights Reserved</div>
+        <div>抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+      </footer>
+    </div>
+  </div>
   </body>
   <script>
       function isPC () {

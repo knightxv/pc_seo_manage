@@ -1,0 +1,40 @@
+@baseColor: #f09803;
+@bgColor: #f1f1f1;
+@headerBgColor: #313131;
+@gray: #b5b5b5;
+
+section {
+	display: flex;
+	flex-direction: column;
+}
+
+.borTop() {
+  border-top: 1px solid #e0e0e2;
+}
+.borBot() {
+  border-bottom: 1px solid #e0e0e2;
+}
+.f_container() {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+.flexRow(@justify: flex-start) {
+  display: flex;
+  flex-direction: row;
+  justify-content: @justify;
+  align-items: center;
+}
+
+.text_hide() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header_img {
+  width: 100%;
+}

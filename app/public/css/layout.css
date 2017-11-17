@@ -1,103 +1,116 @@
 section {
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .flex {
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
-.vv_header {
-  display: none;
+.header_img {
+  width: 100%;
+}
+body,
+html {
+  min-height: 100%;
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  flex: 1;
+  position: relative;
+}
+.content_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+.scroll_container {
+  position: absolute;
+  left: 0;
+  right: -17px;
+  bottom: 60px;
+  top: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.vv_container {
+  max-width: 1420px;
+  margin: 0 auto;
+}
+.vv_header_container {
+  height: 66px;
+  background: #313131;
 }
 .vv_footer {
-  display: none;
+  font-size: 12px;
+  text-align: center;
+  color: #b5b5b5;
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 60px;
+  z-index: 1000;
 }
-.vv_logo {
-  margin: 0;
+.vv_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 960px;
+  height: 100%;
+  margin: 0 auto;
 }
-@media screen and (min-width: 750px) {
-  .pc .vv_container {
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  .pc .vv_header_container {
-    background: #efefef;
-  }
-  .pc .vv_header {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  .pc .vv_header .vv_logo {
-    display: block;
-    width: 143px;
-    height: 48px;
-    text-indent: -999px;
-    background: url(../i/images/logo.png) no-repeat;
-    background-size: 143px 48px;
-  }
-  .pc .vv_header .vv_header_right {
-    -webkit-align-self: stretch;
-        -ms-flex-item-align: stretch;
-                -ms-grid-row-align: stretch;
-            align-self: stretch;
-  }
-  .pc .vv_header .vv_nav {
-    height: 100%;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-align-items: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-    position: relative;
-  }
-  .pc .vv_header .vv_nav a {
-    position: relative;
-    padding: 0 20px;
-    color: #333;
-    font-size: 16px;
-    line-height: 48px;
-  }
-  .pc .vv_header .vv_nav a.active {
-    color: #359efd;
-  }
-  .pc .vv_header .vv_nav a.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #359efd;
-  }
-  .pc .vv_footer {
-    font-size: 16px;
-    text-align: center;
-    color: #359efd;
-    display: block;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-  }
+.vv_header .vv_logo {
+  display: block;
+  width: 208px;
+  height: 41px;
+  text-indent: -999px;
+  background: url(../i/images/logo.png) no-repeat;
+}
+.vv_header .vv_header_right {
+  align-self: stretch;
+}
+.vv_header .vv_nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+}
+.vv_header .vv_nav a {
+  position: relative;
+  padding: 0 20px;
+  color: #b5b5b5;
+  font-size: 16px;
+  line-height: 66px;
+}
+.vv_header .vv_nav a.active {
+  color: #f09803;
+}
+.vv_header .vv_nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #f09803;
+}
+a {
+  color: #f09803;
+}
+.btn {
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 18px;
+  color: #eee;
+}
+.btn.btn-default {
+  background: #f09803;
 }

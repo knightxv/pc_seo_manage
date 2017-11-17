@@ -12,7 +12,7 @@
         <div class="vv_content">
             <!-- 头部 -->
             <div class="vv_game_header">
-                <img class="vv_game_icon" src="{{ webPath + gameDetail.gameIcon }}" />
+                <img class="vv_game_icon" src="{{ httpConfig.webServerPath + gameDetail.gameIcon }}" />
                 <h1 class="vv_game_name">{{ gameDetail.gameName }}</h1>
                 <div class="vv_game_info">
                     {% for i in range(0, gameDetail.gameStar) -%}
@@ -60,7 +60,7 @@
                                             <li>           
                                                 <img
                                                     class="vv_game_sliderImg"
-                                                    src="{{ webPath + sliderImg }}"
+                                                    src="{{ httpConfig.webServerPath + sliderImg }}"
                                                     />
                                             </li>
                                         {% endfor %}
@@ -91,7 +91,7 @@
                             <div class="vv_gameMore_item_wrap">
                                 {% for gameItem in gameList %}
                                 <a href="#gameDetail/{{ gameItem.gameId }}" class="vv_gameMore_item">
-                                    <img class="vv_game_icon" src="{{ webPath + gameItem.gameIcon }}">
+                                    <img class="vv_game_icon" src="{{ httpConfig.webServerPath + gameItem.gameIcon }}">
                                     <span class="vv_game_name">{{ gameItem.gameName }}</span>
                                     <span class="vv_game_size">{{ gameItem.gameSize }}</span>
                                 </a>

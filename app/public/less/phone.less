@@ -1,0 +1,582 @@
+/* @import "../../node_modules/amazeui/less/variables"; */
+/* @import "../../node_modules/amazeui/less/mixins"; */
+@import "./base.less";
+// highlight.js
+/* @import (inline) "../../node_modules/highlight.js/styles/github-gist.css";*/
+.ask-header {
+  margin-bottom: 0;
+  .am-text-ir {
+    display: block;
+    margin-right: 10px;
+    height: 50px;
+    width: 125px;
+    background: url(../i/logo.png) no-repeat left center;
+    -webkit-background-size: 125px 24px;
+    background-size: 125px 24px;
+  }
+}
+
+
+.ask-banner {
+  background-color: #f8f8f8;
+}
+
+pre {
+  padding: 0;
+}
+/* variable */
+
+/* commonFun start */
+
+.icon {
+  width: 17/@rem;
+  height: 32/@rem;
+  display: block;
+}
+.icon.icon_back {
+  background: url(../i/images/back.png) no-repeat;
+  background-size: 17/@rem 32/@rem;
+  padding: 10/@rem;
+  cursor: pointer;
+}
+.icon_game {
+  width: 38/@rem;
+  height: 38/@rem;
+  display: inline-block;
+  background: url(../i/images/xy.png) no-repeat;
+  background-size: 38/@rem 38/@rem;
+}
+.icon_star {
+  width: 20/@rem;
+  height: 20/@rem;
+  margin-right: 8/@rem;
+  display: inline-block;
+  background: url(../i/images/xx.png) no-repeat;
+  background-size: 20/@rem 20/@rem;
+}
+/* commonFun end */
+
+/* base start */
+@rem: 46.875rem;
+body {
+  font-size: 26 / @rem;
+  overflow: hidden;
+}
+.vv_phone {
+  height: 100vh;
+  display: flex;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-direction: column;
+}
+a {
+  color: #999797;
+}
+
+/* base end */
+
+/* reset start */
+
+.am-tabs-bd {
+  border: none;
+}
+.am-tabs-bd .am-tab-panel {
+  padding: 0;
+}
+.am-slider-default .am-control-nav {
+  bottom: 10px;
+}
+.am-slider-default .am-control-nav li a.am-active {
+  background: #ff7005;
+}
+.am-slider-default .am-control-nav li a {
+  background-color: #fff;
+  box-shadow: none;
+}
+.am-slider-default {
+  margin: 0;
+}
+.am-nav-tabs>li>a {
+  margin-right: 0;
+}
+.am-btn {
+  font-size: 26/@rem;
+}
+/* reset end */
+
+/* common start */
+.vv_navbar_title {
+  font-size: 36/@rem;
+}
+.vv_navbar {
+  .borBot();
+  position: absolute;
+  top: 0;
+  z-index: 666;
+  width: 100%;
+  padding: 0 24/@rem;
+  height: 80/@rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+}
+.vv_container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: -17px;
+  overflow-y: scroll;
+}
+.phone .vv_container {
+  padding-right: 17px;
+}
+.vv_content {
+  padding-top: 80/@rem;
+  padding-bottom: 50/@rem;
+  background: @bgColor;
+  height: 100%;
+}
+
+.vv_m_container {
+  background: #fff;
+  margin-top: 22/@rem;
+  .borTop();
+}
+.c_rowList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 24/@rem;
+  padding-right: 24/@rem;
+  .borBot();
+}
+.scrollWrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.c_content {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.vv_loading_tip {
+  text-align: center;
+  padding: 10/@rem 0;
+}
+/* common end */
+
+/* phone style start */
+.vv_phone_tabs {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: @bgColor;
+}
+.vv_tabs_nav {
+  .borTop();
+  display: flex;
+  flex-direction: row;
+  z-index: 999;
+  background: #fff;
+  border-bottom: none;
+  margin-top: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100/@rem;
+  .vv_tabs_item {
+    flex: 1;
+    a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: none!important;
+      padding: 2px 0;
+    }
+    .vv_tabs_icon {
+      width: 50 / @rem;
+      height: 50 / @rem;
+      background: url(../i/images/footer_icon.png) no-repeat;
+      background-size: 100 / @rem 150 / @rem;
+    }
+    .vv_tabs_icon_game {
+      background-position-y: 0;
+    }
+    .vv_tabs_icon_news {
+      background-position-y: -50 / @rem;
+    }
+    .vv_tabs_icon_join {
+      background-position-y: -100 / @rem;
+    }
+  }
+  .am-active {
+    border-right: none;
+    .vv_tabs_icon {
+      background-position-x: -50 / @rem;
+    }
+    span {
+      color: @baseColor;
+    }
+  }
+}
+.vv_slider {
+  height: 375/@rem;
+  img {
+    height: 375/@rem;
+  }
+}
+.vv_join_content {
+  padding: 0;
+}
+#home {
+  .am-tabs-bd {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    left: 0;
+    bottom: 100/@rem;
+  }
+  .vv_tab_panel {
+    height: 100%;
+  }
+  .vv_game {
+    height: 80/@rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .borBot();
+  }
+  .vv_game_title {
+    font-size: 30/@rem;
+  }
+  .vv_game_item {
+    padding-top: 20/@rem;
+    padding-bottom: 20/@rem; 
+  }
+  .vv_game_icon {
+    width: 120/@rem;
+    height: 120/@rem;
+    display: inline-block;
+    border-radius: 20/@rem;
+  }
+  .vv_game_info {
+    margin-left: 36/@rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .vv_game_name {
+    font-size: 32/@rem;
+    color: #333;
+  }
+  .vv_game_intro {
+    .text_hide();
+    color: #999;
+  }
+  .vv_game_size {
+    color: #999;
+  }
+  
+  .vv_news_wrap {
+    background: #fff;
+  }
+  .vv_newsItem {
+    justify-content: space-between;
+  }
+  .vv_news_content {
+    padding-right: 28/@rem;
+    padding-top: 20/@rem;
+    padding-bottom: 20/@rem;
+    overflow: hidden;
+  }
+  .vv_news_title {
+    font-size: 32/@rem;
+    color: #111;
+  }
+  .vv_news_intro {
+    font-size: 24/@rem;
+    color: #999;
+    .text_hide();
+  }
+  .vv_news_img {
+    width: 100/@rem;
+    height: 100/@rem;
+  }
+}
+
+/* phone style end */
+
+#routerPicker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 99999;
+}
+
+/* news */
+#newDetail {
+  .vv_content {
+    background: #fff;
+  }
+  .vv_article {
+    padding: 40/@rem 36/@rem 0;
+  }
+  .vv_news_title {
+    font-size: 42/@rem;
+    line-height: 50/@rem;
+  }
+  .vv_news_time {
+    font-size: 30/@rem;
+    color: #aaa;
+    line-height: 70/@rem;
+  }
+  .vv_news_content {
+    font-size: 36/@rem;
+    color: #666;
+    img {
+      max-width: 100%;
+    }
+  }
+}
+/* gameDetail */
+#gameDetail {
+  #detail {
+    background: @bgColor;
+    padding-bottom: 30/@rem;
+  }
+  .am-tabs-bd {
+    position: relative;
+  }
+  .vv_container {
+    bottom: 100/@rem;
+  }
+  .vv_navbar {
+    justify-content: space-between;
+    border-bottom: none;
+  }
+  .vv_navbar_text {
+    font-size: 30/@rem;
+    color: #797979;
+  }
+
+  .vv_game_header {
+    .borBot();
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20/@rem;
+    background: #fff;
+  }
+  .vv_game_icon {
+    width: 122/@rem;
+    height: 122/@rem;
+  }
+  .vv_game_name {
+    margin: 0;
+    font-size: 32/@rem;
+    color: #333;
+  }
+  .vv_game_info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .vv_game_version {
+    color: #999;
+    line-height: 40/@rem;
+  }
+  .vv_game_split {
+    padding-left: 10/@rem;
+    padding-right: 10/@rem;
+  }
+  .vv_game_size {
+    color: #999;
+  }
+  .vv_game_downCount {
+    color: #999;
+  }
+  .vv_game_tag_wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .vv_game_tag {
+    .flexRow(center);
+  }
+  .icon_tag {
+    width: 24/@rem;
+    height: 24/@rem;
+    margin-right: 10/@rem;
+    display: inline-block;
+    background: url(../i/images/dg.png) no-repeat center center;
+    background-size: 24/@rem 24/@rem;
+  }
+  .icon_tag_text {
+    color: #2edb3e;
+    margin-right: 30/@rem;
+  }
+
+  .vv_game_tab_header {
+    .borBot();
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    height: 80/@rem;
+    li {
+      margin-bottom: 0;
+    }
+    a {
+      border: none;
+      color: #333;
+      font-size: 30/@rem;
+    }
+    .am-active {
+      &:after {
+        content: '';
+        width: 30/@rem;
+        height: 6/@rem;
+        position: absolute;
+        background: @baseColor;
+        bottom: 3/@rem;
+        left: 50%;
+        margin-left: -15/@rem;
+      }
+      a {
+        color: @baseColor;
+      }
+    }
+  }
+  .vv_game_container {
+    margin-top: 20/@rem;
+  }
+  .vv_game_content {
+    .borTop();
+    .borBot();
+    position: relative;
+    padding: 24/@rem 24/@rem 16/@rem;;
+    background: #fff;
+  }
+  .vv_game_content_module {
+    .borTop();
+    .borBot();
+    background: #fff;
+    margin-top: 20/@rem;
+  }
+  .vv_game_title {
+    font-size: 30/@rem;
+    color: #333;
+    line-height: 80/@rem;
+  }
+  .vv_game_intro {
+    color: #999;
+    font-size: 28/@rem;
+    padding: 20/@rem 26/@rem;
+    white-space: normal;
+  }
+
+  .vv_moreGame_title {
+    margin: 0;
+    font-size: 30/@rem;
+    text-align: center;
+    color: #333;
+  }
+  .vv_gameMore_item_wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin-top: 10/@rem;
+  }
+  .vv_gameMore_item {
+    width: 33.33%;
+    padding-top: 10/@rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .vv_game_name {
+      .text_hide();
+    }
+  }
+  .vv_downBtn_wrap {
+    .borTop();
+    width: 100%;
+    height: 100/@rem;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    padding: 10/@rem;
+    background: #fff;
+    z-index: 666;
+    bottom: 0;
+  }
+}
+/* 游戏详情图 */
+#gameDetailSlider {
+  position: relative;
+  width: 100%;
+  height: 460/@rem;
+  overflow: hidden;
+  .gameDetailImgScroll {
+    position: absolute;
+    height: 100%;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    li {
+      margin-right: 20/@rem;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .vv_game_sliderImg {
+    width: 260/@rem;
+    height: 460/@rem;
+    background-size: 532/@rem 300/@rem;
+  }
+}
+/*#imgPickerContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1002;
+  background: rgba(0, 0, 0, 0.5);
+}*/
+/* game end */
+#weixin-tip {
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}

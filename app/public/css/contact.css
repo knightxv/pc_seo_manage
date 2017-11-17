@@ -1,15 +1,16 @@
 section {
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .flex {
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
+}
+.header_img {
+  width: 100%;
+}
+.contact_container {
+  max-width: 960px;
+  margin: 0 auto;
 }
 .contact_title {
   border-bottom: 1px solid #e0e0e2;
@@ -17,7 +18,7 @@ section {
   padding: 20px 0 10px;
 }
 .contact_getMore {
-  color: #359efd;
+  color: #f09803;
   font-size: 16px;
   padding: 12px 0;
 }
@@ -25,35 +26,30 @@ section {
   font-size: 12px;
 }
 .contact_phone {
-  color: #359efd;
+  color: #f09803;
   font-size: 24px;
   padding: 16px 0;
 }
 .contact_qrCodeWrap {
   padding: 30px 0;
   border-top: 1px solid #e0e0e2;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-          justify-content: space-around;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 .contact_qrCodeWrap .contact_qrCode {
-  border: 1px solid #dedede;
+  background: url("../hulema/images/adangkefu.png") no-repeat;
   box-sizing: border-box;
-  padding: 30px;
+  display: flex;
+  width: 273px;
+  height: 323px;
 }
 .contact_qrCodeWrap .contact_qrcode_img {
+  margin: 50px auto 0;
   display: block;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 200px;
 }
 .contact_qrCodeWrap .contact_kf_label {
   text-align: center;

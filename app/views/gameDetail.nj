@@ -1,0 +1,77 @@
+{% extends "layout/template.nj" %}
+
+{% block css %}
+<link rel="stylesheet" href="/public/css/game.css">
+{% endblock %}
+
+{% block nav %}
+{% call navCreate(2) %}
+{{ caller() }}
+{% endcall %}
+{% endblock %}
+
+
+{% block main %}
+<section class="game_container">
+	<div class="gameDetail_item_wrap">
+		<div class="gameDetail_baseInfo_wrap">
+			<img
+			class="gameDetail_Icon"
+			src="{{ httpConfig.webServerPath + gameDetail.gameIcon }}"
+			/>
+			<section>
+				<div>名字：{{ gameDetail.gameName }}</div>
+				<div>版本信息：{{ gameDetail.gameVersion }}</div>
+				<div>游戏大小:{{ gameDetail.gameSize }}</div>
+			</section>
+		</div>
+		<div class="gameDetail_item_wrap">
+			<a class="btn btn-default" href="{{ gameDetail.downUrl }}">游戏下载</a>
+			<a class="btn btn-default" href="{{ gameDetail.gameLoginUrl }}">代理中心登录</a>
+		</div>
+	</div>
+	<section class="gameDetail_item_wrap">
+		<div class="gameDetail_title">游戏亮点</div>
+		<div class="gameDetail_gameIntro">
+			{{ gameDetail.characteristic | safe }}
+		</div>
+	</section>
+	<section class="gameDetail_item_wrap">
+		<div class="gameDetail_title">玩法介绍</div>
+		<div class="gameDetail_gameIntro">
+			{{ gameDetail.gameIntroduce }}
+		</div>
+	</section>
+	<section class="gameDetail_item_wrap">
+		<div class="gameDetail_title">详情信息</div>
+		<div class="gameDetail_gameIntro">
+			<div>发布日:{{ gameDetail.publicDataTime }}</div>
+			<div>开发者：{{ gameDetail.developer }}</div>
+		</div>
+	</section>
+	<section class="gameDetail_item_wrap">
+		<div class="gameDetail_title">游戏截图</div>
+		<div class="gameDetail_gameImgs">
+			{% for imgSrc in gameDetail.gameScreenshot %}
+				<img src="{{ httpConfig.webServerPath + imgSrc}}" />
+			{% endfor %}
+		</div>
+	</section>
+	<section class="gameDetail_item_wrap">
+		<div class="gameDetail_title">相关游戏推荐</div>
+		<div class="gameDetail_introGame">
+				{% for introGame in gameList %}
+					<a href="/games/{{ introGame.gameId }}">
+						<section class="game_detail_gamesIntro">
+							<img
+								class="gameDetail_gameIntro_icon"
+								src="{{ httpConfig.webServerPath + introGame.gameIcon }}"
+							/>
+							<div>{{ introGame.gameSize }}</div>
+						</section>
+					</a>
+				{% endfor %}
+		</div>
+	</section>
+</section>
+{% endblock %}

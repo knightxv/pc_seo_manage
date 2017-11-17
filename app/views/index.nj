@@ -32,7 +32,7 @@
                       {% for slider in gameSlider %}
                         <li>
                           <a href="{{ slider.gameLink or 'javascript:;' }}">
-                            <img src="{{ webPath + slider.gamePicture }}" />
+                            <img src="{{ httpConfig.webServerPath + slider.gamePicture }}" />
                           </a>
                         </li>
                       {% endfor %}
@@ -51,7 +51,7 @@
                     {% if gameList %}
                       {% for game in gameList %}
                         <a class="c_rowList vv_game_item" href="#gameDetail/{{ game.gameId }}">
-                          <img class="vv_game_icon" src="{{ webPath + game.gameIcon }}" alt="{{ game.gameName  }}">
+                          <img class="vv_game_icon" src="{{ httpConfig.webServerPath + game.gameIcon }}" alt="{{ game.gameName  }}">
                           <div class="vv_game_info">
                             <div class="vv_game_name">{{ game.gameName }}</div>
                             <div>
@@ -80,7 +80,7 @@
                       {% for newsSlider in newsSliders %}
                         <li>
                           <a href="#news/{{ newsSlider.newsId }}">
-                            <img src="{{ webPath + newsSlider.newsIntroImg }}">
+                            <img src="{{ httpConfig.webServerPath + newsSlider.newsIntroImg }}">
                           </a>
                         </li>
                       {% endfor %}
@@ -94,7 +94,7 @@
                       <div class="vv_news_title">{{ news.newsTitle }}</div>
                       <div class="vv_news_intro">{{ news.newsIntro }}</div>
                     </div>
-                    <img class="vv_news_img" src="{{ webPath + news.newsIntroImg }}" alt="{{ news.newsTitle }}">
+                    <img class="vv_news_img" src="{{ httpConfig.webServerPath + news.newsIntroImg }}" alt="{{ news.newsTitle }}">
                   </a>
                   {% endfor %}
                 </div>
@@ -136,8 +136,7 @@
       <div id="routerPicker" style="display: none"></div>
     </main>
     <side class="vv_downRightTip">
-      <img id="qrcode" class="qrcode" src="/public/i/images/qrcode.jpg" />
-      <div class="qrCode_tip">扫一扫 手机畅玩</div>
+      <img id="qrcode" class="qrcode" src="/public/i/images/qrcode.png" />
     </side>
   </section>
 </section>

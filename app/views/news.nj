@@ -12,43 +12,23 @@
 
 
 {% block main %}
-<section class="vv_container">
+<section class="news_container">
 	<h2 class="vv_news_title">新闻资讯</h2>
 	<div class="vv_news_tip">了解新闻资讯，时刻掌握游戏动态，实时更新业内最新新闻和资讯</div>
 	<div class="vv_newsList_container">
-		<div class="vv_newItem">
-			<img
-					class="vv_news_img"
-					src="http://120.55.57.25:8080/wresource/gameimgs/4f0f430eaf014ae2ad9a6acde2ced8c8.jpg"
-			/>
-			<section class="vv_newsInfo">
-					<div class="vv_newsItem_title">进来看的都有钱买iphoneX了</div>
-					<div class="vv_news_content">赢乾游戏 全国火热招代理中，长按识别码扫描加微信</div>
-					<a href="/#news/1" class="vv_news_rightTip">阅读全文&gt;&gt;</a>
-			</section>
-		</div>
-		<div class="vv_newItem">
-			<img
-					class="vv_news_img"
-					src="http://120.55.57.25:8080/wresource/gameimgs/4f0f430eaf014ae2ad9a6acde2ced8c8.jpg"
-			/>
-			<section class="vv_newsInfo">
-					<div class="vv_newsItem_title">拳头将打造韩国LOL联赛专属电竞馆 LPL赛区何时有望？</div>
-					<div class="vv_news_content"> 近日，韩国媒体Inven爆料，拳头正在计划为韩国LOL联赛（LCK）打造专属电竞场馆，</div>
-					<a href="/#news/2" class="vv_news_rightTip">阅读全文&gt;&gt;</a>
-			</section>
-		</div>
-		<div class="vv_newItem">
-			<img
-					class="vv_news_img"
-					src="http://120.55.57.25:8080/wresource/gameimgs/4f0f430eaf014ae2ad9a6acde2ced8c8.jpg"
-			/>
-			<section class="vv_newsInfo">
-					<div class="vv_newsItem_title">大神用55600块乐高打造《魔兽》塞拉摩 造型细节神还原</div>
-					<div class="vv_news_content">有国外玩家就用乐高玩具打造了一个现实版的塞拉摩城市。</div>
-					<a href="/#news/3" class="vv_news_rightTip">阅读全文&gt;&gt;</a>
-			</section>
-		</div>
+		{% for news in newList %}
+			<div class="vv_newItem">
+				<img
+						class="vv_news_img"
+						src="{{ httpConfig.webServerPath + news.newsIntroImg }}"
+				/>
+				<section class="vv_newsInfo">
+						<div class="vv_newsItem_title">{{ news.newsTitle }}</div>
+						<div class="vv_news_content">{{ news.newsIntro }}</div>
+						<a href="/news/{{news.newsId}}" class="vv_news_rightTip">阅读全文&gt;&gt;</a>
+				</section>
+			</div>
+		{% endfor %}
 	</div>
 </section>
 {% endblock %}

@@ -1,39 +1,50 @@
 /* no phone show */
 /* variable */
 section {
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .flex {
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
+.header_img {
+  width: 100%;
+}
+.container {
+  background: url(../i/images/bg.png) no-repeat top center;
+  background-size: 100% 100%;
+}
+.vv_header {
+  display: none;
+}
+.vv_footer {
+  display: none;
+}
+.qrcode {
+  display: none;
+}
+.vv_logo {
+  margin: 0;
+}
 @media screen and (min-width: 750px) {
-  .pc {
-    background: url(../i/images/bg.jpg) no-repeat top center;
+  .vv_header {
+    display: flex;
+  }
+  .vv_footer {
+    display: block;
+  }
+  .qrcode {
+    display: block;
   }
   .pc .vv_body {
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
   .pc .vv_body .vv_phone {
     height: 100%;
-    border: 1px solid #359efd;
+    border: 1px solid #f09803;
   }
   .pc .vv_body .vv_phone_container {
     box-sizing: content-box;
@@ -42,41 +53,30 @@ section {
     height: 656px;
     z-index: 999;
     background: #fff;
-    padding: 80px 15px 50px;
+    padding: 50px 15px 50px;
     border-radius: 30px;
-    margin-top: 20px;
-    border: 1px solid #359efd;
+    margin-top: 10px;
+    border: 1px solid #f09803;
   }
   .pc .vv_body .vv_phoneTop {
     position: absolute;
-    width: 140px;
-    height: 8px;
-    top: 46px;
+    width: 100px;
+    height: 10px;
+    top: 26px;
     left: 50%;
-    margin-left: -70px;
-    border: 2px solid #359efd;
+    margin-left: -40px;
+    border: 1px solid #f09803;
     border-radius: 5px;
   }
   .pc .vv_body .vv_phoneTop:before {
     content: '';
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    border: 2px solid #359efd;
-    left: -15px;
+    border: 1px solid #f09803;
+    left: -30px;
     top: -2px;
-  }
-  .pc .vv_body .vv_phoneTop:after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    border: 2px solid #359efd;
-    left: 50%;
-    margin-left: -4px;
-    top: -16px;
   }
   .pc .vv_body .vv_downLeftTip {
     position: absolute;
@@ -89,7 +89,7 @@ section {
   .pc .vv_body .vv_downRightTip {
     position: absolute;
     right: -230px;
-    top: 360px;
+    top: 300px;
     width: 200px;
     height: 200px;
   }
@@ -97,12 +97,5 @@ section {
     display: block;
     width: 100%;
     height: 100%;
-  }
-  .pc .vv_body .vv_downRightTip .qrCode_tip {
-    display: block;
-    color: #359efd;
-    text-align: center;
-    font-size: 18px;
-    line-height: 32px;
   }
 }

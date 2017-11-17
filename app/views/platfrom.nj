@@ -1,0 +1,37 @@
+{% extends "layout/template.nj" %}
+
+{% block css %}
+<link rel="stylesheet" href="/public/css/platfrom.css">
+{% endblock %}
+
+{% block nav %}
+{% call navCreate(4) %}
+{{ caller() }}
+{% endcall %}
+{% endblock %}
+
+
+{% block main %}
+<section>
+    <img src="/public/hulema/images/PlatformIntroduction.png" />
+	<div class="c_content_container">
+        <div class="vv_title_wrap">
+            <div class="i_rect"></div>
+            <h2 class="vv_platform_title">平台介绍</h2>
+        </div>
+        <div class="vv_platfrom_info">
+            <div class="platfrom_info_text">
+                全新平台携海量游戏，网罗全网人气游。更多玩法更多欢乐，带来非凡游戏体验
+            </div>
+            <img class="platfrom_logo2" src="/public/hulema/images/logo2.png" />
+        </div>
+        <div class="vv_title_wrap">
+            <div class="i_rect"></div>
+            <h2 class="vv_platform_title">平台承诺</h2>
+        </div>
+        <section class="vv_icon_wrap">
+            <img src="/public/hulema/images/platfrom_icons.png" />
+        </section>
+    </div>
+</section>
+{% endblock %}

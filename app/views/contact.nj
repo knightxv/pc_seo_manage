@@ -11,20 +11,23 @@
 {% endblock %}
 
 {% block main %}
-<section class="vv_container">
-    <h2 class="contact_title">联系我们</h2>
-    <div class="contact_getMore">想了解更多?</div>
-    <div class="contact_label">欢迎拨打全国客服热线</div>
-    <div class="contact_phone">13288888531</div>
-    <div class="contact_qrCodeWrap">
-        <div class="contact_qrCode">
-        <div class="contact_kf_label">当当客服</div>
-        <img class="contact_qrcode_img" src="http://www.hulema.com/public/i/images/qrcode.jpg" />
+<div>
+    <img class="header_img" src="/public/hulema/images/contact_header.png" />
+    <section class="contact_container">
+        <h2 class="contact_title">联系我们</h2>
+        <div class="contact_getMore">想了解更多?</div>
+        <div class="contact_label">欢迎拨打全国客服热线</div>
+        <div class="contact_phone">13288888531</div>
+        <div class="contact_qrCodeWrap">
+            <div class="contact_qrCode">
+            {# <div class="contact_kf_label">当当客服</div> #}
+            <img class="contact_qrcode_img" src="http://www.hulema.com/public/i/images/qrcode.jpg" />
+            </div>
+            <div class="contact_qrCode">
+            {# <div class="contact_kf_label">阿当客服</div> #}
+            <img class="contact_qrcode_img" src="http://www.hulema.com/public/i/images/qrcode.jpg" />
+            </div>
         </div>
-        <div class="contact_qrCode">
-        <div class="contact_kf_label">阿当客服</div>
-        <img class="contact_qrcode_img" src="http://www.hulema.com/public/i/images/qrcode.jpg" />
-        </div>
-    </div>
-</section>
+    </section>
+</div>
 {% endblock %}

@@ -3,6 +3,8 @@
   padding: 0;
   margin: 0;
   -webkit-tap-highlight-color: transparent;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -88,24 +90,44 @@ select:-webkit-autofill {
   color: #1381f1;
   border: .05rem solid currentColor;
   white-space: nowrap;
+  -o-border-radius: .25rem;
+  -moz-border-radius: .25rem;
+  -webkit-border-radius: .25rem;
   border-radius: .25rem;
 }
 .r0 {
+  -o-border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
   border-radius: 0;
 }
 .r3 {
+  -o-border-radius: .15rem;
+  -moz-border-radius: .15rem;
+  -webkit-border-radius: .15rem;
   border-radius: .15rem;
 }
 .r5 {
+  -o-border-radius: .25rem;
+  -moz-border-radius: .25rem;
+  -webkit-border-radius: .25rem;
   border-radius: .25rem;
 }
 .r10 {
+  -o-border-radius: .5rem;
+  -moz-border-radius: .5rem;
+  -webkit-border-radius: .5rem;
   border-radius: .5rem;
 }
 .r50 {
+  -o-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
   border-radius: 50%;
 }
 .t50 {
+  -o-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -117,45 +139,49 @@ select:-webkit-autofill {
 }
 /*容器*/
 .flex {
+  display: -webkit-box !important;
+  display: -moz-box !important;
   display: -ms-flexbox !important;
   display: -webkit-flex !important;
   display: flex !important;
 }
 /*从上到下显示*/
 .flex-v {
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
   -moz-flex-direction: column;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-      flex-direction: column;
+  flex-direction: column;
 }
 /*从右到左*/
 .flex-end {
   -webkit-box-pack: end;
+  -webkit-box-direction: reverse;
+  -webkit-box-orient: horizontal;
   -moz-flex-direction: row-reverse;
   -webkit-flex-direction: row-reverse;
-  -ms-flex-direction: row-reverse;
-      flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
 /*x轴两端对齐*/
 .flex-x-between {
+  -webkit-box-pack: justify;
   -moz-justify-content: space-between;
   -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  justify-content: space-between;
 }
 /*居中*/
 .flex-x-center {
+  -webkit-box-pack: center;
   -moz-justify-content: center;
   -webkit-justify-content: center;
-  -ms-flex-pack: center;
-      justify-content: center;
+  justify-content: center;
 }
 /*右对齐*/
 .flex-x-end {
+  -webkit-box-pack: end;
   -moz-justify-content: flex-end;
   -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-      justify-content: flex-end;
+  justify-content: flex-end;
 }
 /*允许换行*/
 .flex-wrap {
@@ -168,6 +194,8 @@ select:-webkit-autofill {
 }
 /*====子元素====*/
 .flex-list {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-flex: 1;
   box-flex: 1;
   -webkit-flex: 1;
@@ -190,12 +218,15 @@ select:-webkit-autofill {
   width: 80%;
   left: 50%;
   top: 50%;
+  -o-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 /*login*/
 .login-mode ol li div,
 .login-mode ol li i {
+  -webkit-transition: all .2s;
   transition: all .2s;
 }
 .login-box > div {
@@ -260,9 +291,11 @@ select:-webkit-autofill {
 .login-body > div > div input {
   border: none;
   padding-left: .25rem;
+  -webkit-border-radius: 0;
   border-radius: 0;
 }
 .login-body > div > div img {
+  -webkit-border-radius: 0 .15rem .15rem 0;
   border-radius: 0 .15rem .15rem 0;
   cursor: pointer;
   position: relative;
@@ -290,6 +323,7 @@ select:-webkit-autofill {
 }
 .login-body > div > div,
 .login-body > .btn {
+  -webkit-border-radius: .15rem;
   border-radius: .15rem;
 }
 .login-body > .btn {
@@ -362,6 +396,7 @@ select:-webkit-autofill {
 .focus > div > div:nth-child(1) {
   height: 3rem;
   background: #0aa2ff;
+  -webkit-border-radius: .25rem .25rem 0 0;
   border-radius: .25rem .25rem 0 0;
 }
 .focus > div > div:nth-child(1) img {
@@ -371,6 +406,7 @@ select:-webkit-autofill {
   background: #f0f0f6;
   overflow: hidden;
   padding: 1.25rem 0;
+  -webkit-border-radius: 0 0 .25rem .25rem;
   border-radius: 0 0 .25rem .25rem;
 }
 .focus > div > div:nth-child(2) h1 {
@@ -428,6 +464,7 @@ select:-webkit-autofill {
   background: transparent;
   margin: 0;
   top: 50%;
+  -moz-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -440,6 +477,7 @@ select:-webkit-autofill {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   display: inline-block;
+  -moz-animation: loading 0.9s 0s infinite cubic-bezier(0.11, 0.49, 0.38, 0.78);
   -webkit-animation: loading 0.9s 0s infinite cubic-bezier(0.11, 0.49, 0.38, 0.78);
   animation: loading 0.9s 0s infinite cubic-bezier(0.11, 0.49, 0.38, 0.78);
 }
@@ -490,6 +528,15 @@ select:-webkit-autofill {
   top: -0.05rem;
 }
 /*animation*/
+@-moz-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    top: 40%;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @-webkit-keyframes fadeInDown {
   0% {
     opacity: 0;
