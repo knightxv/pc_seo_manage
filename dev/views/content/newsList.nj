@@ -1,0 +1,9 @@
+{% for news in newsList %}
+<a class="c_rowList vv_newsItem" href="#news/{{ news.newsId }}">
+    <div class="vv_news_content">
+    <div class="vv_news_title">{{ news.newsTitle }}</div>
+    <div class="vv_news_intro">{{ news.newsIntro }}</div>
+    </div>
+    <img class="vv_news_img" src="{{ httpConfig.webServerPath + news.newsIntroImg }}">
+</a>
+{% endfor %}

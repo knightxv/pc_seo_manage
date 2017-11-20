@@ -1,7 +1,7 @@
 {% extends "layout/template.nj" %}
 
 {% block css %}
-  <link rel="stylesheet" href="/public/css/game-a9cc906683.css">
+  <link rel="stylesheet" href="/public/css/game.css">
 {% endblock %}
 
 {% block nav %}

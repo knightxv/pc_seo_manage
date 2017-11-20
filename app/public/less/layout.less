@@ -25,7 +25,6 @@ body {
 	bottom: 0;
 	right: 0;
 	overflow: hidden;
-	
 }
 .scroll_container {
 	position: absolute;
@@ -35,6 +34,11 @@ body {
 	top: 0;
 	overflow-y: scroll;
 	overflow-x: hidden;
+}
+.phone {
+	.scroll_container {
+		right: 0;
+	}
 }
 
 .vv_container {
@@ -102,6 +106,9 @@ body {
 }
 
 a {
+	color: @baseColor;
+}
+a:focus, a:hover {
 	color: @baseColor;
 }
 .btn {

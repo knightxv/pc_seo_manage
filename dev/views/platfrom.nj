@@ -1,7 +1,7 @@
 {% extends "layout/template.nj" %}
 
 {% block css %}
-<link rel="stylesheet" href="/public/css/platfrom-c6de0a95c7.css">
+<link rel="stylesheet" href="/public/css/platfrom.css">
 {% endblock %}
 
 {% block nav %}

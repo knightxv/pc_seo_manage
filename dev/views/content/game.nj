@@ -1,0 +1,172 @@
+<div id="gameDetail">
+    <nav class="vv_navbar">
+        <a href="#/" class="icon icon_back"></a>
+        <a class="vv_navbar_text" href="{{ gameDetail.gameLoginUrl }}">
+            {% if gameDetail.gameLoginUrl %}
+                代理中心登录
+            {% endif %}
+        </a>
+    </nav>
+    <div class="vv_container">
+        <!-- 内容主体 -->
+        <div class="vv_content">
+            <!-- 头部 -->
+            <div class="vv_game_header">
+                <img class="vv_game_icon" src="{{ httpConfig.webServerPath + gameDetail.gameIcon }}" />
+                <h1 class="vv_game_name">{{ gameDetail.gameName }}</h1>
+                <div class="vv_game_info">
+                    {% for i in range(0, gameDetail.gameStar) -%}
+                    <i class="icon icon_star"></i>
+                    {%- endfor %}
+                    <span class="vv_game_size">{{ gameDetail.gameSize }}</span>
+                    <span class="vv_game_split">|</span>
+                    <span class="vv_game_downCount">{{ gameDetail.downCount }}下载</span>
+                </div>
+                <div class="vv_game_version">版本号:{{ gameDetail.gameVersion }}</div>
+                <div class="vv_game_tag">
+                    <div class="vv_game_tag_wrap">
+                        <i class="icon_tag"></i>
+                        <span class="icon_tag_text">无病毒</span>
+                    </div>
+                    <div class="vv_game_tag_wrap">
+                        <i class="icon_tag"></i>
+                        <span class="icon_tag_text">无广告</span>
+                    </div>
+                    <div class="vv_game_tag_wrap">
+                        <i class="icon_tag"></i>
+                        <span class="icon_tag_text">无插件</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 介绍 -->
+            <div class="am-tabs" data-am-tabs id="gameTab">
+                <ul class="am-tabs-nav am-nav am-nav-tabs vv_game_tab_header">
+                    <li class="am-active">
+                        <a href="#detail">详情</a>
+                    </li>
+                    <li>
+                        <a href="#more">推荐</a>
+                    </li>
+                </ul>
+                <div class="am-tabs-bd vv_game_container">
+                    <div class="am-tab-panel am-fade am-in am-active" id="detail">
+                        <div class="vv_game_content">
+                            <!-- 轮播 -->
+                            {% if gameDetail.gameScreenshot and gameDetail.gameScreenshot.length > 0 %}
+                            <div class="scrollWrapper" id="gameDetailSlider">
+                                <div class="gameDetailImgScroll">
+                                    <ul>
+                                        {% for sliderImg in gameDetail.gameScreenshot %}
+                                            <li>           
+                                                <img
+                                                    class="vv_game_sliderImg"
+                                                    src="{{ httpConfig.webServerPath + sliderImg }}"
+                                                    />
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <div class="vv_game_title">玩法介绍</div>
+                                <div class="vv_game_intro" style="padding: 0">{{ gameDetail.gameIntroduce | safe }}</div>
+                            </div>
+                        </div>
+                        <div class="vv_game_content_module">
+                            <div class="vv_game_title c_rowList">游戏亮点</div>
+                            <div class="vv_game_intro">{{ gameDetail.characteristic | safe }}</div>
+                        </div>
+                        <div class="vv_game_content_module">
+                            <div class="vv_game_title c_rowList">详情信息</div>
+                            <div class="vv_game_intro">
+                                <div>发布日:{{ gameDetail.publicDataTime }}</div>
+                                <div>开发者:{{ gameDetail.developer }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-tab-panel am-fade" id="more">
+                        <div class="vv_game_content">
+                            <h2 class="vv_moreGame_title">热门游戏</h2>
+                            <div class="vv_gameMore_item_wrap">
+                                {% for gameItem in gameList %}
+                                <a href="#gameDetail/{{ gameItem.gameId }}" class="vv_gameMore_item">
+                                    <img class="vv_game_icon" src="{{ httpConfig.webServerPath + gameItem.gameIcon }}">
+                                    <span class="vv_game_name">{{ gameItem.gameName }}</span>
+                                    <span class="vv_game_size">{{ gameItem.gameSize }}</span>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 下载 -->
+    <div class="vv_downBtn_wrap">
+        <button class="am-btn am-btn-secondary am-btn-block am-radius" id="downBtn" type="button" reserve="{{ gameDetail.downUrl }}">下载</button>
+    </div>
+    <!-- ios微信提示 -->
+    <div id="weixin-tip" style="display: none">
+        <img class="weixin_tipImg">
+    </div>
+</div>
+
+<script type="text/javascript">
+    onCreate();
+    function onCreate() {
+        $('#weixin-tip').click(function () {
+            $(this).hide();
+        });
+        var ua = navigator.userAgent.toLowerCase();
+        var is_weixin = function () {
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        var tipShow = function () {
+            if (/iphone|ipad|ipod/.test(ua)) {
+                $('.weixin_tipImg').attr('src', '/public/i/images/ios.png');
+            } else {
+                $('.weixin_tipImg').attr('src', '/public/i/images/android.png');
+            }
+            $('#weixin-tip').show();
+        };
+        /*安卓、ios下载地址*/
+        var getUrl = function (obj) {
+            if (is_weixin()) {
+                tipShow();
+            } else {
+                window.location.href = obj.attr('reserve');
+                {# if (/iphone|ipad|ipod/.test(ua)) {
+                    window.location.href = obj.attr('down-ios');
+                    return;
+                } else {
+                    window.location.href = obj.attr("down-android");
+                    return;
+                } #}
+            }
+        }
+        $('#gameTab').tabs({
+            noSwipe: 1
+        });
+        {# $('#gameSlider').flexslider({
+            keyboard: false,
+            slideshowSpeed: 3000,
+            directionNav: false,
+            pauseOnAction: false
+        }); #}
+        $('#downBtn').click(function () {
+            getUrl($(this));
+        });
+        setTimeout(function() {
+            if (document.getElementById('gameDetailSlider')) {
+                var myGameScroll = new IScroll('#gameDetailSlider', { scrollX: true, scrollY: false, mouseWheel: false });
+            }
+        }, 300);
+        
+    }
+</script>

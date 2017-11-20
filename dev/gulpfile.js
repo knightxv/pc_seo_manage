@@ -1,4 +1,7 @@
 const gulp = require('gulp');
+const rev = require('gulp-rev');
+// const runSequence = require('run-sequence'),
+const revCollector = require('gulp-rev-collector');
 const browserSync = require('browser-sync').create();
 const less = require('gulp-less');
 const reload = browserSync.reload;
@@ -11,15 +14,24 @@ gulp.task('browser-sync',['less'], function() {
         proxy: 'localhost:7001',
         //     files: ["../app/views/**/*.nj"]
     });
-    gulp.watch('../app/public/less/**/*.less', ['less']);
-    gulp.watch('../app/views/**/*.nj').on('change', reload)
+    gulp.watch('../app/public/less/**/*.less', ['less', 'revHtmlCss']);
+    gulp.watch('./views/**/*.nj', ['revHtmlCss']).on('change', reload)
+});
+
+gulp.task('revHtmlCss', function() {
+    return gulp.src(['../app/public/css/*.json', "./views/**/*.nj"])
+        .pipe(revCollector())
+        .pipe(gulp.dest('../app/views'))
+        .pipe(reload({stream: true}));
 });
 
 gulp.task('less', function() {
     return gulp.src("../app/public/less/**/*.less")
         .pipe(less())
+        .pipe(rev())
         .pipe(gulp.dest("../app/public/css"))
-        .pipe(reload({stream: true}));
+        .pipe(rev.manifest())
+        .pipe(gulp.dest("../app/public/css"))
 });
 
 gulp.task('default', ['browser-sync'])

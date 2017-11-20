@@ -14,7 +14,7 @@ section {
   background: url(../i/images/bg.png) no-repeat top center;
   background-size: 100% 100%;
 }
-.vv_header {
+.vv_header_container {
   display: none;
 }
 .vv_footer {
@@ -26,9 +26,12 @@ section {
 .vv_logo {
   margin: 0;
 }
+.scroll_container {
+  bottom: 0;
+}
 @media screen and (min-width: 750px) {
-  .vv_header {
-    display: flex;
+  .vv_header_container {
+    display: block;
   }
   .vv_footer {
     display: block;

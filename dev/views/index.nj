@@ -1,9 +1,9 @@
-{% extends "layout/template.nj" %}
+﻿{% extends "layout/template.nj" %}
 
 {% block css %}
   <link rel="stylesheet" href="/public/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="/public/css/home-3ac5a3463b.css">
-  <link rel="stylesheet" href="/public/css/phone-727b9c6308.css">
+  <link rel="stylesheet" href="/public/css/home.css">
+  <link rel="stylesheet" href="/public/css/phone.css">
   <script>
   (function() {
       var designWidth = 750; // (设计图的大小)
@@ -81,9 +81,7 @@
                     {% if gameList %}
                       {% for game in gameList %}
                         <a class="c_rowList vv_game_item" href="#gameDetail/{{ game.gameId }}">
-                          <div>
-                            <img class="vv_game_icon" src="{{ httpConfig.webServerPath + game.gameIcon }}" alt="{{ game.gameName  }}">
-                          </div>
+                          <img class="vv_game_icon" src="{{ httpConfig.webServerPath + game.gameIcon }}" alt="{{ game.gameName  }}">
                           <div class="vv_game_info">
                             <div class="vv_game_name">{{ game.gameName }}</div>
                             <div>
