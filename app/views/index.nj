@@ -1,38 +1,7 @@
 {% extends "layout/template.nj" %}
 
 {% block css %}
-  <link rel="stylesheet" href="/public/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="/public/css/home-3ac5a3463b.css">
-  <link rel="stylesheet" href="/public/css/phone-727b9c6308.css">
-  <script>
-  (function() {
-      var designWidth = 750; // (设计图的大小)
-      var rem2px = 16; // (设置的值与设计图的比值)
-      var winWidth = (document.documentElement.clientWidth || document.body.clientWidth ) * window.devicePixelRatio;
-      if (winWidth >= 750) {
-        document.documentElement.style.fontSize = designWidth / 2 / rem2px + 'px';
-      } else if (winWidth >= 640) {
-        if (isPC()) {
-          document.documentElement.style.fontSize = winWidth / rem2px + 'px';
-          return;
-          
-        }
-        document.documentElement.style.fontSize = 25 + 'px';
-      } else {
-        if (isPC()) {
-          document.documentElement.style.fontSize = winWidth / rem2px + 'px';
-          return;
-        }
-        document.documentElement.style.fontSize = 20 + 'px';
-      }
-      // @media only screen and (min-width: 320px) and (max-width:420px){html{font-size: 40px;}}
-      // @media only screen and (min-width: 420px) and (max-width:640px){html{font-size: 45px;}}
-      // @media only screen and (min-width: 640px){html{font-size: 50px;}}
-      //  else {
-      //   document.documentElement.style.fontSize = winWidth / rem2px + 'px';
-      // }
-  })()
-  </script>
+  <link rel="stylesheet" href="/public/css/home-186d1fbbc1.css">
 {% endblock %}
 
 {% block nav %}
@@ -42,134 +11,42 @@
 {% endblock %}
 
 {% block main %}
-<section class="vv_body">
-
-  <section class="vv_phone_container">
-    <side class="vv_phoneTop"></side>
-    <side class="vv_downLeftTip"></side>
-    <!-- 手机主体内容 -->
-    <main class="vv_phone" id="home">
-      <div id="navTabs" class="am-tabs vv_phone_tabs" data-am-tabs>
-        <div class="am-tabs-bd am-tabs-bd-ofv">
-          <!-- 游戏 -->
-          <div class="am-tab-panel am-active vv_tab_panel">
-            <div class="scrollWrapper" id="gameScrollWrapper">
-              <div class="c_content">
-                {% if gameSlider.length > 0 %}
-                  <div id="gameSlider" class="am-slider am-slider-default vv_slider" data-am-flexslider>
-                    <ul class="am-slides">
-                      {% for slider in gameSlider %}
-                        <li>
-                          <a href="{{ slider.gameLink or 'javascript:;' }}">
-                            <img src="{{ httpConfig.webServerPath + slider.gamePicture }}" />
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  
-                {% endif %}
-                    {# <li>
-                      <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
-                    </li> #}
-                <div class="vv_m_container">
-                  <div class="vv_game c_rowList">
-                    <i class="icon_game"></i>
-                    <span class="vv_game_title">新游推荐</span>
-                  </div>
-                  <div id="gameList">
-                    {% if gameList %}
-                      {% for game in gameList %}
-                        <a class="c_rowList vv_game_item" href="#gameDetail/{{ game.gameId }}">
-                          <div>
-                            <img class="vv_game_icon" src="{{ httpConfig.webServerPath + game.gameIcon }}" alt="{{ game.gameName  }}">
-                          </div>
-                          <div class="vv_game_info">
-                            <div class="vv_game_name">{{ game.gameName }}</div>
-                            <div>
-                              {% for i in range(0, game.gameStar) -%}
-                                <i class="icon_star"></i>
-                              {%- endfor %}
-                              <span class="vv_game_size">{{ game.gameSize }}</span>
-                            </div>
-                            <div class="vv_game_intro">{{ game.gameBrief }}</div>
-                          </div>
-                        </a>
-                      {% endfor %}
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- 新闻 -->
-          <div class="am-tab-panel vv_tab_panel">
-            <div class="scrollWrapper" id="newsScrollWrap">
-              <div class="c_content">
-                {% if newsSliders.length > 0 %}
-                  <div id="newsSlider" class="am-slider am-slider-default vv_slider" data-am-flexslider>
-                    <ul class="am-slides">
-                      {% for newsSlider in newsSliders %}
-                        <li>
-                          <a href="#news/{{ newsSlider.newsId }}">
-                            <img src="{{ httpConfig.webServerPath + newsSlider.newsIntroImg }}">
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-                <div class="vv_news_wrap" id="newItemWrap">
-                  {% for news in newsList %}
-                  <a class="c_rowList vv_newsItem" href="#news/{{ news.newsId }}">
-                    <div class="vv_news_content">
-                      <div class="vv_news_title">{{ news.newsTitle }}</div>
-                      <div class="vv_news_intro">{{ news.newsIntro }}</div>
-                    </div>
-                    <img class="vv_news_img" src="{{ httpConfig.webServerPath + news.newsIntroImg }}" alt="{{ news.newsTitle }}">
-                  </a>
-                  {% endfor %}
-                </div>
-                <div class="vv_loading_tip" id="loadingTip">加载中...</div>
-              </div>
-            </div>
-          </div>
-          <!-- 加入我们 -->
-          <div class="am-tab-panel vv_tab_panel">
-            <div class="vv_container">
-              <div class="vv_content vv_join_content">
-                <img src="/public/i/images/join.jpg" width="100%" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <ul class="am-tabs-nav am-nav am-nav-tabs vv_tabs_nav">
-          <li class="vv_tabs_item am-active">
-            <a href="javascript:;" data-index="game">
-              <i class="vv_tabs_icon vv_tabs_icon_game"></i>
-              <span>游戏</span>
-            </a>
-          </li>
-          <li class="vv_tabs_item">
-            <a href="javascript:;" data-index="news">
-              <i class="vv_tabs_icon vv_tabs_icon_news"></i>
-              <span>资讯</span>
-            </a>
-          </li>
-          <li class="vv_tabs_item">
-            <a href="javascript:;" data-index="join">
-              <i class="vv_tabs_icon vv_tabs_icon_join"></i>
-              <span>加入我们</span>
-            </a>
-          </li>
-        </ul>
+<div class="home_header_nav">
+  <div class="home_qrcode_wrap">
+    <img src="/public/hulema/images/qrcode.png" />
+  </div>
+</div>
+<div class="home_contentContainer">
+  <div class="home_row_module">
+    <div class="home_hotGame_module">
+      <div class="home_hotGame_title">热门游戏</div>
+      <div class="home_hotGame_item_wrap">
+        {% for game in gameList %}
+          <a class="home_hotGame_item" href="/games/{{ game.gameId }}">
+            <img
+              class="home_game_icon"
+              src="{{ httpConfig.webServerPath + game.gameIcon }}"
+              alt="{{ game.gameBrief  }}"
+            />
+            <span class="home_hotGame_name">{{ game.gameName }}</span>
+          </a>
+        {% endfor %}
       </div>
-      <!-- 二级导航 -->
-      <div id="routerPicker" style="display: none"></div>
-    </main>
-    <side class="vv_downRightTip">
-      <img id="qrcode" class="qrcode" src="/public/i/images/qrcode.png" />
-    </side>
-  </section>
-</section>
+    </div>
+    <div class="home_notice">
+      <div class="home_notice_titleWrap">
+        <div class="home_notice_title">活动公告</div>
+        <a href="/news">更多&gt;&gt;</a>
+      </div>
+      <ul>
+       {% for news in newsList %}
+        <li class="home_notice_item">
+          <a href="/news/{{ news.newsId }}" class="home_notice_content">{{ news.newsIntro }}</a>
+          <div class="home_notice_time">{{ news.publicTime }}</div>
+        </li>
+       {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}

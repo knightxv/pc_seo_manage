@@ -45,7 +45,7 @@ pre {
 .icon_game {
   width: 0.81066667rem;
   height: 0.81066667rem;
-  display: block;
+  display: inline-block;
   background: url(../i/images/xy.png) no-repeat;
   background-size: 0.81066667rem 0.81066667rem;
 }
@@ -261,7 +261,7 @@ a {
 #home .vv_game_icon {
   width: 2.56rem;
   height: 2.56rem;
-  display: block;
+  display: inline-block;
   border-radius: 0.42666667rem;
 }
 #home .vv_game_info {

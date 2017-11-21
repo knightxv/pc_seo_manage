@@ -6,16 +6,17 @@ const browserSync = require('browser-sync').create();
 const less = require('gulp-less');
 const reload = browserSync.reload;
 // 静态服务器
-gulp.task('browser-sync',['less'], function() {
+gulp.task('browser-sync', function() {
     browserSync.init({
 				// server: {
 				// 	baseDir: './',
 				// },
         proxy: 'localhost:7001',
+        open: false
         //     files: ["../app/views/**/*.nj"]
     });
-    gulp.watch('../app/public/less/**/*.less', ['less', 'revHtmlCss']);
-    gulp.watch('./views/**/*.nj', ['revHtmlCss']).on('change', reload)
+    gulp.watch('./less/**/*.less', ['less', 'revHtmlCss']);
+    gulp.watch('./views/**/*.nj', ['revHtmlCss']);//.on('change', reload)
 });
 
 gulp.task('revHtmlCss', function() {
@@ -26,7 +27,7 @@ gulp.task('revHtmlCss', function() {
 });
 
 gulp.task('less', function() {
-    return gulp.src("../app/public/less/**/*.less")
+    return gulp.src("./less/**/*.less")
         .pipe(less())
         .pipe(rev())
         .pipe(gulp.dest("../app/public/css"))

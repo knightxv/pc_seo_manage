@@ -17,24 +17,36 @@ module.exports = app => {
       // // 新闻
       // const newsListRes = await ctx.helper.webHttp.get('/gamePlatform/newsList');
       // const newsList = newsListRes.isSuccess ? newsListRes.data : [];
-      const [ gameListRes, gameSliderRes, newsSlidersRes, newsListRes ] = await Promise.all([
+      const deviceAgent = ctx.request.headers['user-agent'].toLowerCase();
+      const isPhone = !!deviceAgent.match(/(iphone|ipod|ipad|android|symbianos|phone|ipad|ipod)/);
+      console.log(isPhone);
+      const [ gameListRes, newsListRes ] = await Promise.all([
         ctx.helper.webHttp.get('/gamePlatform/gameRecommendList'),
-        ctx.helper.webHttp.get('/gamePlatform/navbarSwiperList'),
-        ctx.helper.webHttp.get('/gamePlatform/newsCarousel'),
         ctx.helper.webHttp.get('/gamePlatform/newsList'),
       ]);
       // 推荐游戏列表
       const gameList = gameListRes.isSuccess ? gameListRes.data : [];
-      // 轮播图片
-      const gameSlider = gameSliderRes.isSuccess ? gameSliderRes.data : [];
-      // 新闻轮播
-      const newsSliders = newsSlidersRes.isSuccess ? newsSlidersRes.data : [];
       // 新闻
       const newsList = newsListRes.isSuccess ? newsListRes.data : [];
+      if (isPhone) {
+        const [ gameSliderRes, newsSlidersRes ] = await Promise.all([
+          ctx.helper.webHttp.get('/gamePlatform/navbarSwiperList'),
+          ctx.helper.webHttp.get('/gamePlatform/newsCarousel'),
+        ]);
+        // 轮播图片
+        const gameSlider = gameSliderRes.isSuccess ? gameSliderRes.data : [];
+        // 新闻轮播
+        const newsSliders = newsSlidersRes.isSuccess ? newsSlidersRes.data : [];
+        await ctx.render('phone/index.nj', {
+          gameList,
+          gameSlider,
+          newsSliders,
+          newsList,
+        });
+        return;
+      }
       await ctx.render('index.nj', {
         gameList,
-        gameSlider,
-        newsSliders,
         newsList,
       });
     }
@@ -79,16 +91,11 @@ module.exports = app => {
       let gameDetail = {};
       let gameList = [];
       if (gameId && !isNaN(gameId)) {
-        console.log(11);
         const gameDetailRes = await ctx.helper.webHttp.get('/gamePlatform/gameDetailInfo', { gameId });
         gameDetail = gameDetailRes.isSuccess ? gameDetailRes.data : {};
-        console.log(gameDetail);
         const gameListRes = await ctx.helper.webHttp.get('/gamePlatform/gameRecommendList', { page: 0, size: 6 });
         gameList = gameListRes.isSuccess ? gameListRes.data : [];
-        console.log(gameList);
       }
-      console.log(gameDetail);
-      console.log(gameList);
       await ctx.render('gameDetail.nj', {
         gameDetail,
         gameList,

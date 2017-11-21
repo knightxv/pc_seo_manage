@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="">
+<html lang="zh-CN">
 
 <head>
   <meta http-quiv="Content-Type" content="text/html; charset=utf-8">
@@ -33,7 +33,7 @@
   {# <link rel="stylesheet" href="/public/css/amazeui.min.css">
   <link rel="stylesheet" href="/public/css/main-fc9c6edef4.css"> #}
  <link rel="stylesheet" href="/public/css/common-330638ed99.css">
-  <link rel="stylesheet" href="/public/css/layout-98c4203ae6.css">
+  <link rel="stylesheet" href="/public/css/layout-d4dd393949.css">
   {% block css %}
   {% endblock %}
 </head>
@@ -81,7 +81,14 @@
         {% block main %}
         {% endblock %}
       </div>
-      <footer class="vv_footer">
+      <footer class="pc_footer">
+        <div>
+          <a class="pc_footer_navLaebl" href="/">胡了吗首页</a>|
+          <a class="pc_footer_navLaebl" href="/games">游戏中心</a>|
+          <a class="pc_footer_navLaebl" href="/news">新闻资讯</a>|
+          <a class="pc_footer_navLaebl" href="/platfrom">平台介绍</a>|
+          <a class="pc_footer_navLaebl" href="/contact">联系我们</a>
+        </div>
         <div>闽ICP备16028156号-2</div>
         <div>Copyright©2016-2017 All Rights Reserved</div>
         <div>抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
@@ -89,27 +96,7 @@
     </div>
   </div>
   </body>
-  <script>
-      function isPC () {
-        var userAgentInfo = navigator.userAgent;
-        var Agents = ['Android', 'iPhone', 'SymbianOS',
-        'Phone', 'iPad', 'iPod'];
-        var flag = true;
-        var v;
-        for (v = 0; v < Agents.length; v++) {
-          if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
-        }
-        return flag;
-      }
-      if (isPC()) {
-        document.body.className = 'pc';
-      } else {
-        document.body.className = 'phone';
-      }
-    </script>
-  <script src="/public/js/jquery.min.js"></script>
-  <script src="/public/js/amazeui.min.js"></script>
-  <script src="/public/js/main.js"></script>
+  {# <script src="/public/js/jquery.min.js"></script> #}
   <!-- Built with love using Web Starter Kit -->
 
 </html>

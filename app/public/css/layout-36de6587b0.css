@@ -1,0 +1,128 @@
+section {
+  display: flex;
+  flex-direction: column;
+}
+.flex {
+  display: flex;
+}
+.header_img {
+  width: 100%;
+}
+body,
+html {
+  min-height: 100%;
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+a {
+  color: #f09803;
+}
+a:focus,
+a:hover {
+  color: #f09803;
+}
+.btn {
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 18px;
+  color: #eee;
+}
+.btn.btn-default {
+  background: #f09803;
+}
+.container {
+  font-size: 16px;
+  flex: 1;
+  position: relative;
+}
+.content_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+.scroll_container {
+  position: absolute;
+  left: 0;
+  right: -17px;
+  bottom: 80px;
+  top: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.phone .scroll_container {
+  right: 0;
+}
+.vv_container {
+  max-width: 1420px;
+  margin: 0 auto;
+}
+.vv_header_container {
+  height: 66px;
+  background: #313131;
+}
+.pc_footer {
+  font-size: 12px;
+  text-align: center;
+  color: #909090;
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+}
+.pc_footer_navLaebl {
+  padding: 0 8px;
+  color: #b5b5b5;
+}
+.vv_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 960px;
+  height: 100%;
+  margin: 0 auto;
+}
+.vv_header .vv_logo {
+  display: block;
+  width: 208px;
+  height: 41px;
+  text-indent: -999px;
+  background: url(../i/images/logo.png) no-repeat;
+}
+.vv_header .vv_header_right {
+  align-self: stretch;
+}
+.vv_header .vv_nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+}
+.vv_header .vv_nav a {
+  position: relative;
+  padding: 0 20px;
+  color: #909090;
+  font-size: 16px;
+  line-height: 66px;
+}
+.vv_header .vv_nav a.active {
+  color: #f09803;
+}
+.vv_header .vv_nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #f09803;
+}

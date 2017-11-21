@@ -9,12 +9,30 @@ body {
 	flex-direction: column;
 }
 
+a {
+	color: #333;
+	
+}
+a:focus, a:hover {
+	color: @baseColor;
+}
+.btn {
+	padding: 6px;
+	border-radius: 6px;
+	font-size: 18px;
+	color: #eee;
+	&.btn-default {
+		background: @baseColor;
+	}
+}
+
 @headerHeight: 66px;
-@bottomHeight: 60px;
+@bottomHeight: 80px;
 
 .container {
 	// background: url(../i/images/bg.png) no-repeat top center;
 	// background-size: 100% 100%;
+	font-size: 16px;
 	flex: 1;
 	position: relative;
 }
@@ -49,7 +67,7 @@ body {
 	height: @headerHeight;
 	background: @headerBgColor;
 }
-.vv_footer {
+.pc_footer {
 	font-size: 12px;
 	text-align: center;
 	color: @gray;
@@ -59,6 +77,10 @@ body {
 	width: 100%;
 	height: @bottomHeight;
 	z-index: 1000;
+}
+.pc_footer_navLaebl {
+	padding: 0 8px;
+	color: #909090;
 }
 
 .vv_header {
@@ -105,18 +127,3 @@ body {
 	}
 }
 
-a {
-	color: @baseColor;
-}
-a:focus, a:hover {
-	color: @baseColor;
-}
-.btn {
-	padding: 6px;
-	border-radius: 6px;
-	font-size: 18px;
-	color: #eee;
-	&.btn-default {
-		background: @baseColor;
-	}
-}

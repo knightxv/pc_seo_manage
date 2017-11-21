@@ -39,7 +39,7 @@
 	<section class="gameDetail_item_wrap">
 		<div class="gameDetail_title">玩法介绍</div>
 		<div class="gameDetail_gameIntro">
-			{{ gameDetail.gameIntroduce }}
+			{{ gameDetail.gameIntroduce | safe }}
 		</div>
 	</section>
 	<section class="gameDetail_item_wrap">
@@ -67,6 +67,7 @@
 								class="gameDetail_gameIntro_icon"
 								src="{{ httpConfig.webServerPath + introGame.gameIcon }}"
 							/>
+							<div>{{ introGame.gameName }}</div>
 							<div>{{ introGame.gameSize }}</div>
 						</section>
 					</a>
