@@ -1,8 +1,10 @@
 {% extends "layout/template.nj" %}
 
 {% block css %}
-  <link rel="stylesheet" href="/public/css/home.css">
+  <link rel="stylesheet" href="{{ static }}/css/home.css">
 {% endblock %}
+{% block js %}
+{% endblock%}
 
 {% block nav %}
 {% call navCreate(1) %}
@@ -13,7 +15,7 @@
 {% block main %}
 <div class="home_header_nav">
   <div class="home_qrcode_wrap">
-    <img src="/public/hulema/images/qrcode.png" />
+    <img src="{{ static }}/images/qrcode.png" alt="阿当游戏平台" />
   </div>
 </div>
 <div class="home_contentContainer">

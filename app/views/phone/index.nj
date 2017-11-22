@@ -1,39 +1,38 @@
 {% extends "layout/phone.nj" %}
 
 {% block css %}
-  <link rel="stylesheet" href="/public/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="/public/css/phone-727b9c6308.css">
-  <script>
-  (function() {
-      var designWidth = 750; // (设计图的大小)
-      var rem2px = 16; // (设置的值与设计图的比值)
-      var winWidth = (document.documentElement.clientWidth || document.body.clientWidth ) * window.devicePixelRatio;
-      if (winWidth >= 750) {
-        document.documentElement.style.fontSize = designWidth / 2 / rem2px + 'px';
-      } else if (winWidth >= 640) {
-        if (isPC()) {
-          document.documentElement.style.fontSize = winWidth / rem2px + 'px';
-          return;
-        }
-        document.documentElement.style.fontSize = 25 + 'px';
-      } else {
-        if (isPC()) {
-          document.documentElement.style.fontSize = winWidth / rem2px + 'px';
-          return;
-        }
-        document.documentElement.style.fontSize = 20 + 'px';
-      }
-      // @media only screen and (min-width: 320px) and (max-width:420px){html{font-size: 40px;}}
-      // @media only screen and (min-width: 420px) and (max-width:640px){html{font-size: 45px;}}
-      // @media only screen and (min-width: 640px){html{font-size: 50px;}}
-      //  else {
-      //   document.documentElement.style.fontSize = winWidth / rem2px + 'px';
-      // }
-  })()
-  </script>
+  <link rel="stylesheet" href="{{ static }}/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="{{ static }}/css/phone-6f921e8eb6.css">
+{% endblock %}
+{% block script %}
+<script src="{{ static }}/js/jquery.min.js"></script>
+<script src="{{ static }}/js/amazeui.min.js"></script>
+<script src="{{ static }}/js/main.js"></script>
 {% endblock %}
 
 {% block main %}
+<script>
+(function() {
+    var designWidth = 750; // (设计图的大小)
+    var rem2px = 16; // (设置的值与设计图的比值)
+    var winWidth = (document.documentElement.clientWidth || document.body.clientWidth ) * window.devicePixelRatio;
+    if (winWidth >= 750) {
+      document.documentElement.style.fontSize = designWidth / 2 / rem2px + 'px';
+    } else if (winWidth >= 640) {
+      if (isPC()) {
+        document.documentElement.style.fontSize = winWidth / rem2px + 'px';
+        return;
+      }
+      document.documentElement.style.fontSize = 25 + 'px';
+    } else {
+      if (isPC()) {
+        document.documentElement.style.fontSize = winWidth / rem2px + 'px';
+        return;
+      }
+      document.documentElement.style.fontSize = 20 + 'px';
+    }
+})()
+</script>
 <section class="vv_body">
   <section class="vv_phone_container">
     <!-- 手机主体内容 -->
@@ -126,7 +125,7 @@
           <div class="am-tab-panel vv_tab_panel">
             <div class="vv_container">
               <div class="vv_content vv_join_content">
-                <img src="/public/i/images/join.jpg" width="100%" />
+                <img src="{{ static }}/images/join.jpg" width="100%" />
               </div>
             </div>
           </div>

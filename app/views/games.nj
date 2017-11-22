@@ -1,8 +1,9 @@
 {% extends "layout/template.nj" %}
 
 {% block css %}
-  <link rel="stylesheet" href="/public/css/game-a9cc906683.css">
+  <link rel="stylesheet" href="{{ static }}/css/game-6ba2deebbc.css">
 {% endblock %}
+
 
 {% block nav %}
 {% call navCreate(2) %}
@@ -20,6 +21,7 @@
 				<img
 						class="game_img"
 						src="{{ httpConfig.webServerPath + game.gameIcon }}"
+						alt="{{ game.gameBrief }}"
 				/>
 				<section class="vv_newsInfo">
 						<div class="vv_newsItem_title">{{ game.gameName }}</div>
@@ -30,3 +32,4 @@
 		{% endfor %}
 	</div>
 {% endblock %}
+

@@ -1,43 +1,4 @@
-<!doctype html>
-<html lang="zh-CN">
-
-<head>
-  <meta http-quiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="胡了吗 比鸡 牛牛 斗牛 斗地主 德州扑克 十三水 博饼 当当比鸡 阿当比鸡 阿当斗牛 阿当博饼">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>胡了吗</title>
-  <!-- Set render engine for 360 browser -->
-  <meta name="renderer" content="webkit">
-  <!-- No Baidu Siteapp-->
-  <meta http-equiv="Cache-Control" content="no-siteapp">
-  <link rel="icon" type="image/png" href="/public/i/favicon.png">
-  <!-- Add to homescreen -->
-  <link rel="manifest" href="manifest.json">
-  <!-- Fallback to homescreen for Chrome <39 on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="胡了吗游戏平台">
-  <link rel="icon" sizes="192x192" href="/public/i/touch/chrome-touch-icon-192x192.png">
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="胡了吗 比鸡 牛牛 斗牛 斗地主 德州扑克 十三水 博饼 当当比鸡 阿当比鸡 阿当斗牛 阿当博饼">
-  <link rel="apple-touch-icon" href="/public/i/touch/apple-touch-icon.png">
-  <!-- Tile icon for Win8 (144x144 + tile color) -->
-  <meta name="msapplication-TileImage" content="/public/i/touch/ms-touch-icon-144x144-precomposed.png">
-  <meta name="msapplication-TileColor" content="#0e90d2">
-  <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-  <!--
-  <link rel="canonical" href="http://www.example.com/">
-  -->
-  {# <link rel="stylesheet" href="/public/css/amazeui.min.css">
-  <link rel="stylesheet" href="/public/css/main-fc9c6edef4.css"> #}
- <link rel="stylesheet" href="/public/css/common-330638ed99.css">
-  <link rel="stylesheet" href="/public/css/layout-d4dd393949.css">
-  {% block css %}
-  {% endblock %}
-</head>
-
+{% extends "layout/head.nj" %}
 
 
 {% macro navCreate(pageIndex) %}
@@ -55,10 +16,13 @@
     {% endfor %}
   </nav>
 {% endmacro %}
-<body>
-  <nav class="vv_header_container">
+
+{% block body %}
+ <nav class="vv_header_container">
     <div class="vv_header">
-      <h1 class="vv_logo">胡了吗</h1>
+      <a href="http://www.hulema.com">
+        <h1 class="vv_logo">胡了吗</h1>
+      </a>
       <section class="vv_header_right">
         {% block nav %}
           {% call navCreate(1) %}
@@ -95,8 +59,9 @@
       </footer>
     </div>
   </div>
-  </body>
-  {# <script src="/public/js/jquery.min.js"></script> #}
-  <!-- Built with love using Web Starter Kit -->
 
-</html>
+  {% endblock %}
+
+
+
+

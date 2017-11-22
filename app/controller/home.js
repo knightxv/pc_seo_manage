@@ -19,7 +19,6 @@ module.exports = app => {
       // const newsList = newsListRes.isSuccess ? newsListRes.data : [];
       const deviceAgent = ctx.request.headers['user-agent'].toLowerCase();
       const isPhone = !!deviceAgent.match(/(iphone|ipod|ipad|android|symbianos|phone|ipad|ipod)/);
-      console.log(isPhone);
       const [ gameListRes, newsListRes ] = await Promise.all([
         ctx.helper.webHttp.get('/gamePlatform/gameRecommendList'),
         ctx.helper.webHttp.get('/gamePlatform/newsList'),

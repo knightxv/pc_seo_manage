@@ -1,7 +1,7 @@
 {% extends "layout/template.nj" %}
 
 {% block css %}
-<link rel="stylesheet" href="/public/css/news.css">
+<link rel="stylesheet" href="{{ static }}/css/news.css">
 {% endblock %}
 
 {% block nav %}
@@ -19,8 +19,9 @@
 		{% for news in newList %}
 			<div class="vv_newItem">
 				<img
-						class="vv_news_img"
-						src="{{ httpConfig.webServerPath + news.newsIntroImg }}"
+					class="vv_news_img"
+					src="{{ httpConfig.webServerPath + news.newsIntroImg }}"
+					alt="{{ news.newsTitle }}"
 				/>
 				<section class="vv_newsInfo">
 						<div class="vv_newsItem_title">{{ news.newsTitle }}</div>

@@ -19,7 +19,7 @@ module.exports = appInfo => {
   };
 
   config.static = {
-    prefix: '/public/',
+    prefix: '/',
   };
 
   config.logger = {
@@ -32,6 +32,14 @@ module.exports = appInfo => {
       port: 7001,
     },
   };
+
+  // config.nunjucks = {
+  //   autoescape: true,
+  //   throwOnUndefined: false,
+  //   trimBlocks: false,
+  //   lstripBlocks: false,
+  //   cache: true,process.env.NODE_ENV !== 'production'
+  // };
 
   return config;
 

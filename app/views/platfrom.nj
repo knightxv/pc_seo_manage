@@ -1,7 +1,7 @@
 {% extends "layout/template.nj" %}
 
 {% block css %}
-<link rel="stylesheet" href="/public/css/platfrom-c6de0a95c7.css">
+<link rel="stylesheet" href="{{ static }}/css/platfrom-b732b450a1.css">
 {% endblock %}
 
 {% block nav %}
@@ -13,7 +13,7 @@
 
 {% block main %}
 <section>
-    <img src="/public/hulema/images/PlatformIntroduction.png" />
+    <img src="{{ static }}/images/PlatformIntroduction.png" alt="阿当游戏" />
 	<div class="c_content_container">
         <div class="vv_title_wrap">
             <div class="i_rect"></div>
@@ -23,14 +23,14 @@
             <div class="platfrom_info_text">
                 全新平台携海量游戏，网罗全网人气游。更多玩法更多欢乐，带来非凡游戏体验
             </div>
-            <img class="platfrom_logo2" src="/public/hulema/images/logo2.png" />
+            <img class="platfrom_logo2" src="{{ static }}/images/logo2.png" alt="阿当游戏" />
         </div>
         <div class="vv_title_wrap">
             <div class="i_rect"></div>
             <h2 class="vv_platform_title">平台承诺</h2>
         </div>
         <section class="vv_icon_wrap">
-            <img src="/public/hulema/images/platfrom_icons.png" />
+            <img src="{{ static }}/images/platfrom_icons.png" />
         </section>
     </div>
 </section>
