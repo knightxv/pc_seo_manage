@@ -1,21 +1,64 @@
 {% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ static }}/css/news-c772847dde.css">
+<link rel="stylesheet" href="{{ static }}/css/news-5929ec4dfd.css">
 {% endblock %}
 
-{% block nav %}
-{% call navCreate(3) %}
-{{ caller() }}
-{% endcall %}
-{% endblock %}
+{% set breadArr = [{label: '首页', href: '/'}, {label: '新闻资讯', href: '/news'}] %}
 
 
 {% block main %}
-<section class="news_container">
-	<h2 class="vv_news_title">新闻资讯</h2>
-	<div class="vv_news_tip">了解新闻资讯，时刻掌握游戏动态，实时更新业内最新新闻和资讯</div>
-	<div class="vv_newsList_container">
+{{ component.headBanner(3) }}
+{{ component.BannerImg(static + "/images/banner.jpg") }}
+{{ component.Breadcrumb(breadArr) }}
+<section class="container">
+	<section class="col-md-3">
+		<section class="m_module">
+			{{ component.Title('新闻公告') }}
+			{{ component.SideSelect() }}
+		</section>
+		<section class="m_module">
+			{{ component.Title('新闻公告') }}
+			{{ component.NewsSide() }}
+		</section>
+	</section>
+	<section class="col-md-8 m_module">
+		<section class="news_item">
+			<div class="news_img_wrap">
+				<img
+					class="vv_news_img"
+					src="{{ static + '/images/banner.jpg' }}"
+					alt="新闻头"
+				/>
+			</div>
+			<div class="new_content_wrap">
+				<a class="news_title" href="javascript:;">新闻头</a>
+				<div class="news_public_title">发布日期：2017-02-23</div>
+				<div class="news_content">新闻内容</div>
+			</div>
+		</section>
+		<nav class="news_navigation" aria-label="Page navigation">
+			<ul class="pagination">
+				<li class="disabled">
+				<a href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+				</li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li>
+				<a href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+				</li>
+			</ul>
+		</nav>
+	</section>
+	{# <div class="vv_newsList_container">
 		{% for news in newList %}
 			<div class="vv_newItem">
 				<img
@@ -30,6 +73,6 @@
 				</section>
 			</div>
 		{% endfor %}
-	</div>
+	</div> #}
 </section>
 {% endblock %}

@@ -1,35 +1,25 @@
 {% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
 
 {% block css %}
-  <link rel="stylesheet" href="{{ static }}/css/game-6ba2deebbc.css">
+  <link rel="stylesheet" href="{{ static }}/css/game-07a82738a1.css">
 {% endblock %}
 
-
-{% block nav %}
-{% call navCreate(2) %}
-{{ caller() }}
-{% endcall %}
-{% endblock %}
+{% set breadArr = [{label: '首页', href: '/'}, {label: '游戏中心', href: '/games'}, {label: '大众棋牌', href: '/games'}] %}
 
 {% block main %}
-<section class="game_container">
-	<h2 class="vv_news_title">游戏中心</h2>
-	{# <div class="vv_news_tip">了解新闻资讯，时刻掌握游戏动态，实时更新业内最新新闻和资讯</div> #}
-	<div class="vv_newsList_container">
-		{% for game in gameList %}
-			<div class="game_gameItem">
-				<img
-						class="game_img"
-						src="{{ httpConfig.webServerPath + game.gameIcon }}"
-						alt="{{ game.gameBrief }}"
-				/>
-				<section class="vv_newsInfo">
-						<div class="vv_newsItem_title">{{ game.gameName }}</div>
-						<div class="vv_news_content">{{ game.gameBrief }}</div>
-						<a href="/games/{{game.gameId}}" class="vv_news_rightTip">查看游戏&gt;&gt;</a>
-				</section>
-			</div>
-		{% endfor %}
+{# 头部导航 #}
+{{ component.headBanner(2) }}
+{{ component.BannerImg(static + "/images/banner.jpg") }}
+{{ component.Breadcrumb(breadArr) }}
+<main class="container gameCenter">
+	<div class="row">
+		<div class="col-md-3 m_module">
+			{{ component.Title('游戏中心') }}
+			{{ component.SideSelect() }}
+		</div>
+		{{ component.GamesShow([], 'col-md-8 m_module') }}
 	</div>
+</main>
 {% endblock %}
 

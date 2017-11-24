@@ -51,23 +51,39 @@ gulp.task('browser-sync', function() {
         //     files: ["../app/views/**/*.nj"]
     });
     gulp.watch(lessDevelopPath + "/**/*.less").on('change', function () {
-        runSequence('less', 'revHtmlCss', 'reload');
+        var filePathList = readFileNameList(cssDistPath);
+        for (var i = 0; i < filePathList.length; i++) {
+         if (/\.css$/.test(filePathList[i])) {
+             fs.unlinkSync(filePathList[i]);
+         }
+        }
+        runSequence('less', 'revHtml', 'reload');
     });
     // gulp.watch('./less/**/*.less', ['less', 'revHtmlCss']);
     gulp.watch('./views/**/*.nj').on('change', function() {
-    	runSequence('revHtmlCss', 'reload');
+    	runSequence('revHtml', 'reload');
     });
     gulp.watch(jsDevelopPath + '/**/*.js').on('change', function() {
-    	runSequence('resolveJs', 'reload');
+        // var filePathList = readFileNameList(jsDistPath);
+        // for (var i = 0; i < filePathList.length; i++) {
+        //  if (/\.js$/.test(filePathList[i])) {
+        //      fs.unlinkSync(filePathList[i]);
+        //  }
+        // }
+    	runSequence('resolveJs', 'revHtml', 'reload');
     });
 });
 
-// 处理css版本号
-gulp.task('revHtmlCss', function() {
-    return gulp.src([cssDistPath + '/*.json', templateDevolopPath + '/**/*.nj'])
-        .pipe(revCollector())
+// 处理js,css版本号
+gulp.task('revHtml', function() {
+    return gulp.src([distPath + '/public/static/**/*.json', templateDevolopPath + '/**/*.nj'])
+        .pipe(revCollector({
+            replaceReved: true,
+        }))
         .pipe(gulp.dest(templateDistPath));
 });
+
+
 
 // 处理less文件
 gulp.task('less', function() {
@@ -94,6 +110,7 @@ gulp.task('resolveJs', function() {
         .pipe(babel({
             presets: [es2015]
         }))
+        .pipe(rev())
         // .pipe(jshint(".jshintrc"))  Jshint可在package.json配置，也可在.jshintrc处配置。默认在单独文件中配置
         //.pipe(jshint.reporter("default"))
         // .pipe(jshint.reporter(stylish))
@@ -102,6 +119,8 @@ gulp.task('resolveJs', function() {
         .on('error', function (e) {
             console.log(e);
         })
+        .pipe(gulp.dest(jsDistPath))
+        .pipe(rev.manifest())
         .pipe(gulp.dest(jsDistPath))
 });
 
@@ -125,22 +144,22 @@ gulp.task('default', ['browser-sync'])
 //     return true;
 // })
 
-// //获取文件夹下所有的文件名字并返回一个数组
-// function readFileNameList(dirPath) {
-//     var result = [];
+//获取文件夹下所有的文件名字并返回一个数组
+function readFileNameList(dirPath) {
+    var result = [];
 
-//     function finder(dirPath) {
-//         var files = fs.readdirSync(dirPath);
-//         files.forEach(function (val, index) {
-//             var fPath = path.join(dirPath, val);
-//             var stats = fs.statSync(fPath);
-//             if (stats.isDirectory()) finder(fPath);
-//             if (stats.isFile()) result.push(fPath.toString().split("\\").join("/"));
-//         });
+    function finder(dirPath) {
+        var files = fs.readdirSync(dirPath);
+        files.forEach(function (val, index) {
+            var fPath = path.join(dirPath, val);
+            var stats = fs.statSync(fPath);
+            if (stats.isDirectory()) finder(fPath);
+            if (stats.isFile()) result.push(fPath.toString().split("\\").join("/"));
+        });
 
-//     }
+    }
 
-//     finder(dirPath);
-//     console.log(result);
-//     return result;
-// }
+    finder(dirPath);
+    console.log(result);
+    return result;
+}

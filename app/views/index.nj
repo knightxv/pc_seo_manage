@@ -1,54 +1,75 @@
 {% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
 
 {% block css %}
-  <link rel="stylesheet" href="{{ static }}/css/home-f7bb2755e0.css">
+  <link rel="stylesheet" href="{{ static }}/css/home-f7d7938b41.css">
 {% endblock %}
 {% block js %}
+  <script src="{{ static }}/js/home-7c217c85b9.js"></script>
 {% endblock%}
 
-{% block nav %}
-{% call navCreate(1) %}
-{{ caller() }}
-{% endcall %}
-{% endblock %}
-
 {% block main %}
-<div class="home_header_nav">
-  <div class="home_qrcode_wrap">
-    <img src="{{ static }}/images/qrcode.png" alt="阿当游戏平台" />
-  </div>
-</div>
-<div class="home_contentContainer">
-  <div class="home_row_module">
-    <div class="home_hotGame_module">
-      <div class="home_hotGame_title">热门游戏</div>
-      <div class="home_hotGame_item_wrap">
-        {% for game in gameList %}
-          <a class="home_hotGame_item" href="/games/{{ game.gameId }}">
-            <img
-              class="home_game_icon"
-              src="{{ httpConfig.webServerPath + game.gameIcon }}"
-              alt="{{ game.gameBrief  }}"
-            />
-            <span class="home_hotGame_name">{{ game.gameName }}</span>
-          </a>
-        {% endfor %}
-      </div>
+{# 头部导航 #}
+{{ component.headBanner(1) }}
+{# 轮播图 #}
+{{ component.carousel([1, 2], 'homeCarousel') }}
+{# 公告 #}
+
+<div class="container">
+  <div>新闻公告</div>
+  {# 热门游戏 #}
+  <section class="m_module home_hotGame">
+    <h2 class="home_hotGame_title">热门游戏</h2>
+    <div class="row home_hotGame_Wrap">
+      <a href="/games/gameDetail/2" class="col-md-4 home_hotGame_item">
+        <div>
+          <img src="/upload/games/adangbiji.png" />
+        </div>
+        <div class="home_hotGame_gameName">游戏A</div>
+      </a>
+      <a href="/games/gameDetail/2" class="col-md-4 home_hotGame_item">
+        <div>
+          <img src="/upload/games/adangdouniu.png" />
+        </div>
+        <div class="home_hotGame_gameName">游戏A</div>
+      </a>
+      <a href="/games/gameDetail/2" class="col-md-4 home_hotGame_item">
+        <div>
+          <img src="/upload/games/dangdangbiji.png" />
+        </div>
+        <div class="home_hotGame_gameName">游戏A</div>
+      </a>
     </div>
-    <div class="home_notice">
-      <div class="home_notice_titleWrap">
-        <div class="home_notice_title">活动公告</div>
-        <a href="/news">更多&gt;&gt;</a>
-      </div>
-      <ul>
-       {% for news in newsList %}
-        <li class="home_notice_item">
-          <a href="/news/{{ news.newsId }}" class="home_notice_content">{{ news.newsIntro }}</a>
-          <div class="home_notice_time">{{ news.publicTime }}</div>
-        </li>
-       {% endfor %}
-      </ul>
+  </section>
+  <main class="row home_main">
+    {# 游戏模块 #}
+    <div class="col-md-8">
+      <section class="m_module">
+        {{ component.ModuleTitle('大众棋牌', 'dzqp') }}
+        {# 游戏展示 #}
+        {{ component.GamesShow() }}
+      </section>
+      <section class="m_module">
+        {{ component.ModuleTitle('特色扑克', 'tsqp') }}
+        {{ component.GamesShow() }}
+      </section>
     </div>
-  </div>
+    {# side 行业资讯 #}
+    <div class="col-md-4 m_module">
+      {{ component.ModuleTitle('活动公告') }}
+      {{ component.NewsSide() }}
+    </div>
+  </main>
 </div>
+<div class="m_module friend_link"> 
+  <section class="container">
+    {{ component.Title('友情链接') }}
+    <div class="link_wrap">
+      <a href="javascript:;">当当猫官网</a>
+      <a href="javascript:;">当当官网</a>
+      <a href="javascript:;">胡了吗平台</a>
+    </div>
+  </section>
+</div>
+
 {% endblock %}

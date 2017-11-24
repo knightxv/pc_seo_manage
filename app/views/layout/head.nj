@@ -33,19 +33,19 @@
   <link rel="canonical" href="http://www.hulema.com/">
 	{# 设置静态放置的地址 #}
 	
- 	<link rel="stylesheet" href="{{ static }}/css/common-1b5aaec53f.css">
-  <link rel="stylesheet" href="{{ static }}/css/layout-c42acaf693.css">
   {% block head %}
   {% endblock %}
   {% block css %}
   {% endblock %}
+  <link rel="stylesheet" href="{{ static }}/css/layout-e3cc7ee61c.css">
+  
   {% block script %}
   {% endblock %}
 </head>
 <body>
 	{% block body %}
 	{% endblock %}
-  {% block js %}
+  {% block javascript %}
   {% endblock %}
 </body>
   {# <script src="/public/js/jquery.min.js"></script> #}

@@ -1,0 +1,170 @@
+{% macro Title(title = '') %}
+<section class="c_module_title">
+  <h3>{{ title }}</h3>
+</section>
+{% endmacro %}
+
+{# 模块title #}
+{% macro ModuleTitle(moduletitle) %}
+<section class="c_module_title">
+  <h3>{{ moduletitle }}</h3>
+  <a href="javascript:;">查看更多&gt;&gt;</a>
+</section>
+{% endmacro %}
+
+{# 面包屑 #}
+{% macro Breadcrumb(breadArr) %}
+{% if breadArr and breadArr.length %}
+  <div class="c_breadcrumb">
+    <ol class="breadcrumb container">
+      {% for bread in breadArr %}
+        <li><a class="{{ 'active' if loop.last }}" href="{{ bread.href or 'javascript:;' }}">{{ bread.label }}</a></li>
+      {% endfor %}
+    </ol>
+  </div>
+{% endif %}
+{% endmacro %}
+
+{# 导航banner #}
+{% macro headBanner(pageIndex, idName = '') %}
+{% set pageArr = [
+  { href: '/', label: '首页' },
+  { href: '/games', label: '游戏中心' },
+  { href: '/news', label: '新闻资讯' },
+  { href: '/platfrom', label: '平台介绍' },
+  { href: '/contact', label: '联系我们' }
+  ]
+%}
+<nav id="{{ idName }}" class="vv_header_container">
+  <div class="vv_header">
+    <a href="http://www.hulema.com">
+      <h1 class="vv_logo">胡了吗</h1>
+    </a>
+    <section class="vv_header_right">
+      <nav class="vv_nav">
+        {% for page in pageArr %}
+          <a class="{{ 'active' if loop.index === pageIndex }}"  href="{{ page.href }}">{{ page.label }}</a>
+        {% endfor %}
+      </nav>
+      {# {{ loop.index === pageIndex ? 'active' : '' }}<nav class="vv_nav">
+        <a class="active" href="/">首页{{pageIndex}}</a>
+        <a href="/game">游戏</a>
+        <a href="/news">新闻资讯</a>
+        <a href="http://ddmh5.com">公司官网</a>
+        <a href="/contact">联系我们</a>
+      </nav> #}
+    </section>
+  </div>
+</nav>
+{% endmacro %}
+
+{# 轮播图 #}
+{% macro carousel(dataArr, idName = '') %}
+
+{% if dataArr and dataArr.length %}
+<div id="{{ idName }}" class="carousel slide c_carousel" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {% for carousel in dataArr %}
+      <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index }}" class="{{ 'active' if loop.first }}"></li>
+    {% endfor %}
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    {% for carousel in dataArr %}
+      <div class="item {{ 'active' if loop.first }}">
+        <img src="http://120.55.57.25:8080/wresource/gameimgs/3d797a60128541b18bf01dc909bfcea0.jpg" alt="...">
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+{% endif %}
+
+{% endmacro %}
+
+
+{# 游戏展示 #}
+{% macro GamesShow(data = [], className = '') %}
+<section class="c_gams_module {{ className }}">
+  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item col-md-offset-1">
+    <div>
+      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
+    </div>
+    <span>游戏1</span>
+  </a>
+  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item">
+    <div>
+      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
+    </div>
+    <span>游戏1</span>
+  </a>
+  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item">
+    <div>
+      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
+    </div>
+    <span>游戏1</span>
+  </a>
+  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item">
+    <div>
+      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
+    </div>
+    <span>游戏1</span>
+  </a>
+  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item">
+    <div>
+      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
+    </div>
+    <span>游戏1</span>
+  </a>
+  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item col-md-offset-1">
+    <div>
+      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
+    </div>
+    <span>游戏1</span>
+  </a>
+</section>
+{% endmacro %}
+
+
+{# 侧边选择栏 #}
+{% macro SideSelect(dataArr) %}
+<ul class="c_sideSelect">
+  <li>
+    <a href="/games/dzqp">大众棋牌</a>
+    <span>&gt;</span>
+  </li>
+  <li>
+    <a href="/games/dzqp">特色棋牌</a>
+    <span>&gt;</span>
+  </li>
+  <li>
+    <a href="/games/dzqp">地方麻将棋牌</a>
+    <span>&gt;</span>
+  </li>
+<ul>
+{% endmacro %}
+
+{# banner图 #}
+{%  macro BannerImg(srcImg = '') %}
+<img class="c_banner" src="{{ srcImg }}" />
+{% endmacro %}
+
+{% macro NewsSide(dataArr) %}
+<ul class="c_newsSide">
+  <li>
+    <a href="javascript:;" class="new_brief">新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容</a>
+    <span class="news_time">2017-02-23</span>
+  </li>
+</ul>
+{% endmacro %}

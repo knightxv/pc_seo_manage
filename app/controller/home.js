@@ -17,6 +17,7 @@ module.exports = app => {
       // // 新闻
       // const newsListRes = await ctx.helper.webHttp.get('/gamePlatform/newsList');
       // const newsList = newsListRes.isSuccess ? newsListRes.data : [];
+      // ctx.helper.getViewConfig();
       const deviceAgent = ctx.request.headers['user-agent'].toLowerCase();
       const isPhone = !!deviceAgent.match(/(iphone|ipod|ipad|android|symbianos|phone|ipad|ipod)/);
       const [ gameListRes, newsListRes ] = await Promise.all([
@@ -74,32 +75,7 @@ module.exports = app => {
       }
       await ctx.render('newsDetail.nj', gameDetail);
     }
-    async games(ctx) {
-      // const webPath = ctx.app.config.httpConfig.webServerPath;
-      const [ gameListRes ] = await Promise.all([
-        ctx.helper.webHttp.get('/gamePlatform/gameRecommendList'),
-      ]);
-      // 推荐游戏列表
-      const gameList = gameListRes.isSuccess ? gameListRes.data : [];
-      await ctx.render('games.nj', {
-        gameList,
-      });
-    }
-    async gameDetail(ctx) {
-      const { gameId } = ctx.params;
-      let gameDetail = {};
-      let gameList = [];
-      if (gameId && !isNaN(gameId)) {
-        const gameDetailRes = await ctx.helper.webHttp.get('/gamePlatform/gameDetailInfo', { gameId });
-        gameDetail = gameDetailRes.isSuccess ? gameDetailRes.data : {};
-        const gameListRes = await ctx.helper.webHttp.get('/gamePlatform/gameRecommendList', { page: 0, size: 6 });
-        gameList = gameListRes.isSuccess ? gameListRes.data : [];
-      }
-      await ctx.render('gameDetail.nj', {
-        gameDetail,
-        gameList,
-      });
-    }
+    
     async platfrom(ctx) {
       await ctx.render('platfrom.nj');
     }

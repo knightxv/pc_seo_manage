@@ -1,66 +1,44 @@
 {% extends "layout/head.nj" %}
 
+{% block head %}
+<!-- Bootstrap -->
+<link href="{{ static }}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ static }}/css/component-413f347e92.css">
+<!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+{% endblock %}
 
-{% macro navCreate(pageIndex) %}
-  {% set pageArr = [
-    { href: '/', label: '首页' },
-    { href: '/games', label: '游戏中心' },
-    { href: '/news', label: '新闻资讯' },
-    { href: '/platfrom', label: '平台介绍' },
-    { href: '/contact', label: '联系我们' }
-    ]
-  %}
-  <nav class="vv_nav">
-    {% for page in pageArr %}
-      <a class="{{ 'active' if loop.index === pageIndex }}"  href="{{ page.href }}">{{ page.label }}</a>
-    {% endfor %}
-  </nav>
-{% endmacro %}
+{% block javascript %}
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  {# <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> #}
+  <script src="{{ static }}/lib/js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{ static }}/lib/bootstrap/js/bootstrap.min.js"></script>
+  {% block js %}
+  {% endblock %}
+{% endblock %}
 
 {% block body %}
- <nav class="vv_header_container">
-    <div class="vv_header">
-      <a href="http://www.hulema.com">
-        <h1 class="vv_logo">胡了吗</h1>
-      </a>
-      <section class="vv_header_right">
-        {% block nav %}
-          {% call navCreate(1) %}
-          {{ caller() }}
-          {% endcall %}
-        {% endblock %}
-        {# {{ loop.index === pageIndex ? 'active' : '' }}<nav class="vv_nav">
-          <a class="active" href="/">首页{{pageIndex}}</a>
-          <a href="/game">游戏</a>
-          <a href="/news">新闻资讯</a>
-          <a href="http://ddmh5.com">公司官网</a>
-          <a href="/contact">联系我们</a>
-        </nav> #}
-      </section>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="content_container">
-      <div class="scroll_container">
-        {% block main %}
-        {% endblock %}
-      </div>
-      <footer class="pc_footer">
-        <div>
-          <a class="pc_footer_navLaebl" href="/">胡了吗首页</a>|
-          <a class="pc_footer_navLaebl" href="/games">游戏中心</a>|
-          <a class="pc_footer_navLaebl" href="/news">新闻资讯</a>|
-          <a class="pc_footer_navLaebl" href="/platfrom">平台介绍</a>|
-          <a class="pc_footer_navLaebl" href="/contact">联系我们</a>
-        </div>
-        <div>闽ICP备16028156号-2</div>
-        <div>Copyright©2016-2017 All Rights Reserved</div>
-        <div>抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
-      </footer>
-    </div>
-  </div>
-
+<div id="contentRoot">
+  {% block main %}
   {% endblock %}
+</div>
+
+<footer class="pc_footer">
+  <div>
+    <a class="pc_footer_navLaebl" href="/">胡了吗首页</a>|
+    <a class="pc_footer_navLaebl" href="/games">游戏中心</a>|
+    <a class="pc_footer_navLaebl" href="/news">新闻资讯</a>|
+    <a class="pc_footer_navLaebl" href="/platfrom" rel="nofollow">平台介绍</a>|
+    <a class="pc_footer_navLaebl" href="/contact" rel="nofollow">联系我们</a>
+  </div>
+  <div>闽ICP备16028156号-2</div>
+  <div>Copyright©2016-2017 All Rights Reserved</div>
+  <div>抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+</footer>
+{% endblock %}
 
 
 

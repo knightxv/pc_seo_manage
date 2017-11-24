@@ -1,78 +1,64 @@
 {% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ static }}/css/game-6ba2deebbc.css">
+<link rel="stylesheet" href="{{ static }}/css/game-07a82738a1.css">
 {% endblock %}
 
-{% block nav %}
-{% call navCreate(2) %}
-{{ caller() }}
-{% endcall %}
-{% endblock %}
-
+{% set breadArr = 
+	[{label: '首页', href: '/'}, {label: '游戏中心', href: '/games'},
+	{label: '大众棋牌', href: '/type1'}, {label: '游戏a', href: ''}]
+%} 
 
 {% block main %}
-<section class="game_container">
-	<div class="gameDetail_item_wrap">
+{# 头部导航 #}
+{{ component.headBanner(2) }} {{ component.Breadcrumb(breadArr)}}
+<section class="container">
+	<div class="col-md-7 m_module gameDetail">
 		<div class="gameDetail_baseInfo_wrap">
-			<img
-			class="gameDetail_Icon"
-			src="{{ httpConfig.webServerPath + gameDetail.gameIcon }}"
-			/>
-			<section>
-				<div>名字：{{ gameDetail.gameName }}</div>
-				<div>版本信息：{{ gameDetail.gameVersion }}</div>
-				<div>游戏大小:{{ gameDetail.gameSize }}</div>
+			<img class="gameDetail_Icon" src="{{ httpConfig.webServerPath + gameDetail.gameIcon }}" />
+			<section class="gameBaseInfo">
+				<h2>{{ gameDetail.gameName }}</h2>
+				<div>大小：{{ gameDetail.gameSize }}</div>
+				<div>更新日期：{{ gameDetail.publicDataTime }}</div>
+				<div>版本：{{ gameDetail.gameVersion }}</div>
+				<div class="gameDetail_btn_wrap">
+					<a class="btn btn-warning" href="{{ gameDetail.downUrl }}">游戏下载</a>
+					<a class="btn btn-primary" href="{{ gameDetail.gameLoginUrl }}">代理中心登录</a>
+				</div>
 			</section>
 		</div>
-		<div class="gameDetail_item_wrap">
-			<a class="btn btn-default" href="{{ gameDetail.downUrl }}">游戏下载</a>
-			<a class="btn btn-default" href="{{ gameDetail.gameLoginUrl }}">代理中心登录</a>
-		</div>
+		<section class="gameDetail_item_wrap">
+			{{ component.Title('玩法介绍') }}
+			<div class="gameDetail_intro_content">
+				{{ gameDetail.gameIntroduce | safe }}
+			</div>
+		</section>
+		<section class="gameDetail_item_wrap">
+			{{ component.Title('游戏亮点') }}
+			<div class="gameDetail_intro_content">
+				{{ gameDetail.characteristic | safe }}
+			</div>
+		</section>
+		<section class="gameDetail_item_wrap">
+			{{ component.Title('游戏截图') }}
+			<div class="gameDetail_intro_content">
+				{% for imgSrc in gameDetail.gameScreenshot %}
+				<img class="col-md-4" src="{{ httpConfig.webServerPath + imgSrc}}" /> {% endfor %}
+			</div>
+		</section>
 	</div>
-	<section class="gameDetail_item_wrap">
-		<div class="gameDetail_title">游戏亮点</div>
-		<div class="gameDetail_gameIntro">
-			{{ gameDetail.characteristic | safe }}
-		</div>
-	</section>
-	<section class="gameDetail_item_wrap">
-		<div class="gameDetail_title">玩法介绍</div>
-		<div class="gameDetail_gameIntro">
-			{{ gameDetail.gameIntroduce | safe }}
-		</div>
-	</section>
-	<section class="gameDetail_item_wrap">
-		<div class="gameDetail_title">详情信息</div>
-		<div class="gameDetail_gameIntro">
-			<div>发布日:{{ gameDetail.publicDataTime }}</div>
-			<div>开发者：{{ gameDetail.developer }}</div>
-		</div>
-	</section>
-	<section class="gameDetail_item_wrap">
-		<div class="gameDetail_title">游戏截图</div>
-		<div class="gameDetail_gameImgs">
-			{% for imgSrc in gameDetail.gameScreenshot %}
-				<img src="{{ httpConfig.webServerPath + imgSrc}}" />
-			{% endfor %}
-		</div>
-	</section>
-	<section class="gameDetail_item_wrap">
-		<div class="gameDetail_title">相关游戏推荐</div>
-		<div class="gameDetail_introGame">
-				{% for introGame in gameList %}
-					<a href="/games/{{ introGame.gameId }}">
-						<section class="game_detail_gamesIntro">
-							<img
-								class="gameDetail_gameIntro_icon"
-								src="{{ httpConfig.webServerPath + introGame.gameIcon }}"
-							/>
-							<div>{{ introGame.gameName }}</div>
-							<div>{{ introGame.gameSize }}</div>
-						</section>
-					</a>
-				{% endfor %}
-		</div>
-	</section>
+	<side class="col-md-4 m_module">
+		{{ component.ModuleTitle('相关游戏推荐') }}
+		<ul class="intro_game">
+			<li>
+				<img src="{{ httpConfig.webServerPath + gameDetail.gameIcon }}" />
+				<div class="game_label_wrap">
+					<div>阿当比鸡</div>
+					<div>简介</div>
+				</div>
+			</li>
+		</ul>
+	</side>
 </section>
 {% endblock %}

@@ -1,12 +1,12 @@
 {
-  "base.css": "base-1899be35de.css",
-  "common.css": "common-1b5aaec53f.css",
-  "contact.css": "contact-5d3ad30836.css",
-  "game.css": "game-6ba2deebbc.css",
-  "home.css": "home-f7bb2755e0.css",
-  "layout.css": "layout-c42acaf693.css",
+  "base.css": "base-16ed58231f.css",
+  "component.css": "component-413f347e92.css",
+  "contact.css": "contact-c172aad26d.css",
+  "game.css": "game-07a82738a1.css",
+  "home.css": "home-f7d7938b41.css",
+  "layout.css": "layout-e3cc7ee61c.css",
   "main.css": "main-3e2561d97d.css",
-  "news.css": "news-c772847dde.css",
-  "phone.css": "phone-6f921e8eb6.css",
-  "platfrom.css": "platfrom-b732b450a1.css"
+  "news.css": "news-5929ec4dfd.css",
+  "phone.css": "phone-4689eee8d4.css",
+  "platfrom.css": "platfrom-2f3a5f5b70.css"
 }

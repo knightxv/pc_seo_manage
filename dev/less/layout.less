@@ -1,5 +1,6 @@
-@import "./base.less";
+/* 提供全局公用样式 */
 
+@import "./base.less";
 body, html {
 	min-height: 100%;
 	height: 100%;
@@ -7,122 +8,71 @@ body, html {
 body {
 	display: flex;
 	flex-direction: column;
+	background: @bgColor;
 }
-
+#contentRoot {
+	flex: 1;
+}
+h2 {
+	padding: 0;
+	margin: 0;
+}
 a {
 	color: #333;
 }
 a:focus, a:hover {
-	color: @baseColor;
+	color: @baseColor!important;
 }
-.btn {
-	padding: 6px;
-	border-radius: 6px;
-	font-size: 18px;
-	color: #eee;
-	&.btn-default {
-		background: @baseColor;
-	}
+strong {
+	font-weight: normal;
 }
-
-@headerHeight: 66px;
-@bottomHeight: 80px;
-
+// .btn {
+// 	padding: 6px;
+// 	border-radius: 6px;
+// 	font-size: 18px;
+// 	color: #eee;
+// 	&.btn-default {
+// 		background: @baseColor;
+// 	}
+// }
+// section {
+// 	display: flex;
+// 	flex-direction: column;
+// }
+// 覆盖bootstrap
 .container {
+	max-width: 1266px;
+}
+.vv_container {
 	// background: url(../i/images/bg.png) no-repeat top center;
 	// background-size: 100% 100%;
 	font-size: 16px;
 	flex: 1;
 	position: relative;
 }
-.content_container {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	overflow: hidden;
-}
-.scroll_container {
-	position: absolute;
-	left: 0;
-	right: -17px;
-	bottom: @bottomHeight;
-	top: 0;
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-.phone {
-	.scroll_container {
-		right: 0;
-	}
-}
+// .vv_container {
+// 	max-width: 1420px;
+// 	margin: 0 auto;
+// }
 
-.vv_container {
-	max-width: 1420px;
-	margin: 0 auto;
-}
-.vv_header_container {
-	height: @headerHeight;
-	background: @headerBgColor;
-}
 .pc_footer {
-	font-size: 12px;
+	padding: 12px 0;
+	font-size: 14px;
+	color: #72b3d5;
 	text-align: center;
-	color: @gray;
 	display: block;
-	position: absolute;
-	bottom: 0px;
 	width: 100%;
-	height: @bottomHeight;
-	z-index: 1000;
+	a {
+		color: #72b3d5;
+	}
 }
 .pc_footer_navLaebl {
 	padding: 0 8px;
-	color: #909090;
 }
 
-.vv_header {
-	.flexRow(space-between);
-	max-width: 960px;
-	height: 100%;
-	margin: 0 auto;	
-	.vv_logo {
-		display: block;
-		width: 208px;
-		height: 41px;
-		text-indent: -999px;
-		background: url(../images/logo.png) no-repeat;
-		// background-size: 208px 41px;
-	}
-	.vv_header_right {
-		align-self: stretch;
-	}
-	.vv_nav {
-		height: 100%;
-		display: flex;
-		flex-direction: row;
-		align-items: stretch;
-		position: relative;
-		a {
-			position: relative;
-			padding: 0 20px;
-			color: @gray;
-			font-size: 16px;
-			line-height: @headerHeight;
-			&.active {
-				color: @baseColor;
-			}
-			&.active::after {
-				content: '';
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				height: 3px;
-				background-color: @baseColor;
-			}
-		}
-	}
+.m_module {
+	.bor();
+	margin-top: 18px;
+	border-radius: 3px;
+	background: #fff;
 }
-

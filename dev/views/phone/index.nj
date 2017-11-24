@@ -1,13 +1,13 @@
 {% extends "layout/phone.nj" %}
 
 {% block css %}
-  <link rel="stylesheet" href="{{ static }}/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="{{ static }}/lib/css/amazeui.min.css"/>
   <link rel="stylesheet" href="{{ static }}/css/phone.css">
 {% endblock %}
 {% block script %}
-<script src="{{ static }}/js/jquery.min.js"></script>
-<script src="{{ static }}/js/amazeui.min.js"></script>
-<script src="{{ static }}/js/main.js"></script>
+<script src="{{ static }}/lib/js/jquery.min.js"></script>
+<script src="{{ static }}/lib/js/amazeui.min.js"></script>
+<script src="{{ static }}/lib/js/main.js"></script>
 {% endblock %}
 
 {% block main %}
