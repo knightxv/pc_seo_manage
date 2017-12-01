@@ -41,7 +41,7 @@ strong {
 // }
 // 覆盖bootstrap
 .container {
-	max-width: 1266px;
+	max-width: @container_width;
 }
 .vv_container {
 	// background: url(../i/images/bg.png) no-repeat top center;
@@ -58,12 +58,12 @@ strong {
 .pc_footer {
 	padding: 12px 0;
 	font-size: 14px;
-	color: #72b3d5;
+	color: @baseColor;
 	text-align: center;
 	display: block;
 	width: 100%;
 	a {
-		color: #72b3d5;
+		color: @baseColor;
 	}
 }
 .pc_footer_navLaebl {
@@ -75,4 +75,9 @@ strong {
 	margin-top: 18px;
 	border-radius: 3px;
 	background: #fff;
+}
+.m_module_static {
+	.m_module();
+	height: 360px;
+	overflow: hidden;
 }

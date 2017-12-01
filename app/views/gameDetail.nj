@@ -6,8 +6,10 @@
 {% endblock %}
 
 {% set breadArr = 
-	[{label: '首页', href: '/'}, {label: '游戏中心', href: '/games'},
-	{label: '大众棋牌', href: '/type1'}, {label: '游戏a', href: ''}]
+	[{label: '首页', href: '/'},
+	{label: '游戏中心', href: '/games'},
+	{label: gameTypeInfo.label, href: '/games/' + gameTypeInfo.value },
+	{label: gameDetail.gameName, href: ''}]
 %} 
 
 {% block main %}
@@ -16,11 +18,11 @@
 <section class="container">
 	<div class="col-md-7 m_module gameDetail">
 		<div class="gameDetail_baseInfo_wrap">
-			<img class="gameDetail_Icon" src="{{ httpConfig.webServerPath + gameDetail.gameIcon }}" />
+			<img class="gameDetail_Icon" src="{{ gameDetail.gameIcon }}" />
 			<section class="gameBaseInfo">
 				<h2>{{ gameDetail.gameName }}</h2>
 				<div>大小：{{ gameDetail.gameSize }}</div>
-				<div>更新日期：{{ gameDetail.publicDataTime }}</div>
+				<div>更新日期：{{ gameDetail.publicDate | format }}</div>
 				<div>版本：{{ gameDetail.gameVersion }}</div>
 				<div class="gameDetail_btn_wrap">
 					<a class="btn btn-warning" href="{{ gameDetail.downUrl }}">游戏下载</a>
@@ -44,20 +46,24 @@
 			{{ component.Title('游戏截图') }}
 			<div class="gameDetail_intro_content">
 				{% for imgSrc in gameDetail.gameScreenshot %}
-				<img class="col-md-4" src="{{ httpConfig.webServerPath + imgSrc}}" /> {% endfor %}
+				<img class="col-md-4" src="{{ imgSrc }}" /> {% endfor %}
 			</div>
 		</section>
 	</div>
 	<side class="col-md-4 m_module">
-		{{ component.ModuleTitle('相关游戏推荐') }}
+		{{ component.ModuleTitle('相关游戏推荐', '/games') }}
 		<ul class="intro_game">
-			<li>
-				<img src="{{ httpConfig.webServerPath + gameDetail.gameIcon }}" />
-				<div class="game_label_wrap">
-					<div>阿当比鸡</div>
-					<div>简介</div>
-				</div>
-			</li>
+			{% for gameInfo in gameRecommend %}
+				<a href="/games/gameDetail/{{ gameInfo.gameId }}">
+					<li>
+						<img src="{{ gameInfo.gameIcon }}" />
+						<div class="game_label_wrap">
+							<div>{{ gameInfo.gameName }}</div>
+							<div>{{ gameInfo.gameBrief }}</div>
+						</div>
+					</li>
+				</a>
+			{% endfor %}
 		</ul>
 	</side>
 </section>

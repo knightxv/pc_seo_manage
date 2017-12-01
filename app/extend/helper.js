@@ -50,5 +50,18 @@ module.exports = {
     }
     return http;
   },
+  setRes(isSuccess, data, info) {
+    this.ctx.body = {
+      success: isSuccess,
+      info: info || '',
+      data,
+    };
+  },
+  isObj(obj) {
+    return Object.prototype.toString.call(obj) === '[object Object]';
+  },
+  isString(str) {
+    return Object.prototype.toString.call(str) === '[object String]';
+  },
 };
 

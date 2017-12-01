@@ -1,6 +1,8 @@
 'use strict';
 
 const HttpKey = Symbol('Application#webHttp');
+const typeEnum = require('../enum/type.js');
+const databaseEnum = require('../enum/databaseEnum');
 
 module.exports = {
   get Http() {
@@ -22,4 +24,6 @@ module.exports = {
     }
     return this[HttpKey];
   },
+  typeEnum,
+  databaseEnum,
 };

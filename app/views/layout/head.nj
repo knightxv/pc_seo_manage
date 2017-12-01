@@ -37,7 +37,7 @@
   {% endblock %}
   {% block css %}
   {% endblock %}
-  <link rel="stylesheet" href="{{ static }}/css/layout-e3cc7ee61c.css">
+  <link rel="stylesheet" href="{{ static }}/css/layout-9325f27528.css">
   
   {% block script %}
   {% endblock %}

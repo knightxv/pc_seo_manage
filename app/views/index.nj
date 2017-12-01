@@ -2,72 +2,69 @@
 {% import "component/index.nj" as component %}
 
 {% block css %}
-  <link rel="stylesheet" href="{{ static }}/css/home-f7d7938b41.css">
+  <link rel="stylesheet" href="{{ static }}/css/home-94da65380c.css">
 {% endblock %}
 {% block js %}
-  <script src="{{ static }}/js/home-7c217c85b9.js"></script>
+  <script src="{{ static }}/js/home-0b60be1605.js"></script>
 {% endblock%}
 
 {% block main %}
 {# 头部导航 #}
 {{ component.headBanner(1) }}
 {# 轮播图 #}
-{{ component.carousel([1, 2], 'homeCarousel') }}
+{{ component.carousel(carousel, 'homeCarousel') }}
 {# 公告 #}
 
 <div class="container">
-  <div>新闻公告</div>
   {# 热门游戏 #}
-  <section class="m_module home_hotGame">
+  <section class="home_hotGame m_module">
     <h2 class="home_hotGame_title">热门游戏</h2>
     <div class="row home_hotGame_Wrap">
-      <a href="/games/gameDetail/2" class="col-md-4 home_hotGame_item">
-        <div>
-          <img src="/upload/games/adangbiji.png" />
-        </div>
-        <div class="home_hotGame_gameName">游戏A</div>
-      </a>
-      <a href="/games/gameDetail/2" class="col-md-4 home_hotGame_item">
-        <div>
-          <img src="/upload/games/adangdouniu.png" />
-        </div>
-        <div class="home_hotGame_gameName">游戏A</div>
-      </a>
-      <a href="/games/gameDetail/2" class="col-md-4 home_hotGame_item">
-        <div>
-          <img src="/upload/games/dangdangbiji.png" />
-        </div>
-        <div class="home_hotGame_gameName">游戏A</div>
-      </a>
+      {% for hotGame in hotGameList %}
+        <a href="/games/gameDetail/{{ hotGame.id }}" class="home_hotGame_item">
+          <div>
+            <img src="{{ hotGame.gameIcon }}" />
+          </div>
+          <div class="home_hotGame_gameName">{{ hotGame.gameName }}</div>
+        </a>
+      {% endfor %}
     </div>
   </section>
   <main class="row home_main">
     {# 游戏模块 #}
     <div class="col-md-8">
-      <section class="m_module">
-        {{ component.ModuleTitle('大众棋牌', 'dzqp') }}
-        {# 游戏展示 #}
-        {{ component.GamesShow() }}
-      </section>
-      <section class="m_module">
-        {{ component.ModuleTitle('特色扑克', 'tsqp') }}
-        {{ component.GamesShow() }}
-      </section>
+      {% if gamesModule and gamesModule.length > 0 -%}
+        {% for module in gamesModule -%}
+          <section class="m_module_static">
+            {{ component.ModuleTitle(module.label, '/games/' + module.value) }}
+            {# 游戏展示 #}
+            {{ component.GamesShow(module.data) }}
+          </section>
+        {%- endfor %}
+      {%- endif %}
     </div>
     {# side 行业资讯 #}
-    <div class="col-md-4 m_module">
-      {{ component.ModuleTitle('活动公告') }}
-      {{ component.NewsSide() }}
+    <div class="col-md-4">
+      {% if newsModule and newsModule.length > 0 %}
+        {% for module in newsModule %}
+          <div class="m_module_static">
+            {{ component.ModuleTitle(module.label, '/news/' + module.value) }}
+            {{ component.NewsSide(module.data) }}
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
   </main>
 </div>
-<div class="m_module friend_link"> 
+<div class="m_module friend_link">
   <section class="container">
     {{ component.Title('友情链接') }}
     <div class="link_wrap">
-      <a href="javascript:;">当当猫官网</a>
-      <a href="javascript:;">当当官网</a>
-      <a href="javascript:;">胡了吗平台</a>
+      {% if friendLink -%}
+        {% for link in friendLink -%}
+          <a href="{{ link.href or 'javascript:;' }}">{{ link.label }}</a>
+        {%- endfor %}
+      {%- endif %}
     </div>
   </section>
 </div>

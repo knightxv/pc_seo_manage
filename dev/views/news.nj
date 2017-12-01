@@ -13,49 +13,59 @@
 {{ component.BannerImg(static + "/images/banner.jpg") }}
 {{ component.Breadcrumb(breadArr) }}
 <section class="container">
-	<section class="col-md-3">
-		<section class="m_module">
+	<section class="col-md-3 m_module">
 			{{ component.Title('新闻公告') }}
-			{{ component.SideSelect() }}
-		</section>
-		<section class="m_module">
+			{{ component.SideSelect(sideTypeArr, gameSideIndex) }}
+		{# <section class="">
+		</section> #}
+		{# <section class="m_module">
 			{{ component.Title('新闻公告') }}
 			{{ component.NewsSide() }}
-		</section>
+		</section> #}
 	</section>
-	<section class="col-md-8 m_module">
-		<section class="news_item">
-			<div class="news_img_wrap">
-				<img
-					class="vv_news_img"
-					src="{{ static + '/images/banner.jpg' }}"
-					alt="新闻头"
-				/>
-			</div>
-			<div class="new_content_wrap">
-				<a class="news_title" href="javascript:;">新闻头</a>
-				<div class="news_public_title">发布日期：2017-02-23</div>
-				<div class="news_content">新闻内容</div>
-			</div>
-		</section>
-		<nav class="news_navigation" aria-label="Page navigation">
-			<ul class="pagination">
-				<li class="disabled">
-				<a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				</a>
-				</li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li>
-				<a href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-				</a>
-				</li>
-			</ul>
+	<section class="col-md-8 m_module" style="margin-left: 30px;">
+		{% if newsList and newsList.length > 0 %}	
+			{% for news in newsList %}
+				<section class="news_item">
+					<div class="news_img_wrap">
+						<img
+							class="vv_news_img"
+							src="{{ news.newsIcon }}"
+							alt="新闻头"
+						/>
+					</div>
+					<div class="new_content_wrap">
+						<a class="news_title" href="/news/newsDetail/{{ news.newsId }}">{{ news.newsTitle }}</a>
+						<div class="news_public_title">发布日期：{{ news.publicTime | format }}</div>
+						<div class="news_content">{{ news.newsBrief }}</div>
+					</div>
+				</section>
+			{% endfor %}
+		{% else %}
+		<div style="text-align: center;padding: 20px 0;">没有数据</div>
+		{% endif %}
+		<nav id="news_navigation" class="news_navigation" aria-label="Page navigation">
+			{% if paginationArr.length > 0 %}
+				<ul class="pagination">
+					<li class="{{ 'disabled' if +page === 0 }}">
+						<a data-page="{{ page - 1 }}" href="javascript:;" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					{% for pageIndex in paginationArr %}
+						<li class="{{ 'active' if (pageIndex === +page) }}">
+							<a data-page="{{ pageIndex }}" href="javascript:;">
+								{{ pageIndex + 1 }}
+							</a>
+						</li>
+					{% endfor %}
+					<li class="{{ 'disabled' if page >= paginationArr.length -1  }}">
+						<a href="javascript:;" data-page="{{ page + 1 }}" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			{% endif %}
 		</nav>
 	</section>
 	{# <div class="vv_newsList_container">
@@ -75,4 +85,17 @@
 		{% endfor %}
 	</div> #}
 </section>
+{% endblock %}
+
+{% block js %}
+<script>
+	$('#news_navigation').on('click', 'a', function() {
+		const page = this.dataset.page;
+		const hasClass = $(this).closest('li').hasClass('disabled');
+		if (hasClass || page < 0) {
+			return;
+		}
+		window.location.search = '?page=' + page;
+	});
+</script>
 {% endblock %}

@@ -5,7 +5,12 @@
   <link rel="stylesheet" href="{{ static }}/css/game-07a82738a1.css">
 {% endblock %}
 
-{% set breadArr = [{label: '首页', href: '/'}, {label: '游戏中心', href: '/games'}, {label: '大众棋牌', href: '/games'}] %}
+{% set breadArr = [
+	{label: '首页', href: '/'},
+	{label: '游戏中心', href: '/games'},
+	{label:  sideTypeArr[gameSideIndex].label, href: ''}
+	]
+%}
 
 {% block main %}
 {# 头部导航 #}
@@ -16,9 +21,9 @@
 	<div class="row">
 		<div class="col-md-3 m_module">
 			{{ component.Title('游戏中心') }}
-			{{ component.SideSelect() }}
+			{{ component.SideSelect(sideTypeArr, gameSideIndex) }}
 		</div>
-		{{ component.GamesShow([], 'col-md-8 m_module') }}
+		{{ component.GamesShow(gameList, 'col-md-8 m_module') }}
 	</div>
 </main>
 {% endblock %}

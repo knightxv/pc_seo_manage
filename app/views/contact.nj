@@ -15,11 +15,11 @@
     <section class="col-md-3">
 		<div class="m_module">
 			{{ component.Title('联系我们') }}
-			{{ component.SideSelect() }}
+			{{ component.SideSelect([{label: '联系我们', href: ''}]) }}
 		</div>
 	</section>
 	<section class="col-md-8 m_module contact_module">
-		联系我们
+		{{ htmlText }}
 	</section>
 </section>
 {% endblock %}

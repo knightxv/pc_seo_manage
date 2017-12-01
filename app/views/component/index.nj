@@ -5,10 +5,10 @@
 {% endmacro %}
 
 {# 模块title #}
-{% macro ModuleTitle(moduletitle) %}
+{% macro ModuleTitle(moduletitle, link = 'javascript:;') %}
 <section class="c_module_title">
   <h3>{{ moduletitle }}</h3>
-  <a href="javascript:;">查看更多&gt;&gt;</a>
+  <a href="{{ link }}">更多&gt;&gt;</a>
 </section>
 {% endmacro %}
 
@@ -66,7 +66,7 @@
   <!-- Indicators -->
   <ol class="carousel-indicators">
     {% for carousel in dataArr %}
-      <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index }}" class="{{ 'active' if loop.first }}"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index0 }}" class="{{ 'active' if loop.first }}"></li>
     {% endfor %}
   </ol>
 
@@ -74,7 +74,9 @@
   <div class="carousel-inner" role="listbox">
     {% for carousel in dataArr %}
       <div class="item {{ 'active' if loop.first }}">
-        <img src="http://120.55.57.25:8080/wresource/gameimgs/3d797a60128541b18bf01dc909bfcea0.jpg" alt="...">
+        <a href="{{ carousel.href or 'javascript:;' }}">
+          <img src="{{ carousel.src }}" alt="{{ carousel.alt }}">
+        </a>
       </div>
     {% endfor %}
   </div>
@@ -93,66 +95,42 @@
 
 {% endmacro %}
 
-
 {# 游戏展示 #}
-{% macro GamesShow(data = [], className = '') %}
-<section class="c_gams_module {{ className }}">
-  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item col-md-offset-1">
-    <div>
-      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
-    </div>
-    <span>游戏1</span>
-  </a>
-  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item">
-    <div>
-      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
-    </div>
-    <span>游戏1</span>
-  </a>
-  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item">
-    <div>
-      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
-    </div>
-    <span>游戏1</span>
-  </a>
-  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item">
-    <div>
-      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
-    </div>
-    <span>游戏1</span>
-  </a>
-  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item">
-    <div>
-      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
-    </div>
-    <span>游戏1</span>
-  </a>
-  <a href="/games/gameDetail/23" class="col-md-2 c_gams_module_item col-md-offset-1">
-    <div>
-      <img src="http://120.55.57.25:8080/wresource/gameimgs/424400a8dca241d3a451d38619a007f5.png" />
-    </div>
-    <span>游戏1</span>
-  </a>
-</section>
+{% macro GamesShow(gameArr = [], className = '') %}
+{% if gameArr.length == 0 %}
+  <section class="{{ className }}" style="text-align: center;padding: 20px 0;">
+    没有数据
+  </section>
+{% else %}
+  <section class="c_gams_module {{ className }}">
+    {% for game in gameArr %}
+    <a
+      href="/games/gameDetail/{{ game.gameId }}"
+      class="col-md-2 c_gams_module_item {{ 'col-md-offset-1' if (loop.index % 5) === 1 }}">
+      <div>
+        <img src="{{ game.gameIcon }}" />
+      </div>
+      <span>{{ game.gameName }}</span>
+    </a>
+    {% endfor %}
+  </section>
+{% endif %}
+  
 {% endmacro %}
 
 
 {# 侧边选择栏 #}
-{% macro SideSelect(dataArr) %}
+{% macro SideSelect(dataArr = [], selectIndex = 0) %}
+{% if dataArr %}
 <ul class="c_sideSelect">
-  <li>
-    <a href="/games/dzqp">大众棋牌</a>
-    <span>&gt;</span>
-  </li>
-  <li>
-    <a href="/games/dzqp">特色棋牌</a>
-    <span>&gt;</span>
-  </li>
-  <li>
-    <a href="/games/dzqp">地方麻将棋牌</a>
-    <span>&gt;</span>
-  </li>
-<ul>
+  {% for sideData in dataArr %}
+    <li class="{{ 'active' if selectIndex === loop.index0 }}">
+      <a href="{{ sideData.href }}">{{ sideData.label }}</a>
+      <span>&gt;</span>
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}
 {% endmacro %}
 
 {# banner图 #}
@@ -161,10 +139,14 @@
 {% endmacro %}
 
 {% macro NewsSide(dataArr) %}
-<ul class="c_newsSide">
-  <li>
-    <a href="javascript:;" class="new_brief">新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容</a>
-    <span class="news_time">2017-02-23</span>
-  </li>
-</ul>
+{% if dataArr and dataArr.length > 0 %}
+  <ul class="c_newsSide">
+    {% for news in dataArr %}
+      <li>
+        <a href="/news/newsDetail/{{news.newsId}}" class="new_brief">{{ news.newsBrief }}</a>
+        <span class="news_time">{{ news.publicTime | format }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
 {% endmacro %}

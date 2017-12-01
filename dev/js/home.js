@@ -1,3 +1,5 @@
+'use strict';
+
 $(function() {
-    $('.carousel').carousel()
+  $('.carousel').carousel();
 });

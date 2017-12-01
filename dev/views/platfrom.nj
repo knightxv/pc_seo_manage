@@ -12,6 +12,6 @@
 {{ component.BannerImg(static + "/images/banner.jpg") }}
 {{ component.Breadcrumb(breadArr) }}
 <section class="container m_module">
-	平台介绍平台介绍而平台介绍而平台介绍而平台介绍而平台介绍而
+	{{ htmlText }}
 </section>
 {% endblock %}

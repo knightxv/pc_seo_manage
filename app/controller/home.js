@@ -45,39 +45,28 @@ module.exports = app => {
         });
         return;
       }
+      const carousel = await ctx.service.home.getCarousel();
+      const hotGameList = await ctx.service.home.getHotGame();
+      const gameTypeArr = app.typeEnum.game;
+      const newsTypeArr = app.typeEnum.news;
+      const gamesModule = await Promise.all(gameTypeArr.map(async game => {
+        const gameData = await ctx.service.games.findGameByGameType({ type: game.type, size: 10 });
+        return Object.assign(game, { data: gameData });
+      }));
+      const newsModule = await Promise.all(newsTypeArr.map(async news => {
+        const newsData = await ctx.service.news.selectNewsByNewsType({ type: news.type, size: 10 });
+        return Object.assign(news, { data: newsData });
+      }));
+      console.log(gamesModule);
+      const friendLink = await ctx.service.home.getFriendLink();
+      // 轮播图
       await ctx.render('index.nj', {
-        gameList,
-        newsList,
+        carousel,
+        hotGameList,
+        friendLink,
+        gamesModule,
+        newsModule,
       });
-    }
-    async contact(ctx) {
-      await ctx.render('contact.nj');
-    }
-    async news(ctx) {
-      const { page = 0, size = 10 } = ctx.query;
-      const newsListRes = await ctx.helper.webHttp.get('/gamePlatform/newsList', { page, size });
-      let newList = [];
-      if (newsListRes.isSuccess) {
-        newList = newsListRes.data;
-      }
-      await ctx.render('news.nj', {
-        newList,
-      });
-    }
-    async newsDetail(ctx) {
-      const { newsId } = ctx.params;
-      let gameDetail = {};
-      if (newsId && !isNaN(newsId)) {
-        const newsDetailRes = await ctx.helper.webHttp.get('/gamePlatform/newsDetail', { newsId });
-        if (newsDetailRes.isSuccess) {
-          gameDetail = newsDetailRes.data;
-        }
-      }
-      await ctx.render('newsDetail.nj', gameDetail);
-    }
-    
-    async platfrom(ctx) {
-      await ctx.render('platfrom.nj');
     }
     /*
       新闻详情页
