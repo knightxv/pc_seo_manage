@@ -1,0 +1,157 @@
+@import "./base.less";
+// 提供组件的样式
+
+.m_module_title {
+    .flexRow(space-between);
+}
+// 头部导航
+@headerHeight: 84px;
+.header_img {
+	width: 100%;
+}
+.vv_header_container {
+    height: @headerHeight;
+    background: @headerBgColor;
+}
+.vv_header {
+    width: @container_width;
+	.flexRow(space-between);
+	height: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+    h1 {
+        display: none;
+    }
+	.vv_logo {
+		display: block;
+		width: 166px;
+		height: 64px;
+		background: url(../images/logo.png) no-repeat;
+		// background-size: 208px 41px;
+	}
+	.vv_header_right {
+		align-self: stretch;
+	}
+	.vv_nav {
+        height: 100%;
+		display: flex;
+		flex-direction: row;
+		// align-items: stretch;
+		position: relative;
+		a {
+			position: relative;
+            width: 100px;
+            margin-right: 15px;
+            text-align: center;
+			color: @baseColor;
+			font-size: 18px;
+            line-height: @headerHeight;
+            text-decoration: none;
+            &.active {
+                background: @baseColor;
+                color: #fff;
+            }
+		}
+	}
+}
+
+// 模块title
+.c_module_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 60px;
+    height: 60px;
+    padding: 0 15px;
+    position: relative;
+    .borBot();
+    img {
+        margin-right: 15px;
+    }
+    h3 {
+        font-size: 22px;
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        color: @gray;
+    }
+}
+
+// 游戏模块
+.c_gams_module {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    .c_gameIcon {
+        width: 80px;
+        height: 80px;
+    }
+    span {
+        display: block;
+    }
+    a {
+        text-decoration: none;
+    }
+}
+.c_gams_module_item {
+    margin-top: 20px;
+}
+
+// 新闻模块side
+.c_newsSide {
+    // padding: 0;
+    margin: 0;
+    padding: 10px 20px;
+    // ul {
+    // }
+    li {
+        display: flex;
+        flex-direction: row;
+        height: 36px;
+    }
+    .new_brief {
+        flex: 1;
+        .text_hide();
+    }
+    .news_time {
+        color: @gray;
+    }
+}
+
+// 面包屑
+.c_breadcrumb {
+    background: #fff;
+    .borBot();
+    height: 36px;
+    margin-bottom: 20px;
+    .breadcrumb {
+        background: none;
+    }
+}
+
+// 侧边选择栏
+.c_sideSelect {
+    margin-top: 10px;
+    li {
+        height: 40px;
+        line-height: 40px;
+        padding-right: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        &.active *{
+            color: @baseColor;
+        }
+    }
+}
+
+// banner图
+.c_banner {
+    width: 100%;
+    height: 300px;
+}

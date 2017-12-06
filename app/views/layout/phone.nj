@@ -1,0 +1,9 @@
+{% extends "layout/head.nj" %}
+
+{% block body %}
+
+{% block main %}
+{% endblock %}
+
+{% endblock %}
+

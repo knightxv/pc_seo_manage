@@ -1,0 +1,143 @@
+/* no phone show */
+/* variable */
+@import "./base.less";
+
+.shadow() {
+  box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.1);
+}
+
+#homeCarousel {
+  img {
+    width: 100%;
+    display: block;
+    height: 450px;
+  }
+}
+
+.m_module {
+  margin-top: 18px;
+}
+.m_module_static {
+  margin-top: 18px;
+}
+
+.home_main {
+  margin-right: 0;
+  .col-md-8, .col-md-4 {
+    padding: 0;
+  }
+}
+
+.home_hotGame {
+  margin-top: 20px;
+  margin-right: 15px;
+  margin-bottom: 0!important;
+  position: relative;
+  background: #fff;
+}
+.home_hotGame_title {
+  position: absolute;
+  left: 0px;
+  top: 20px;
+  width: 160px;
+  height: 50px;
+  font-size: 22px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  background: @baseColor;
+  border-radius: 0 30px 30px 0;
+  text-indent: 20px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 28px;
+    height: 32px;
+    display: block;
+    background: url('/static/images/hot_game.png') no-repeat;
+  }
+}
+.home_hotGame_Wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 80px 120px 50px;
+  img {
+    width: 100px;
+    height: 100px;
+    display: block;
+  }
+}
+.home_hotGame_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home_hotGame_gameName {
+  font-size: 16px;
+  padding-top: 12px;
+}
+
+/* 友情链接 */
+.friend_link {
+  .link_title {
+    font-size: 24px;
+    padding: 30px 0 20px 6px;
+  }
+  padding-bottom: 30px;
+  .link_wrap {
+    padding-left: 16px;
+  }
+  a {
+    margin-right: 40px;
+    color: #7f7f7f;
+    font-size: 16px;
+  }
+}
+
+.kf_title {
+  height: 60px;
+  line-height: 60px;
+  font-size: 28px;
+  text-align: center;
+  color: #fff;
+  background: url("/static/images/kf_bg.png");
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.kf_module {
+  .fk_info {
+    padding: 5px 10px;
+    font-size: 18px;
+  }
+  .fk_info_item {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 3px;
+    border-bottom: 1px dashed @borderColor;
+    i {
+      background: url("/static/images/kf_icon01.png") no-repeat 0px 4px;
+      background-size: 22px 22px;
+      width: 30px;
+      height: 30px;
+      margin-right: 6px;
+      display: inline-block;
+    }
+    span {
+      color: @baseColor;
+    }
+  }
+}
+.game_module {
+  margin-right: 15px;
+}
+.pc_footer {
+  background: none!important;
+  
+}

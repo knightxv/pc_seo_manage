@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,  minimum-scale=0.3, maximum-scale=2.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="blank" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Pragma" content="no-cache">   
+<title>充值完成</title>
+</head>
+<body>
+<h2>充值完成,<span id="elseTime">3</span>秒之后自动跳回首页</h2>
+ 
+<script type="text/javascript" src="./ajax.min.js"></script>
+
+<script>
+var elseTime = 3;
+
+var oElseTime = document.getElementById('elseTime');
+runTime();
+function runTime() {
+	setTimeout(function () {
+		elseTime --;
+		oElseTime.innerHTML = elseTime.toString();
+		if (elseTime > 0) {
+			runTime();
+			return false;
+		}
+		ajax({
+			type:"get",
+			url:"/generalManage/adangbiji/index.html", //添加自己的接口链接
+			timeOut: 10000,
+			success:function(str){
+				window.location.href = '/generalManage/adangbiji/index.html#/homePage';
+			},
+			error:function(){
+				window.location.href = '/generalManage/index.html#/homePage';
+			}
+		});
+		// window.location.href = '/generalManage/index.html#/homePage';
+		// window.location.href = '/generalManage/adangbiji/index.html#/homePage';
+	}, 1000);
+}
+
+</script>
+
+</body></html>

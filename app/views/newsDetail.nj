@@ -1,0 +1,58 @@
+{% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ static }}/css/news-446c37f150.css">
+{% endblock %}
+
+ {% block meta %}
+<title>{{ news.newsTitle }}</title>
+<meta name="keywords" content="{{ news.newsTitle }}" />
+<meta name="description" content="{{ news.newsBrief }}">
+{% endblock %}
+
+{% set breadArr = [
+	{label: '首页', href: '/'},
+	{label: '新闻资讯', href: '/news'},
+	{label: '新闻详情', href: ''}
+	]
+%}
+
+{% block main %}
+{{ component.headBanner(3) }}
+{{ component.BannerImg(static + "/images/banner/news.png") }}
+{{ component.Breadcrumb(breadArr) }}
+<div class="container">
+	{# <div class="col-md-3">
+		<div class="m_module">
+			{{ component.Title('新闻公告') }}
+			{{ component.SideSelect() }}
+		</div>
+		<div class="m_module">
+			{{ component.Title('新闻公告') }}
+			{{ component.NewsSide() }}
+		</div>
+	</div> #}
+	{% if news %}
+		<section class="col-md-12 m_module newDetail_container">
+			<div class="newsDetail_title">{{ news.newsTitle }}</div>
+			<div class="newDetail_time">{{ news.publicTime | format }}</div>
+			<div class="newDetail_content">
+				{{ news.newsContent | safe }}
+			</div>
+			<div class="newsDetail_pageLink_wrap">
+				{% if beforeNews %}
+					<a href="/news/newsDetail/{{ beforeNews.id }}" class="newDetail_pageLink">上一篇：{{ beforeNews.newsTitle }}</a>
+				{% endif %}
+				{% if nextNews %}
+					<a href="/news/newsDetail/{{ nextNews.id }}" class="newDetail_pageLink">下一篇：{{ nextNews.newsTitle }}</a>
+				{% endif %}
+			</div>
+		</section>
+	{% else %}
+		<section class="col-md-12 m_module newDetail_container">
+			没有这个新闻或者新闻已被删除
+		</section>
+	{% endif %}
+</div>
+{% endblock %}

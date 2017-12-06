@@ -1,2 +1,2 @@
 #!/bin/bash
-egg-scripts start --port=7001 --daemon --title=hulema
+egg-scripts start --daemon --title=hulema

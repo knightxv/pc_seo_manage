@@ -1,0 +1,5 @@
+{% extends "layout/template.nj" %}
+
+{% block main %}
+介绍
+{% endblock %}

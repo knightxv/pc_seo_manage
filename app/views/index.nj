@@ -1,144 +1,85 @@
-﻿{% extends "layout/template.nj" %}
+{% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
 
 {% block css %}
-  <link rel="stylesheet" href="/public/css/home.css">
-  <link rel="stylesheet" href="/public/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="/public/css/phone.css">
+  <link rel="stylesheet" href="{{ static }}/css/home-ff91117bdd.css">
 {% endblock %}
-
-{% block nav %}
-{% call navCreate(1) %}
-{{ caller() }}
-{% endcall %}
-{% endblock %}
+{% block js %}
+  <script src="{{ static }}/js/home-5a1767c94b.js"></script>
+{% endblock%}
 
 {% block main %}
-<section class="vv_body">
+{# 头部导航 #}
+{{ component.headBanner(1) }}
+{# 轮播图 #}
+{{ component.carousel(carousel, 'homeCarousel') }}
+{# 公告 #}
 
-  <section class="vv_phone_container">
-    <side class="vv_phoneTop"></side>
-    <side class="vv_downLeftTip"></side>
-    <!-- 手机主体内容 -->
-    <main class="vv_phone" id="home">
-      <div id="navTabs" class="am-tabs vv_phone_tabs" data-am-tabs>
-        <div class="am-tabs-bd am-tabs-bd-ofv">
-          <!-- 游戏 -->
-          <div class="am-tab-panel am-active vv_tab_panel">
-            <div class="scrollWrapper" id="gameScrollWrapper">
-              <div class="c_content">
-                {% if gameSlider.length > 0 %}
-                  <div id="gameSlider" class="am-slider am-slider-default vv_slider" data-am-flexslider>
-                    <ul class="am-slides">
-                      {% for slider in gameSlider %}
-                        <li>
-                          <a href="{{ slider.gameLink or 'javascript:;' }}">
-                            <img src="{{ webPath + slider.gamePicture }}" />
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-                    {# <li>
-                      <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
-                    </li> #}
-                <div class="vv_m_container">
-                  <div class="vv_game c_rowList">
-                    <i class="icon_game"></i>
-                    <span class="vv_game_title">新游推荐</span>
-                  </div>
-                  <div id="gameList">
-                    {% if gameList %}
-                      {% for game in gameList %}
-                        <a class="c_rowList vv_game_item" href="#gameDetail/{{ game.gameId }}">
-                          <img class="vv_game_icon" src="{{ webPath + game.gameIcon }}" alt="{{ game.gameName  }}">
-                          <div class="vv_game_info">
-                            <div class="vv_game_name">{{ game.gameName }}</div>
-                            <div>
-                              {% for i in range(0, game.gameStar) -%}
-                                <i class="icon_star"></i>
-                              {%- endfor %}
-                              <span class="vv_game_size">{{ game.gameSize }}</span>
-                            </div>
-                            <div class="vv_game_intro">{{ game.gameBrief }}</div>
-                          </div>
-                        </a>
-                      {% endfor %}
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
+<div class="container">
+  {# 热门游戏 #}
+  {% if hotGameList and hotGameList.length > 0 %}  
+    <section class="container home_hotGame m_module">
+      <h2 class="home_hotGame_title">热门游戏</h2>
+      <div class="home_hotGame_Wrap">
+        {% for hotGame in hotGameList %}
+          <a href="/games/gameDetail/{{ hotGame.id }}" class="home_hotGame_item">
+            <div>
+              <img src="{{ hotGame.gameIcon }}" alt="{{ hotGame.gameName }}" />
             </div>
-          </div>
-          <!-- 新闻 -->
-          <div class="am-tab-panel vv_tab_panel">
-            <div class="scrollWrapper" id="newsScrollWrap">
-              <div class="c_content">
-                {% if newsSliders.length > 0 %}
-                  <div id="newsSlider" class="am-slider am-slider-default vv_slider" data-am-flexslider>
-                    <ul class="am-slides">
-                      {% for newsSlider in newsSliders %}
-                        <li>
-                          <a href="#news/{{ newsSlider.newsId }}">
-                            <img src="{{ webPath + newsSlider.newsIntroImg }}">
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-                <div class="vv_news_wrap" id="newItemWrap">
-                  {% for news in newsList %}
-                  <a class="c_rowList vv_newsItem" href="#news/{{ news.newsId }}">
-                    <div class="vv_news_content">
-                      <div class="vv_news_title">{{ news.newsTitle }}</div>
-                      <div class="vv_news_intro">{{ news.newsIntro }}</div>
-                    </div>
-                    <img class="vv_news_img" src="{{ webPath + news.newsIntroImg }}" alt="{{ news.newsTitle }}">
-                  </a>
-                  {% endfor %}
-                </div>
-                <div class="vv_loading_tip" id="loadingTip">加载中...</div>
-              </div>
-            </div>
-          </div>
-          <!-- 加入我们 -->
-          <div class="am-tab-panel vv_tab_panel">
-            <div class="vv_container">
-              <div class="vv_content vv_join_content">
-                <img src="/public/i/images/join.jpg" width="100%" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <ul class="am-tabs-nav am-nav am-nav-tabs vv_tabs_nav">
-          <li class="vv_tabs_item am-active">
-            <a href="javascript:;" data-index="game">
-              <i class="vv_tabs_icon vv_tabs_icon_game"></i>
-              <span>游戏</span>
-            </a>
-          </li>
-          <li class="vv_tabs_item">
-            <a href="javascript:;" data-index="news">
-              <i class="vv_tabs_icon vv_tabs_icon_news"></i>
-              <span>资讯</span>
-            </a>
-          </li>
-          <li class="vv_tabs_item">
-            <a href="javascript:;" data-index="join">
-              <i class="vv_tabs_icon vv_tabs_icon_join"></i>
-              <span>加入我们</span>
-            </a>
-          </li>
-        </ul>
+            <div class="home_hotGame_gameName">{{ hotGame.gameName }}</div>
+          </a>
+        {% endfor %}
       </div>
-      <!-- 二级导航 -->
-      <div id="routerPicker" style="display: none"></div>
-    </main>
-    <side class="vv_downRightTip">
-      <img id="qrcode" class="qrcode" src="/public/i/images/qrcode.jpg" />
-      <div class="qrCode_tip">扫一扫 手机畅玩</div>
-    </side>
+    </section>
+  {% endif %}
+  <main class="container home_main">
+    {# 游戏模块 #}
+    <div class="col-md-8">
+      {% if gamesModule and gamesModule.length > 0 -%}
+        {% for module in gamesModule -%}
+          <section class="game_module {{ 'm_module' if loop.last else 'm_module_static' }}">
+              {{ component.ModuleTitle(module.label, '/games/' + module.value, 'static/images/module_game_' + loop.index + '.png') }}
+              {# 游戏展示 #}
+              {{ component.GamesShow(module.data) }}
+            </section>
+        {%- endfor %}
+      {%- endif %}
+    </div>
+    {# side 行业资讯 #}
+    <div class="col-md-4">
+      {% if newsModule and newsModule.length > 0 %}
+        {% for module in newsModule %}
+          <div class="m_module_static">
+            {{ component.ModuleTitle(module.label, '/news/' + module.value, 'static/images/module_news_' + loop.index + '.png') }}
+            {{ component.NewsSide(module.data) }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      <div class="m_module kf_module">
+        <div class="kf_title">
+          客服中心
+        </div>
+        <div class="fk_info">
+          <div class="fk_info_item"><i></i>咨询时间：<span>09:00——22:00</span></div>
+          <div class="fk_info_item"><i></i>客服电话：<span>132-8888-8531</span></div>
+          <div class="fk_info_item"><i></i>客服邮箱：<span>hr@ddmh5.com</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="m_module friend_link">
+  <section class="container">
+    {# {{ component.Title('友情链接') }} #}
+    <div class="link_title">友情链接</div>
+    <div class="link_wrap">
+      {% if friendLink -%}
+        {% for link in friendLink -%}
+          <a href="{{ link.href or 'javascript:;' }}" target="_blank" rel="nofollow">{{ link.label }}</a>
+        {%- endfor %}
+      {%- endif %}
+    </div>
   </section>
-</section>
+</div>
+
 {% endblock %}

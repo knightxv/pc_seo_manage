@@ -1,54 +1,107 @@
 {% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
+
+{% block meta %}
+  <title>新闻公告</title>
+  <meta name="keywords" content="阿当游戏 斗牛 阿当斗牛 比鸡 阿当比鸡 木虱鱼 阿当木虱鱼 十三水 阿当十三水 斗地主 阿当斗地主" />
+  <meta name="description" content="阿当游戏官方网站——阿当游戏是提供棋牌与休闲的综合网络游戏大厅平台，阿当游戏包含麻将，扑克等多种地方性棋牌游戏，《阿当游戏》打比赛，赢奖品。组建俱乐部，促进牌友间友谊。">
+{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="/public/css/news.css">
+<link rel="stylesheet" href="{{ static }}/css/news-446c37f150.css">
 {% endblock %}
 
-{% block nav %}
-{% call navCreate(3) %}
-{{ caller() }}
-{% endcall %}
-{% endblock %}
+{% set breadArr = [{label: '首页', href: '/'}, {label: '新闻资讯', href: '/news'}] %}
 
 
 {% block main %}
-<section class="vv_container">
-	<h2 class="vv_news_title">新闻资讯</h2>
-	<div class="vv_news_tip">了解新闻资讯，时刻掌握游戏动态，实时更新业内最新新闻和资讯</div>
-	<div class="vv_newsList_container">
-		<div class="vv_newItem">
-			<img
+{{ component.headBanner(3, '棋牌开发行业分析，棋牌新闻,棋牌资讯公告，') }}
+{{ component.BannerImg(static + "/images/banner/news.png") }}
+{{ component.Breadcrumb(breadArr) }}
+<section class="container">
+	<section class="col-md-3 m_module">
+			{{ component.Title('新闻公告') }}
+			{{ component.SideSelect(sideTypeArr, gameSideIndex) }}
+		{# <section class="">
+		</section> #}
+		{# <section class="m_module">
+			{{ component.Title('新闻公告') }}
+			{{ component.NewsSide() }}
+		</section> #}
+	</section>
+	<section class="col-md-8 m_module news_right_module">
+		{% if newsList and newsList.length > 0 %}	
+			{% for news in newsList %}
+				<section class="news_item">
+					<div class="news_img_wrap">
+						<img
+							class="vv_news_img"
+							src="{{ news.newsIcon }}"
+							alt="{{ news.newsTitle }}"
+						/>
+					</div>
+					<div class="new_content_wrap">
+						<a class="news_title" href="/news/newsDetail/{{ news.id }}">{{ news.newsTitle }}</a>
+						<div class="news_public_title">发布日期：{{ news.publicTime | format }}</div>
+						<div class="news_content">{{ news.newsBrief }}</div>
+					</div>
+				</section>
+			{% endfor %}
+		{% else %}
+		<div style="text-align: center;padding: 20px 0;">没有数据</div>
+		{% endif %}
+		<nav id="news_navigation" class="news_navigation" aria-label="Page navigation">
+			{% if paginationArr.length > 0 %}
+				<ul class="pagination">
+					<li class="{{ 'disabled' if +page === 0 }}">
+						<a data-page="{{ page - 1 }}" href="javascript:;" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					{% for pageIndex in paginationArr %}
+						<li class="{{ 'active' if (pageIndex === +page) }}">
+							<a data-page="{{ pageIndex }}" href="javascript:;">
+								{{ pageIndex + 1 }}
+							</a>
+						</li>
+					{% endfor %}
+					<li class="{{ 'disabled' if page >= paginationArr.length -1  }}">
+						<a href="javascript:;" data-page="{{ page + 1 }}" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			{% endif %}
+		</nav>
+	</section>
+	{# <div class="vv_newsList_container">
+		{% for news in newList %}
+			<div class="vv_newItem">
+				<img
 					class="vv_news_img"
-					src="http://120.55.57.25:8080/wresource/gameimgs/4f0f430eaf014ae2ad9a6acde2ced8c8.jpg"
-			/>
-			<section class="vv_newsInfo">
-					<div class="vv_newsItem_title">进来看的都有钱买iphoneX了</div>
-					<div class="vv_news_content">赢乾游戏 全国火热招代理中，长按识别码扫描加微信</div>
-					<a href="/#news/1" class="vv_news_rightTip">阅读全文&gt;&gt;</a>
-			</section>
-		</div>
-		<div class="vv_newItem">
-			<img
-					class="vv_news_img"
-					src="http://120.55.57.25:8080/wresource/gameimgs/4f0f430eaf014ae2ad9a6acde2ced8c8.jpg"
-			/>
-			<section class="vv_newsInfo">
-					<div class="vv_newsItem_title">拳头将打造韩国LOL联赛专属电竞馆 LPL赛区何时有望？</div>
-					<div class="vv_news_content"> 近日，韩国媒体Inven爆料，拳头正在计划为韩国LOL联赛（LCK）打造专属电竞场馆，</div>
-					<a href="/#news/2" class="vv_news_rightTip">阅读全文&gt;&gt;</a>
-			</section>
-		</div>
-		<div class="vv_newItem">
-			<img
-					class="vv_news_img"
-					src="http://120.55.57.25:8080/wresource/gameimgs/4f0f430eaf014ae2ad9a6acde2ced8c8.jpg"
-			/>
-			<section class="vv_newsInfo">
-					<div class="vv_newsItem_title">大神用55600块乐高打造《魔兽》塞拉摩 造型细节神还原</div>
-					<div class="vv_news_content">有国外玩家就用乐高玩具打造了一个现实版的塞拉摩城市。</div>
-					<a href="/#news/3" class="vv_news_rightTip">阅读全文&gt;&gt;</a>
-			</section>
-		</div>
-	</div>
+					src="{{ httpConfig.webServerPath + news.newsIntroImg }}"
+					alt="{{ news.newsTitle }}"
+				/>
+				<section class="vv_newsInfo">
+						<div class="vv_newsItem_title">{{ news.newsTitle }}</div>
+						<div class="vv_news_content">{{ news.newsIntro }}</div>
+						<a href="/news/{{news.newsId}}" class="vv_news_rightTip">阅读全文&gt;&gt;</a>
+				</section>
+			</div>
+		{% endfor %}
+	</div> #}
 </section>
+{% endblock %}
+
+{% block js %}
+<script>
+	$('#news_navigation').on('click', 'a', function() {
+		const page = this.dataset.page;
+		const hasClass = $(this).closest('li').hasClass('disabled');
+		if (hasClass || page < 0) {
+			return;
+		}
+		window.location.search = '?page=' + page;
+	});
+</script>
 {% endblock %}

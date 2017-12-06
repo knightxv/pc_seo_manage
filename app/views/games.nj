@@ -1,79 +1,36 @@
 {% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
+
+{% block meta %}
+  <title>{{ sideTypeArr[gameSideIndex].label }}</title>
+	<meta name="keywords" content="阿当游戏 斗牛 阿当斗牛 比鸡 阿当比鸡 木虱鱼 阿当木虱鱼 十三水 阿当十三水 斗地主 阿当斗地主" />
+  <meta name="description" content="阿当游戏官方网站——阿当游戏是提供棋牌与休闲的综合网络游戏大厅平台，阿当游戏包含麻将，扑克等多种地方性棋牌游戏，《阿当游戏》打比赛，赢奖品。组建俱乐部，促进牌友间友谊。">
+{% endblock %}
 
 {% block css %}
-  <link rel="stylesheet" href="/public/css/home.css">
-  <link rel="stylesheet" href="/public/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="/public/css/phone.css">
+  <link rel="stylesheet" href="{{ static }}/css/game-07a82738a1.css">
 {% endblock %}
 
-{% block nav %}
-{% call navCreate(2) %}
-{{ caller() }}
-{% endcall %}
-{% endblock %}
+{% set breadArr = [
+	{label: '首页', href: '/'},
+	{label: '游戏中心', href: '/games'},
+	{label:  sideTypeArr[gameSideIndex].label, href: ''}
+	]
+%}
 
 {% block main %}
-<section class="vv_body">
-  <section class="vv_phone_container">
-    <side class="vv_phoneTop"></side>
-    <side class="vv_downLeftTip"></side>
-    <!-- 手机主体内容 -->
-    <main class="vv_phone" id="home">
-      <!-- 游戏 -->
-          <div class="am-tab-panel am-active vv_tab_panel">
-            <div class="scrollWrapper" id="gameScrollWrapper">
-              <div class="c_content">
-                {% if gameSlider.length > 0 %}
-                  <div id="gameSlider" class="am-slider am-slider-default vv_slider" data-am-flexslider>
-                    <ul class="am-slides">
-                      {% for slider in gameSlider %}
-                        <li>
-                          <a href="{{ slider.gameLink or 'javascript:;' }}">
-                            <img src="{{ webPath + slider.gamePicture }}" />
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-                    {# <li>
-                      <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
-                    </li> #}
-                <div class="vv_m_container">
-                  <div class="vv_game c_rowList">
-                    <i class="icon_game"></i>
-                    <span class="vv_game_title">新游推荐</span>
-                  </div>
-                  <div id="gameList">
-                    {% if gameList %}
-                      {% for game in gameList %}
-                        <a class="c_rowList vv_game_item" href="#gameDetail/{{ game.gameId }}">
-                          <img class="vv_game_icon" src="{{ webPath + game.gameIcon }}" alt="{{ game.gameName  }}">
-                          <div class="vv_game_info">
-                            <div class="vv_game_name">{{ game.gameName }}</div>
-                            <div>
-                              {% for i in range(0, game.gameStar) -%}
-                                <i class="icon_star"></i>
-                              {%- endfor %}
-                              <span class="vv_game_size">{{ game.gameSize }}</span>
-                            </div>
-                            <div class="vv_game_intro">{{ game.gameBrief }}</div>
-                          </div>
-                        </a>
-                      {% endfor %}
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      <!-- 二级导航 -->
-      <div id="routerPicker" style="display: none"></div>
-    </main>
-    <side class="vv_downRightTip">
-      <img id="qrcode" class="qrcode" src="/public/i/images/qrcode.jpg" />
-      <div class="qrCode_tip">扫一扫 手机畅玩</div>
-    </side>
-  </section>
-</section>
+{# 头部导航 #}
+{{ component.headBanner(2, '阿当游戏平台，棋牌游戏中心，地方棋牌') }}
+{{ component.BannerImg(static + "/images/banner/game.png") }}
+{{ component.Breadcrumb(breadArr) }}
+<main class="container gameCenter">
+		<div class="col-md-3 m_module">
+			{{ component.Title('游戏中心') }}
+			{{ component.SideSelect(sideTypeArr, gameSideIndex) }}
+		</div>
+		{{ component.GamesShow(gameList, 'col-md-8 m_module') }}
+	{# <div class="row">
+	</div> #}
+</main>
 {% endblock %}
+

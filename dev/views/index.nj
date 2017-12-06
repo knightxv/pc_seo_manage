@@ -1,0 +1,85 @@
+{% extends "layout/template.nj" %}
+{% import "component/index.nj" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ static }}/css/home.css">
+{% endblock %}
+{% block js %}
+  <script src="{{ static }}/js/home.js"></script>
+{% endblock%}
+
+{% block main %}
+{# 头部导航 #}
+{{ component.headBanner(1) }}
+{# 轮播图 #}
+{{ component.carousel(carousel, 'homeCarousel') }}
+{# 公告 #}
+
+<div class="container">
+  {# 热门游戏 #}
+  {% if hotGameList and hotGameList.length > 0 %}  
+    <section class="container home_hotGame m_module">
+      <h2 class="home_hotGame_title">热门游戏</h2>
+      <div class="home_hotGame_Wrap">
+        {% for hotGame in hotGameList %}
+          <a href="/games/gameDetail/{{ hotGame.id }}" class="home_hotGame_item" alt="胡了吗">
+            <div>
+              <img src="{{ hotGame.gameIcon }}" alt="hotGame.gameName" />
+            </div>
+            <div class="home_hotGame_gameName">{{ hotGame.gameName }}</div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+  <main class="container home_main">
+    {# 游戏模块 #}
+    <div class="col-md-8">
+      {% if gamesModule and gamesModule.length > 0 -%}
+        {% for module in gamesModule -%}
+          <section class="game_module {{ 'm_module' if loop.last else 'm_module_static' }}">
+              {{ component.ModuleTitle(module.label, '/games/' + module.value, 'static/images/module_game_' + loop.index + '.png') }}
+              {# 游戏展示 #}
+              {{ component.GamesShow(module.data) }}
+            </section>
+        {%- endfor %}
+      {%- endif %}
+    </div>
+    {# side 行业资讯 #}
+    <div class="col-md-4">
+      {% if newsModule and newsModule.length > 0 %}
+        {% for module in newsModule %}
+          <div class="m_module_static">
+            {{ component.ModuleTitle(module.label, '/news/' + module.value, 'static/images/module_news_' + loop.index + '.png') }}
+            {{ component.NewsSide(module.data) }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      <div class="m_module kf_module">
+        <div class="kf_title">
+          客服中心
+        </div>
+        <div class="fk_info">
+          <div class="fk_info_item"><i></i>咨询时间：<span>09:00——22:00</span></div>
+          <div class="fk_info_item"><i></i>客服电话：<span>132-8888-8531</span></div>
+          <div class="fk_info_item"><i></i>客服邮箱：<span>hr@ddmh5.com</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="m_module friend_link">
+  <section class="container">
+    {# {{ component.Title('友情链接') }} #}
+    <div class="link_title">友情链接</div>
+    <div class="link_wrap">
+      {% if friendLink -%}
+        {% for link in friendLink -%}
+          <a href="{{ link.href or 'javascript:;' }}" target="_blank" rel="nofollow">{{ link.label }}</a>
+        {%- endfor %}
+      {%- endif %}
+    </div>
+  </section>
+</div>
+
+{% endblock %}

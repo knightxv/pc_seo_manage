@@ -1,0 +1,99 @@
+/* 提供全局公用样式 */
+
+@import "./base.less";
+body, html {
+	min-height: 100%;
+	height: 100%;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	background: @bgColor;
+}
+#contentRoot {
+	flex: 1;
+}
+h2 {
+	padding: 0;
+	margin: 0;
+}
+a {
+	color: @fz_baseColor;
+}
+a:focus, a:hover {
+	color: @baseColor;
+}
+strong {
+	font-weight: normal;
+}
+// .btn {
+// 	padding: 6px;
+// 	border-radius: 6px;
+// 	font-size: 18px;
+// 	color: #eee;
+// 	&.btn-default {
+// 		background: @baseColor;
+// 	}
+// }
+// section {
+// 	display: flex;
+// 	flex-direction: column;
+// }
+
+.ql-align-center {
+	text-align: center;
+}
+.flexRow {
+	.flexRow();
+}
+  
+
+// 覆盖bootstrap
+.container {
+	width: @container_width;
+	padding-left: 0;
+	padding-right: 0;
+	margin-bottom: 20px;
+}
+.vv_container {
+	// background: url(../i/images/bg.png) no-repeat top center;
+	// background-size: 100% 100%;
+	font-size: 16px;
+	flex: 1;
+	position: relative;
+}
+// .vv_container {
+// 	max-width: 1420px;
+// 	margin: 0 auto;
+// }
+
+.pc_footer {
+	padding: 12px 0;
+	font-size: 14px;
+	// color: #fff;
+	color: #a5a5a5;
+	a {
+	  color: #a5a5a5;
+	}
+	background: #fff;
+	text-align: center;
+	display: block;
+	width: 100%;
+	.footer_item {
+		padding-top: 6px;
+	}
+}
+.pc_footer_navLaebl {
+	padding: 0 8px;
+}
+
+.m_module {
+	.bor();
+	border-radius: 3px;
+	background: #fff;
+}
+.m_module_static {
+	.m_module();
+	height: 360px;
+	overflow: hidden;
+}
