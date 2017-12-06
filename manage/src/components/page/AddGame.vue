@@ -86,10 +86,10 @@
                         <el-radio label="imoo"></el-radio>
                     </el-radio-group>
                 </el-form-item> -->
-                <el-form-item label="游戏介绍">
+                <el-form-item label="玩法介绍">
                     <el-input type="textarea" v-model="form.gameIntroduce"></el-input>
                 </el-form-item>
-                <el-form-item label="新版特性">
+                <el-form-item label="游戏亮点">
                     <el-input type="textarea" v-model="form.characteristic"></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -178,7 +178,6 @@
                     gameIcon: gameIcon,
                 };
                 this.webHttp.get('/api/manage/addGame', body).then(res => {
-                    console.log(this);
                     if (res.success) {
                         this.$message.success('添加成功');
                         this.$router.back();
@@ -203,7 +202,7 @@
             // 游戏图标
             handleAvatarSuccess(res, row) {
                 // edit
-                this.imageUrl = 'http://127.0.0.1:7001' + res.url;
+                this.imageUrl = res.url;
                 // this.imageUrl = res.url;
                 // this.imageUrl = URL.createObjectURL(res.url);
             },
@@ -228,7 +227,7 @@
             },
             handlePictureCardSuccess(res, file) {
                 // dev
-                this.gameScreenshot = [ ...this.gameScreenshot, { name: file.name, url: 'http://127.0.0.1:7001' + res.url }];
+                this.gameScreenshot = [ ...this.gameScreenshot, { name: file.name, url: res.url }];
                 // this.gameScreenshot = [ ...this.gameScreenshot, { name: file.name, url: res.url }];
                 // console.log(res);
                 // console.log(file);

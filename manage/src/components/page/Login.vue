@@ -40,8 +40,20 @@
                 const self = this;
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
-                        localStorage.setItem('ms_username',self.ruleForm.username);
-                        self.$router.push('/readme');
+                        // localStorage.setItem('ms_username',self.ruleForm.username);
+                        // self.$router.push('/readme');
+                        const { username, password } = self.ruleForm;
+                        this.webHttp.get('/api/manage/login', {
+                            userName: username,
+                            psd: password,
+                        }).then(res => {
+                            if (res.success) {
+                                self.$message.success('登录成功');
+                                self.$router.push('/readme');
+                            } else {
+                                self.$message.error('登录失败');
+                            }
+                        });
                     } else {
                         console.log('error submit!!');
                         return false;

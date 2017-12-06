@@ -38,18 +38,28 @@ module.exports = app => {
       const { gameId } = ctx.params;
       // 游戏详情
       const gameDetail = await ctx.service.games.find(gameId);
+      let gameDetailResolve;
+      let gameTypeInfo = {
+        label: '游戏类型',
+        value: '',
+      };
+      if (gameDetail) {
+        gameDetailResolve = Object.assign(gameDetail, {
+          gameScreenshot: gameDetail.gameScreenshot ? JSON.parse(gameDetail.gameScreenshot) : [],
+        });
+        gameTypeArr.some(typeInfo => {
+          if (+gameDetail.gameType === typeInfo.type) {
+            gameTypeInfo = typeInfo;
+            return true;
+          }
+          return false;
+        });
+      }
       // 游戏详情
       const gameRecommend = await ctx.service.games.recommend();
-      let gameTypeInfo;
-      gameTypeArr.some(typeInfo => {
-        if (+gameDetail.gameType === typeInfo.type) {
-          gameTypeInfo = typeInfo;
-          return true;
-        }
-        return false;
-      });
+      
       await ctx.render('gameDetail.nj', {
-        gameDetail,
+        gameDetail: gameDetailResolve,
         gameRecommend,
         gameTypeInfo,
       });

@@ -14,7 +14,6 @@ class CommonService extends Service {
       return false;
     }
     const result = await this.app.mysql.update('htmlText', row);
-    console.log(result);
     if (result.affectedRows === 0) {
       const insertResult = await this.app.mysql.insert('htmlText', row);
       return insertResult.affectedRows === 1;
@@ -53,6 +52,12 @@ class CommonService extends Service {
     }
     const insertResult = await this.app.mysql.insert('web_config', configData);
     return insertResult.affectedRows === 1;
+  }
+  async login(userName, passWord) {
+    if (userName === 'ddm_2017' && passWord === 'ddm_2017') {
+      return true;
+    }
+    return false;
   }
 }
 

@@ -1,25 +1,29 @@
 {% extends "layout/template.nj" %}
 {% import "component/index.nj" as component %}
 
+{% block meta %}
+  <title>平台介绍_胡了吗</title>
+	<meta name="keywords" content="全新平台携海量游戏，网罗全网人气游。更多玩法更多欢乐，带来非凡游戏体验。阿当游戏 胡了吗" />
+  <meta name="description" content="阿当游戏官方网站——阿当游戏是提供棋牌与休闲的综合网络游戏大厅平台，阿当游戏包含麻将，扑克等多种地方性棋牌游戏，《阿当游戏》打比赛，赢奖品。组建俱乐部，促进牌友间友谊。">
+{% endblock %}
+
 {% block css %}
-<link rel="stylesheet" href="{{ static }}/css/contact-c172aad26d.css">
+<link rel="stylesheet" href="{{ static }}/css/contact-4cde27f22f.css">
 {% endblock %}
 
 {% set breadArr = [{label: '首页', href: '/'}, {label: '联系我们', href: ''}] %}
 
 {% block main %}
-{{ component.headBanner(5) }}
-{{ component.BannerImg(static + "/images/banner.jpg") }}
+{{ component.headBanner(5, '厦门当当猫科技有限公司') }}
+{{ component.BannerImg(static + "/images/banner/contact.png") }}
 {{ component.Breadcrumb(breadArr) }}
-<section class="container">
-    <section class="col-md-3">
+    {# <section class="col-md-3">
 		<div class="m_module">
 			{{ component.Title('联系我们') }}
 			{{ component.SideSelect([{label: '联系我们', href: ''}]) }}
 		</div>
+	</section> #}
+	<section class="container m_module contact_module">
+		{{ htmlText | safe }}
 	</section>
-	<section class="col-md-8 m_module contact_module">
-		{{ htmlText }}
-	</section>
-</section>
 {% endblock %}

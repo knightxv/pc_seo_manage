@@ -34,5 +34,6 @@ module.exports = appInfo => {
         ignore: ctx => true,
       },
     },
+    middleware: [ 'cors', 'auth' ],
   };
 };

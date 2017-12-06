@@ -8,7 +8,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1508326922904_4283';
 
   // add your config here
-  config.middleware = [ 'cors' ];
+  config.middleware = [ 'auth' ];
   config.view = {
     root: [
       path.join(appInfo.baseDir, 'app/views'),
@@ -37,6 +37,11 @@ module.exports = appInfo => {
     },
   };
 
+  config.bodyParser = {
+    // jsonLimit: '1mb',
+    formLimit: '5mb',
+  };
+
   // config.nunjucks = {
   //   autoescape: true,
   //   throwOnUndefined: false,
@@ -44,6 +49,17 @@ module.exports = appInfo => {
   //   lstripBlocks: false,
   //   cache: true,process.env.NODE_ENV !== 'production'
   // };
+
+  // session
+  config.session = {
+    key: 'EGG_SESS',
+    maxAge: 24 * 3600 * 1000, // 1 天
+    httpOnly: true,
+    encrypt: true,
+  };
+  config.notfound = {
+    pageUrl: '/404',
+  };
 
 
   // 数据库

@@ -5,11 +5,17 @@
 <link rel="stylesheet" href="{{ static }}/css/game-07a82738a1.css">
 {% endblock %}
 
+{% block meta %}
+  <title>{{ gameDetail.gameName }}</title>
+  <meta name="keywords" content="{{ gameDetail.gameBrief }}" />
+  <meta name="description" content="阿当游戏官方网站——阿当游戏是提供棋牌与休闲的综合网络游戏大厅平台，阿当游戏包含麻将，扑克等多种地方性棋牌游戏，《阿当游戏》打比赛，赢奖品。组建俱乐部，促进牌友间友谊。">
+{% endblock %}
+
 {% set breadArr = 
 	[{label: '首页', href: '/'},
 	{label: '游戏中心', href: '/games'},
 	{label: gameTypeInfo.label, href: '/games/' + gameTypeInfo.value },
-	{label: gameDetail.gameName, href: ''}]
+	{label: gameDetail.gameName , href: ''}]
 %} 
 
 {% block main %}
@@ -17,46 +23,57 @@
 {{ component.headBanner(2) }} {{ component.Breadcrumb(breadArr)}}
 <section class="container">
 	<div class="col-md-7 m_module gameDetail">
-		<div class="gameDetail_baseInfo_wrap">
-			<img class="gameDetail_Icon" src="{{ gameDetail.gameIcon }}" />
-			<section class="gameBaseInfo">
-				<h2>{{ gameDetail.gameName }}</h2>
-				<div>大小：{{ gameDetail.gameSize }}</div>
-				<div>更新日期：{{ gameDetail.publicDate | format }}</div>
-				<div>版本：{{ gameDetail.gameVersion }}</div>
-				<div class="gameDetail_btn_wrap">
-					<a class="btn btn-warning" href="{{ gameDetail.downUrl }}">游戏下载</a>
-					<a class="btn btn-primary" href="{{ gameDetail.gameLoginUrl }}">代理中心登录</a>
+		{% if gameDetail %}
+			<div class="gameDetail_baseInfo_wrap">
+				<img class="gameDetail_Icon" src="{{ gameDetail.gameIcon }}" />
+				<section class="gameBaseInfo">
+					<h2>{{ gameDetail.gameName }}</h2>
+					<div>大小：{{ gameDetail.gameSize }}</div>
+					<div>更新日期：{{ gameDetail.publicDate | format }}</div>
+					<div>版本：{{ gameDetail.gameVersion }}</div>
+					<div class="gameDetail_btn_wrap">
+						<a class="btn btn-warning" href="{{ gameDetail.downUrl }}" target="_blank">游戏下载</a>
+						<a class="btn btn-primary" href="{{ gameDetail.gameLoginUrl }}" target="_blank">代理中心登录</a>
+					</div>
+				</section>
+			</div>
+			<section class="gameDetail_item_wrap">
+				{{ component.Title('玩法介绍') }}
+				<div class="gameDetail_intro_content">
+					{{ gameDetail.gameIntroduce | safe }}
 				</div>
 			</section>
-		</div>
-		<section class="gameDetail_item_wrap">
-			{{ component.Title('玩法介绍') }}
-			<div class="gameDetail_intro_content">
-				{{ gameDetail.gameIntroduce | safe }}
+			<section class="gameDetail_item_wrap">
+				{{ component.Title('游戏亮点') }}
+				<div class="gameDetail_intro_content">
+					{{ gameDetail.characteristic | safe }}
+				</div>
+			</section>
+			<section class="gameDetail_item_wrap">
+				{{ component.Title('游戏截图') }}
+				<div class="gameDetail_intro_content">
+					{% if gameDetail and gameDetail.gameScreenshot %}
+						{% for imgSrc in gameDetail.gameScreenshot %}
+							<img class="col-md-4" src="{{ imgSrc }}" />
+						{% endfor %}
+					{% endif %}
+				</div>
+			</section>
+		{% else %}
+			<div class="gameDetail_baseInfo_wrap">
+				没有这个游戏或者游戏已被删除
 			</div>
-		</section>
-		<section class="gameDetail_item_wrap">
-			{{ component.Title('游戏亮点') }}
-			<div class="gameDetail_intro_content">
-				{{ gameDetail.characteristic | safe }}
-			</div>
-		</section>
-		<section class="gameDetail_item_wrap">
-			{{ component.Title('游戏截图') }}
-			<div class="gameDetail_intro_content">
-				{% for imgSrc in gameDetail.gameScreenshot %}
-				<img class="col-md-4" src="{{ imgSrc }}" /> {% endfor %}
-			</div>
-		</section>
+		{% endif %}
 	</div>
 	<side class="col-md-4 m_module">
 		{{ component.ModuleTitle('相关游戏推荐', '/games') }}
 		<ul class="intro_game">
 			{% for gameInfo in gameRecommend %}
-				<a href="/games/gameDetail/{{ gameInfo.gameId }}">
+				<a href="/games/gameDetail/{{ gameInfo.id }}">
 					<li>
-						<img src="{{ gameInfo.gameIcon }}" />
+						<div>
+							<img src="{{ gameInfo.gameIcon }}" />
+						</div>
 						<div class="game_label_wrap">
 							<div>{{ gameInfo.gameName }}</div>
 							<div>{{ gameInfo.gameBrief }}</div>

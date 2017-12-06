@@ -1,5 +1,5 @@
 'use strict';
 
 $(function() {
-  $('.carousel').carousel();
+  $('#homeCarousel').carousel();
 });

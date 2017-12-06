@@ -45,6 +45,7 @@ module.exports = app => {
         });
         return;
       }
+      // pc
       const carousel = await ctx.service.home.getCarousel();
       const hotGameList = await ctx.service.home.getHotGame();
       const gameTypeArr = app.typeEnum.game;
@@ -57,7 +58,6 @@ module.exports = app => {
         const newsData = await ctx.service.news.selectNewsByNewsType({ type: news.type, size: 10 });
         return Object.assign(news, { data: newsData });
       }));
-      console.log(gamesModule);
       const friendLink = await ctx.service.home.getFriendLink();
       // 轮播图
       await ctx.render('index.nj', {

@@ -2,8 +2,8 @@
     <div class="table">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-menu"></i> 游戏管理</el-breadcrumb-item>
-                <el-breadcrumb-item>游戏列表</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-menu"></i> 新闻管理</el-breadcrumb-item>
+                <el-breadcrumb-item>新闻列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="handle-box">
@@ -14,18 +14,18 @@
             </el-select>
             <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
             -->
-            <el-button type="primary" @click="addGame">新增</el-button>
+            <el-button type="primary" @click="addNews">新增</el-button>
         </div> 
         <el-table :data="data" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
-            <el-table-column prop="gameId" label="游戏id" width="80">
+            <el-table-column prop="id" label="新闻id" width="80">
                 </el-table-column>
-            <el-table-column prop="gameName" label="游戏名">
+            <el-table-column prop="newsTitle" label="标题">
                 </el-table-column>
-            <el-table-column prop="downUrl" label="下载地址">
+            <el-table-column prop="publicTime" label="发布日期" :formatter="timeFormat">
                 </el-table-column>
-            <el-table-column prop="gameType" label="游戏类型">
+            <el-table-column prop="newsType" label="新闻类型" :formatter="typeFormat">
                 </el-table-column>
-            <el-table-column prop="gameLoginUrl" label="后台登陆地址">
+            <el-table-column prop="newsBrief" label="新闻简介">
                 </el-table-column>
             <el-table-column label="操作" width="180">
                 <template scope="scope">
@@ -47,10 +47,22 @@
 </template>
 
 <script>
+    const newsTypeArr = [
+        {
+            label: '行业资讯',
+            value: 'information',
+            type: 1,
+        },
+        {
+            label: '新闻公告',
+            value: 'notice',
+            type: 2,
+        },
+    ];
     export default {
         data() {
             return {
-                url: '/api/gameList',
+                url: '/api/newsList',
                 tableData: [],
                 cur_page: 1,
                 multipleSelection: [],
@@ -93,32 +105,55 @@
             // },
             getData(){
                 let self = this;
-                if(process.env.NODE_ENV === 'development'){
-                    self.url = 'http://result.eolinker.com/Si3YRczf826e807c8053e83130109e7e34d195898a36247?uri=/api/gameList';
-                };
-                self.$axios.get(self.url, {page:self.cur_page}).then((res) => {
-                    const list = res.data.data;
-                    console.log(list)
-                    self.tableData = list;
+                self.webHttp.get(self.url, {page:self.cur_page}).then((res) => {
+                    const list = res.data;
+                    self.tableData = list || [];
                 })
             },
-            search(){
-                this.is_search = true;
+            typeFormat(row, column) {
+                let typeLabel = '默认';
+                newsTypeArr.some(typeInfo => {
+                    if (typeInfo.type === +row.newsType) {
+                        typeLabel = typeInfo.label;
+                        return true;
+                    }
+                    return false;
+                });
+                return typeLabel;
             },
-            addGame() {
-                this.$router.push('/addGame');
+            // 时间的转换
+            timeFormat(row, column) {
+                const timeStrap = row.publicTime;
+                return new Date(timeStrap).format('yyyy-MM-dd');
+            },
+            // search(){
+            //     this.is_search = true;
+            // },
+            addNews() {
+                this.$router.push('/addNews');
             },
             // formatter(row, column) {
             //     return row.address;
             // },
-            filterTag(value, row) {
-                return row.tag === value;
-            },
+            // filterTag(value, row) {
+            //     return row.tag === value;
+            // },
             handleEdit(index, row) {
-                this.$message('编辑第'+(index+1)+'行');
+                this.$router.push({ path: 'editNews', query: { newsId: row.id }});
+                // this.$message('编辑第'+(index+1)+'行');
             },
             handleDelete(index, row) {
-                this.$message.error('删除第'+(index+1)+'行');
+                const self = this;
+                this.webHttp.get(`/api/manage/deleteNews`, { newsId: row.id }).then(res => {
+                    if (res.success) {
+                        self.tableData = self.tableData.filter(news => {
+                            return news.id !== row.id;
+                        });
+                        self.$message.error('删除成功');
+                        return;
+                    }
+                    self.$message.error('删除失败');
+                })
             },
             delAll(){
                 const self = this;

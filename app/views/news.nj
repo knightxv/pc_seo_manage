@@ -1,16 +1,22 @@
 {% extends "layout/template.nj" %}
 {% import "component/index.nj" as component %}
 
+{% block meta %}
+  <title>新闻公告</title>
+  <meta name="keywords" content="阿当游戏 斗牛 阿当斗牛 比鸡 阿当比鸡 木虱鱼 阿当木虱鱼 十三水 阿当十三水 斗地主 阿当斗地主" />
+  <meta name="description" content="阿当游戏官方网站——阿当游戏是提供棋牌与休闲的综合网络游戏大厅平台，阿当游戏包含麻将，扑克等多种地方性棋牌游戏，《阿当游戏》打比赛，赢奖品。组建俱乐部，促进牌友间友谊。">
+{% endblock %}
+
 {% block css %}
-<link rel="stylesheet" href="{{ static }}/css/news-6709eefa5f.css">
+<link rel="stylesheet" href="{{ static }}/css/news-446c37f150.css">
 {% endblock %}
 
 {% set breadArr = [{label: '首页', href: '/'}, {label: '新闻资讯', href: '/news'}] %}
 
 
 {% block main %}
-{{ component.headBanner(3) }}
-{{ component.BannerImg(static + "/images/banner.jpg") }}
+{{ component.headBanner(3, '棋牌开发行业分析，棋牌新闻,棋牌资讯公告，') }}
+{{ component.BannerImg(static + "/images/banner/news.png") }}
 {{ component.Breadcrumb(breadArr) }}
 <section class="container">
 	<section class="col-md-3 m_module">
@@ -23,7 +29,7 @@
 			{{ component.NewsSide() }}
 		</section> #}
 	</section>
-	<section class="col-md-8 m_module" style="margin-left: 30px;">
+	<section class="col-md-8 m_module news_right_module">
 		{% if newsList and newsList.length > 0 %}	
 			{% for news in newsList %}
 				<section class="news_item">
@@ -31,11 +37,11 @@
 						<img
 							class="vv_news_img"
 							src="{{ news.newsIcon }}"
-							alt="新闻头"
+							alt="{{ news.newsTitle }}"
 						/>
 					</div>
 					<div class="new_content_wrap">
-						<a class="news_title" href="/news/newsDetail/{{ news.newsId }}">{{ news.newsTitle }}</a>
+						<a class="news_title" href="/news/newsDetail/{{ news.id }}">{{ news.newsTitle }}</a>
 						<div class="news_public_title">发布日期：{{ news.publicTime | format }}</div>
 						<div class="news_content">{{ news.newsBrief }}</div>
 					</div>

@@ -32,6 +32,43 @@ class NewsService extends Service {
     });
     return results;
   }
+  /* -针对后端- */
+  // 获取新闻列表
+  async getNewsList() {
+    const results = await this.app.mysql.select('news', { // 搜索 post 表
+      // where: { gameType }, // WHERE 条件
+      columns: [ 'id', 'newsTitle', 'publicTime', 'newsType', 'newsBrief' ], // 要查询的表字段
+      orders: [[ 'publicTime', 'desc' ]], // 排序方式
+      // limit: size,
+    });
+    return results;
+  }
+  // 删除新闻
+  async deleteNews(newsId) {
+    if (!newsId || isNaN(newsId)) {
+      return false;
+    }
+    const result = await this.app.mysql.delete('news', {
+      id: +newsId,
+    });
+    return result.affectedRows === 1;
+  }
+  // 添加新闻
+  async addNews(newsInfo) {
+    if (!newsInfo) {
+      return false;
+    }
+    const result = await this.app.mysql.insert('news', newsInfo);
+    return result.affectedRows === 1;
+  }
+  // 更新新闻
+  async updateNews(newsInfo) {
+    if (!newsInfo) {
+      return false;
+    }
+    const result = await this.app.mysql.update('news', newsInfo);
+    return result.affectedRows === 1;
+  }
 }
 
 module.exports = NewsService;

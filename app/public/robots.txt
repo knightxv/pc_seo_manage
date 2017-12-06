@@ -3,3 +3,9 @@
 # Allow crawling of all content
 User-agent: *
 Disallow:
+Disallow: /magage/
+Disallow: /api/
+Disallow: /upload/
+Disallow: /static/
+Sitemap: http://hulema.com/sitemapxml/index.xml
+Sitemap: http://hulema.com/sitemap/index.html

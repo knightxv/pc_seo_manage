@@ -61,27 +61,31 @@ export default new Router({
                 },
                 {
                     path: '/editGame',
-                    component: resolve => require(['../components/page/EditGame.vue'], resolve)    // 添加游戏
+                    component: resolve => require(['../components/page/EditGame.vue'], resolve)    // 修改游戏
                 },
                 {
                     path: '/newsList',
-                    component: resolve => require(['../components/page/NewsList.vue'], resolve)
+                    component: resolve => require(['../components/page/NewsList.vue'], resolve) // 新闻列表
                 },
                 {
                     path: '/addNews',
-                    component: resolve => require(['../components/page/AddNews.vue'], resolve)    // 添加游戏
+                    component: resolve => require(['../components/page/AddNews.vue'], resolve)    // 添加新闻
+                },
+                {
+                    path: '/editNews',
+                    component: resolve => require(['../components/page/EditNews.vue'], resolve)    // 修改新闻
                 },
                 {
                     path: '/pageManage_home',
-                    component: resolve => require(['../components/page/PageManage_home.vue'], resolve)    // 添加游戏
+                    component: resolve => require(['../components/page/PageManage_home.vue'], resolve)    // 首页配置
                 },
                 {
                     path: '/pageManage_platfrom',
-                    component: resolve => require(['../components/page/PageManage_platfrom.vue'], resolve)    // 添加游戏
+                    component: resolve => require(['../components/page/PageManage_platfrom.vue'], resolve)    // 平台介绍
                 },
                 {
                     path: '/pageManage_contact',
-                    component: resolve => require(['../components/page/PageManage_contact.vue'], resolve)    // 添加游戏
+                    component: resolve => require(['../components/page/PageManage_contact.vue'], resolve)    // 联系我们
                 },
             ]
         },

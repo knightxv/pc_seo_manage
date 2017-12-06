@@ -24,7 +24,6 @@ module.exports = app => {
       const updateInfo = Object.assign({}, query, {
         id: +query.id,
       });
-      console.log('update game');
       const isSuccess = await ctx.service.games.updateGame(updateInfo);
       ctx.helper.setRes(isSuccess, null);
     }

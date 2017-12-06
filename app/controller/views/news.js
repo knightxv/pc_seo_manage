@@ -72,15 +72,30 @@ module.exports = app => {
     async newsDetail(ctx) {
       const { newsId } = ctx.params;
       const newsDetail = await ctx.service.news.find(+newsId);
-      const beforeNews = await ctx.service.news.find(+newsId - 1);
-      const nextNews = await ctx.service.news.find(+newsId + 1);
-      console.log(beforeNews);
-      console.log(nextNews);
-      await ctx.render('newsDetail.nj', {
-        news: newsDetail,
-        beforeNews,
-        nextNews,
-      });
+      if (newsDetail) {
+        const newsType = newsDetail.newsType;
+        const beforeResults = await ctx.app.mysql
+          .query('SELECT * FROM `news` WHERE `id` < ? AND `newsType` = ? LIMIT 0, 1;',
+            [ +newsId, newsType ]
+          );
+        const beforeNews = beforeResults[0];
+        const nextNewsResults = await ctx.app.mysql
+          .query('SELECT * FROM `news` WHERE `id` > ? AND `newsType` = ? LIMIT 0, 1;',
+            [ +newsId, newsType ]
+          );
+        const nextNews = nextNewsResults[0];
+        // const beforeNews = await ctx.service.news.find(+newsId - 1);
+        // const nextNews = await ctx.service.news.find(+newsId + 1);
+        await ctx.render('newsDetail.nj', {
+          news: newsDetail,
+          beforeNews,
+          nextNews,
+        });
+      } else {
+        await ctx.render('newsDetail.nj', {
+          news: null,
+        });
+      }
     }
   }
   return NewsController;

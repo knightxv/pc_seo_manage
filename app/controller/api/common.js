@@ -7,6 +7,19 @@ module.exports = app => {
     // async index(ctx) {
     // //   ctx.body = { data: 1 };
     // }
+    async login(ctx) {
+      const { userName, psd } = ctx.query;
+      if (!userName || !psd) {
+        ctx.helper.setRes(false, null);
+        return;
+      }
+      const isSuccess = await ctx.service.common.login(userName, psd);
+      if (isSuccess) {
+        console.log('set success');
+        ctx.session.isAuthSuccess = true;
+      }
+      ctx.helper.setRes(isSuccess, null);
+    }
     /*
      获取html
      @query： textId
@@ -73,6 +86,13 @@ module.exports = app => {
           resolve(false);
         }
       });
+    }
+    async test(ctx) {
+      ctx.body = {
+        status: 'success',
+        Msg: '',
+        data: null
+      };
     }
   }
   return CommonApiController;

@@ -1,6 +1,12 @@
 {% extends "layout/template.nj" %}
 {% import "component/index.nj" as component %}
 
+{% block meta %}
+  <title>{{ sideTypeArr[gameSideIndex].label }}</title>
+	<meta name="keywords" content="阿当游戏 斗牛 阿当斗牛 比鸡 阿当比鸡 木虱鱼 阿当木虱鱼 十三水 阿当十三水 斗地主 阿当斗地主" />
+  <meta name="description" content="阿当游戏官方网站——阿当游戏是提供棋牌与休闲的综合网络游戏大厅平台，阿当游戏包含麻将，扑克等多种地方性棋牌游戏，《阿当游戏》打比赛，赢奖品。组建俱乐部，促进牌友间友谊。">
+{% endblock %}
+
 {% block css %}
   <link rel="stylesheet" href="{{ static }}/css/game-07a82738a1.css">
 {% endblock %}
@@ -14,17 +20,17 @@
 
 {% block main %}
 {# 头部导航 #}
-{{ component.headBanner(2) }}
-{{ component.BannerImg(static + "/images/banner.jpg") }}
+{{ component.headBanner(2, '阿当游戏平台，棋牌游戏中心，地方棋牌') }}
+{{ component.BannerImg(static + "/images/banner/game.png") }}
 {{ component.Breadcrumb(breadArr) }}
 <main class="container gameCenter">
-	<div class="row">
 		<div class="col-md-3 m_module">
 			{{ component.Title('游戏中心') }}
 			{{ component.SideSelect(sideTypeArr, gameSideIndex) }}
 		</div>
 		{{ component.GamesShow(gameList, 'col-md-8 m_module') }}
-	</div>
+	{# <div class="row">
+	</div> #}
 </main>
 {% endblock %}
 

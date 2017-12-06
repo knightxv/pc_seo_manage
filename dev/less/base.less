@@ -1,20 +1,23 @@
+
 /* 只提供基础函数和变量 */
 
-@baseColor: #68a9e4;
-@bgColor: #f1f1f1;
-@headerBgColor: #313131;
+@baseColor: #1A9DFF;
+@bgColor: #f9f9f9;
+@headerBgColor: #f9f9f9;
 @gray: #909090;
-@container_width: 1260px;
+@container_width: 1200px;
+@borderColor: #e9e9e9;
 
+@fz_baseColor: #333;
 
 .bor() {
-  border: 1px solid #e0e0e2;
+  border: 1px solid @borderColor;
 }
 .borTop() {
-  border-top: 1px solid #e0e0e2;
+  border-top: 1px solid @borderColor;
 }
 .borBot() {
-  border-bottom: 1px solid #e0e0e2;
+  border-bottom: 1px solid @borderColor;
 }
 .f_container() {
   max-width: 960px;

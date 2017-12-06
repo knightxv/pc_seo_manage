@@ -8,52 +8,45 @@
         </div>
         <div class="form-box">
             <el-form ref="form" :model="form" label-width="80px">
-                <el-form-item label="游戏名称">
-                    <el-input v-model="form.gameName"></el-input>
+                <el-form-item label="新闻标题">
+                    <el-input v-model="form.newsTitle"></el-input>
                 </el-form-item>
-                <el-form-item label="游戏简介">
-                    <el-input v-model="form.gameBrief"></el-input>
+                <el-form-item label="新闻简介">
+                    <el-input v-model="form.newsBrief"></el-input>
                 </el-form-item>
-                <el-form-item label="游戏大小">
-                    <el-input v-model="form.gameSize"></el-input>
-                </el-form-item>
-                <el-form-item label="游戏版本">
-                    <el-input v-model="form.version"></el-input>
-                </el-form-item>
-                <el-form-item label="游戏下载地址">
-                    <el-input v-model="form.downUrl"></el-input>
-                </el-form-item>
-                <el-form-item label="代理登陆地址">
-                    <el-input v-model="form.gameLoginUrl"></el-input>
-                </el-form-item>
-                <el-form-item label="更新日期">
+                <el-form-item label="发布日期">
                     <el-col :span="11">
                         <el-date-picker type="date" placeholder="选择日期" v-model="form.publicTime" style="width: 100%;"></el-date-picker>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="游戏类型">
-                    <el-select v-model="form.gameType" placeholder="请选择">
-                        <el-option key="dzqp" label="大众棋牌" value="dzqp"></el-option>
-                        <el-option key="tsqp" label="特色棋牌" value="tsqp"></el-option>
-                        <el-option key="dfmj" label="地方麻将" value="dfmj"></el-option>
+                <el-form-item label="新闻类型">
+                     <el-select v-model="form.newsType" placeholder="请选择">
+                        <el-option v-for="newsType in newsTypeArr"
+                            :key="newsType.type" :label="newsType.label" :value="newsType.type">
+                        </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="游戏图标">
+                <el-form-item label="新闻简图">
                     <el-upload
+                        action=""
                         class="avatar-uploader"
-                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :http-request="uploadImage"
                         :show-file-list="false"
                         :on-success="handleAvatarSuccess"
                         :before-upload="beforeAvatarUpload">
-                        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                        <img v-if="form.newsIcon" :src="form.newsIcon" class="avatar">
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="游戏截图">
+                <el-form-item label="新闻内容">
+                    <quill-editor ref="myTextEditor" v-model="form.newsContent" :config="editorOption"></quill-editor>
+                </el-form-item>
+                <!-- <el-form-item label="游戏截图">
                     <el-upload
-                        action="https://jsonplaceholder.typicode.com/posts/"
+                        action=""
                         list-type="picture-card"
                         :show-file-list="true"
+                        :http-request="uploadImage"
                         :on-preview="handlePictureCardPreview"
                         :on-success="handlePictureCardSuccess"
                         :file-list="gameScreenshot"
@@ -63,7 +56,7 @@
                     <el-dialog :visible.sync="dialogVisible" size="tiny">
                         <img width="100%" :src="dialogImageUrl" alt="">
                     </el-dialog>
-                </el-form-item>
+                </el-form-item> -->
                 <!-- <el-form-item label="选择开关">
                     <el-switch on-text="" off-text="" v-model="form.delivery"></el-switch>
                 </el-form-item> -->
@@ -81,17 +74,13 @@
                         <el-radio label="imoo"></el-radio>
                     </el-radio-group>
                 </el-form-item> -->
-                <el-form-item label="游戏介绍">
-                    <el-input type="textarea" v-model="form.gameIntroduce"></el-input>
-                </el-form-item>
-                <el-form-item label="新版特性">
+                <!-- <el-form-item label="新版特性">
                     <el-input type="textarea" v-model="form.characteristic"></el-input>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">提交</el-button>
-                    <el-button>取消</el-button>
+                    <el-button @click="onCancel">取消</el-button>
                 </el-form-item>
-                <div>{{ form.gameIntroduce }}</div>
             </el-form>
         </div>
 
@@ -99,40 +88,75 @@
 </template>
 
 <script>
+const newsTypeArr = [
+    {
+        label: '行业资讯',
+        value: 'information',
+        type: 1,
+    },
+    {
+        label: '新闻公告',
+        value: 'notice',
+        type: 2,
+    },
+];
+import { quillEditor } from 'vue-quill-editor';
     export default {
         data: function(){
             return {
                 form: {
-                    gameName: '', // 游戏名
-                    gameBrief: '', // 游戏简介
-                    gameSize: '', // 游戏大小
-                    version: '', // 游戏版本
-                    gameType: 'dzqp', // 游戏类型
-                    publicTime: '', // 发布日期
-                    downUrl: '', // 游戏下载地址
-                    gameLoginUrl: '', // 代理登陆地址
-                    gameIntroduce: '', // 游戏介绍
-                    characteristic: '', // 新版特性
+                    newsTitle: '', // 新闻标题
+                    publicTime: new Date(), // 发布时间
+                    newsContent: '', // 新闻内容
+                    newsBrief: '', // 游戏版本
+                    newsType: newsTypeArr[0].type, // 游戏类型
+                    newsIcon: '', // 新闻简介图
                 },
-                imageUrl: '',
-                gameScreenshot: [], // 游戏截图
-                dialogImageUrl: '',
-                dialogVisible: false,
+                // dialogImageUrl: '',
+                // dialogVisible: false,
+                editorOption: {
+
+                },
+                newsTypeArr,
             }
+        },
+        components: {
+            quillEditor
         },
         methods: {
             onSubmit() {
-                this.$message.success('提交成功！');
-                const gameIcon = this.imageUrl;
-                console.log(this.gameScreenshot);
-                console.log(gameIcon);
-                console.log(this.form);
+                const postBody = {
+                    ...this.form,
+                    publicTime: this.form.publicTime.getTime(),
+                };
+                this.webHttp.post('/api/manage/addNews', postBody).then(res => {
+                    if (res.success) {
+                        this.$message.success('添加成功');
+                        this.$router.back();
+                    } else {
+                        this.$message.error('添加失败');
+                    }
+                });
+            },
+            onCancel() {
+                this.$router.back();
+            },
+            uploadImage(row) {
+                const file = row.file;
+                const imageForm = new FormData();
+                imageForm.append('files', file);
+                this.webHttp.form('/api/upload/image', imageForm).then(res => {
+                    if (res.success) {
+                        row.onSuccess(res.data, row);
+                    }
+                });
             },
             // 游戏图标
-            handleAvatarSuccess(res, file) {
-                console.log(res);
-                console.log(file);
-                this.imageUrl = URL.createObjectURL(file.raw);
+            handleAvatarSuccess(res, row) {
+                // edit
+                this.form.newsIcon = res.url;
+                // this.imageUrl = res.url;
+                // this.imageUrl = URL.createObjectURL(res.url);
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg';
@@ -145,19 +169,19 @@
                 }
                 return isJPG && isLt2M;
             },
-            // 游戏截图
-            handleRemove(file, fileList) {
-                this.gameScreenshot = fileList;
-            },
-            handlePictureCardPreview(file) {
-                this.dialogImageUrl = file.url;
-                this.dialogVisible = true;
-            },
-            handlePictureCardSuccess(res, file) {
-                this.gameScreenshot = [ ...this.gameScreenshot, file];
-                // console.log(res);
-                // console.log(file);
-            }
+            // // 游戏截图
+            // handleRemove(file, fileList) {
+            //     this.gameScreenshot = fileList;
+            // },
+            // handlePictureCardPreview(file) {
+            //     this.dialogImageUrl = file.url;
+            //     this.dialogVisible = true;
+            // },
+            // handlePictureCardSuccess(res, file) {
+            //     this.gameScreenshot = [ ...this.gameScreenshot, file];
+            //     // console.log(res);
+            //     // console.log(file);
+            // }
         }
     }
 </script>

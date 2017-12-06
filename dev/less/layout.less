@@ -18,10 +18,10 @@ h2 {
 	margin: 0;
 }
 a {
-	color: #333;
+	color: @fz_baseColor;
 }
 a:focus, a:hover {
-	color: @baseColor!important;
+	color: @baseColor;
 }
 strong {
 	font-weight: normal;
@@ -39,9 +39,21 @@ strong {
 // 	display: flex;
 // 	flex-direction: column;
 // }
+
+.ql-align-center {
+	text-align: center;
+}
+.flexRow {
+	.flexRow();
+}
+  
+
 // 覆盖bootstrap
 .container {
-	max-width: @container_width;
+	width: @container_width;
+	padding-left: 0;
+	padding-right: 0;
+	margin-bottom: 20px;
 }
 .vv_container {
 	// background: url(../i/images/bg.png) no-repeat top center;
@@ -58,12 +70,17 @@ strong {
 .pc_footer {
 	padding: 12px 0;
 	font-size: 14px;
-	color: @baseColor;
+	// color: #fff;
+	color: #a5a5a5;
+	a {
+	  color: #a5a5a5;
+	}
+	background: #fff;
 	text-align: center;
 	display: block;
 	width: 100%;
-	a {
-		color: @baseColor;
+	.footer_item {
+		padding-top: 6px;
 	}
 }
 .pc_footer_navLaebl {
@@ -72,7 +89,6 @@ strong {
 
 .m_module {
 	.bor();
-	margin-top: 18px;
 	border-radius: 3px;
 	background: #fff;
 }

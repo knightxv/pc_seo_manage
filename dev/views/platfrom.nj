@@ -1,6 +1,12 @@
 {% extends "layout/template.nj" %}
 {% import "component/index.nj" as component %}
 
+{% block meta %}
+  <title>平台介绍_胡了吗</title>
+	<meta name="keywords" content="全新平台携海量游戏，网罗全网人气游。更多玩法更多欢乐，带来非凡游戏体验。阿当游戏 胡了吗" />
+  <meta name="description" content="阿当游戏官方网站——阿当游戏是提供棋牌与休闲的综合网络游戏大厅平台，阿当游戏包含麻将，扑克等多种地方性棋牌游戏，《阿当游戏》打比赛，赢奖品。组建俱乐部，促进牌友间友谊。">
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{{ static }}/css/platfrom.css">
 {% endblock %}
@@ -8,10 +14,10 @@
 {% set breadArr = [{label: '首页', href: '/'}, {label: '平台介绍', href: ''}] %}
 
 {% block main %}
-{{ component.headBanner(4) }}
-{{ component.BannerImg(static + "/images/banner.jpg") }}
+{{ component.headBanner(4, '海量棋牌游戏,全网人气游，阿当平台介绍') }}
+{{ component.BannerImg(static + "/images/banner/platfrom.png") }}
 {{ component.Breadcrumb(breadArr) }}
 <section class="container m_module">
-	{{ htmlText }}
+	{{ htmlText | safe }}
 </section>
 {% endblock %}

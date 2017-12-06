@@ -4,9 +4,8 @@ const Service = require('egg').Service;
 
 class GameService extends Service {
   async find(gameId) {
-    // const gameInfo = await this.app.mysql.get('games', { id: gameId });
-    // return gameInfo;
-    return {};
+    const gameInfo = await this.app.mysql.get('games', { id: gameId });
+    return gameInfo;
   }
   async recommend() {
     const results = await this.app.mysql.select('games', { // 搜索 post 表

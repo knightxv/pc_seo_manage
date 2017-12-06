@@ -1,4 +1,4 @@
-editGame<template>
+<template>
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
@@ -86,10 +86,10 @@ editGame<template>
                         <el-radio label="imoo"></el-radio>
                     </el-radio-group>
                 </el-form-item> -->
-                <el-form-item label="游戏介绍">
+                <el-form-item label="玩法介绍">
                     <el-input type="textarea" v-model="form.gameIntroduce"></el-input>
                 </el-form-item>
-                <el-form-item label="新版特性">
+                <el-form-item label="游戏亮点">
                     <el-input type="textarea" v-model="form.characteristic"></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -144,7 +144,6 @@ editGame<template>
         },
         created() {
             const gameId = this.$route.query.gameId;
-            console.log(gameId);
             this.webHttp.get('/api/gameDetail/' + gameId).then(res => {
                 if (res.success) {
                     this.form = {
@@ -153,6 +152,7 @@ editGame<template>
                         publicDate: new Date(res.data.publicDate),
                         gameIntroduce: res.data.gameIntroduce.replace('<br />', '\r\n'),
                         characteristic: res.data.characteristic.replace('<br />', '\r\n'),
+                        gameType: +res.data.gameType
                     };
                     this.imageUrl = res.data.gameIcon;
                     const gameScreenshotArr = JSON.parse(res.data.gameScreenshot);
@@ -225,7 +225,7 @@ editGame<template>
             // 游戏图标
             handleAvatarSuccess(res, row) {
                 // edit
-                this.imageUrl = 'http://127.0.0.1:7001' + res.url;
+                this.imageUrl = res.url;
                 // this.imageUrl = res.url;
                 // this.imageUrl = URL.createObjectURL(res.url);
             },
@@ -250,7 +250,7 @@ editGame<template>
             },
             handlePictureCardSuccess(res, file) {
                 // dev
-                this.gameScreenshot = [ ...this.gameScreenshot, { name: file.name, url: 'http://127.0.0.1:7001' + res.url }];
+                this.gameScreenshot = [ ...this.gameScreenshot, { name: file.name, url: res.url }];
                 // this.gameScreenshot = [ ...this.gameScreenshot, { name: file.name, url: res.url }];
                 // console.log(res);
                 // console.log(file);
