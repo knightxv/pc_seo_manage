@@ -40,7 +40,7 @@ module.exports = app => {
       @query：: htmlText
     */
     async setHtmlText(ctx) {
-      const { textId, htmlText } = ctx.query;
+      const { textId, htmlText } = ctx.request.body;
       if (!textId || isNaN(textId)) {
         ctx.helper.setRes(false, null);
         return;

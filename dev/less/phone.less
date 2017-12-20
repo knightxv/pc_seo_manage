@@ -190,7 +190,7 @@ a {
   background: #fff;
   border-bottom: none;
   margin-top: 0;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 100/@rem;
@@ -364,6 +364,7 @@ a {
   }
   .vv_container {
     bottom: 100/@rem;
+    position: static;
   }
   .vv_navbar {
     justify-content: space-between;
@@ -520,7 +521,7 @@ a {
     height: 100/@rem;
     display: flex;
     align-items: center;
-    position: absolute;
+    position: fixed;
     padding: 10/@rem;
     background: #fff;
     z-index: 666;
@@ -579,4 +580,8 @@ a {
     width: 100%;
     height: 100%;
   }
+}
+
+.phone_content_container {
+  padding-bottom: 30/@rem;
 }

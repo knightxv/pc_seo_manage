@@ -132,7 +132,14 @@ import { quillEditor } from 'vue-quill-editor';
                 this.webHttp.post('/api/manage/addNews', postBody).then(res => {
                     if (res.success) {
                         this.$message.success('添加成功');
-                        this.$router.back();
+                        this.form = {
+                            newsTitle: '', // 新闻标题
+                            publicTime: new Date(), // 发布时间
+                            newsContent: '', // 新闻内容
+                            newsBrief: '', // 游戏版本
+                            newsType: newsTypeArr[0].type, // 游戏类型
+                            newsIcon: '', // 新闻简介图
+                        };
                     } else {
                         this.$message.error('添加失败');
                     }
@@ -159,7 +166,7 @@ import { quillEditor } from 'vue-quill-editor';
                 // this.imageUrl = URL.createObjectURL(res.url);
             },
             beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
+                const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
                 const isLt2M = file.size / 1024 / 1024 < 2;
                 if (!isJPG) {
                 this.$message.error('上传头像图片只能是 JPG 格式!');

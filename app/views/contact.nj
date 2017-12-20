@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ static }}/css/contact-4cde27f22f.css">
+<link rel="stylesheet" href="{{ static }}/css/contact-b50e733743.css">
 {% endblock %}
 
 {% set breadArr = [{label: '首页', href: '/'}, {label: '联系我们', href: ''}] %}

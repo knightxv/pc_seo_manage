@@ -37,7 +37,7 @@ class NewsService extends Service {
   async getNewsList() {
     const results = await this.app.mysql.select('news', { // 搜索 post 表
       // where: { gameType }, // WHERE 条件
-      columns: [ 'id', 'newsTitle', 'publicTime', 'newsType', 'newsBrief' ], // 要查询的表字段
+      columns: [ 'id', 'newsTitle', 'publicTime', 'newsType', 'newsBrief', 'newsIcon' ], // 要查询的表字段
       orders: [[ 'publicTime', 'desc' ]], // 排序方式
       // limit: size,
     });

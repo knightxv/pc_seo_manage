@@ -7,6 +7,7 @@ module.exports = app => {
   app.get('/news', 'views.news.index');
   app.get('/news/newsDetail/:newsId', 'views.news.newsDetail');
   app.get('/news/:newsTypeValue', 'views.news.index');
+  
   // 游戏中心
   app.get('/games', 'views.games.gameType');
   app.get('/games/gameDetail/:gameId', 'views.games.gameDetail');
@@ -32,7 +33,7 @@ module.exports = app => {
 
   /* 后台管理 */
   app.get('/api/manage/getHtmlText', 'api.common.getHtmlText'); // 获取html(textId)
-  app.get('/api/manage/setHtmlText', 'api.common.setHtmlText'); // 设置html(textId)
+  app.post('/api/manage/setHtmlText', 'api.common.setHtmlText'); // 设置html(textId)
   // 首页
   app.get('/api/manage/getHomeConfig', 'api.home.getHomeConfig'); // 获取首页配置信息
   app.get('/api/manage/setHomeConfig', 'api.home.setHomeConfig'); // 设置首页配置信息
@@ -47,6 +48,12 @@ module.exports = app => {
   // 登录
   app.get('/api/manage/login', 'api.common.login'); // 登录
   app.get('/spreadApi/getUserInfo', 'api.common.test'); // 登录
+
+  // 手机api
+  app.get('/gamePlatform/gameRecommendList', 'api.phone.gameList'); // 登录
+  app.get('/gamePlatform/navbarSwiperList', 'api.phone.swiperList'); // 登录
+  app.get('/gamePlatform/gameDetailInfo', 'api.phone.gameDetail'); // 登录
+  app.get(/^\/m\/(\w+)(?!.)/, 'api.phone.index'); // 登录
   
 
 };

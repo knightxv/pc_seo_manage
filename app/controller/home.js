@@ -29,20 +29,21 @@ module.exports = app => {
       // 新闻
       const newsList = newsListRes.isSuccess ? newsListRes.data : [];
       if (isPhone) {
-        const [ gameSliderRes, newsSlidersRes ] = await Promise.all([
-          ctx.helper.webHttp.get('/gamePlatform/navbarSwiperList'),
-          ctx.helper.webHttp.get('/gamePlatform/newsCarousel'),
-        ]);
-        // 轮播图片
-        const gameSlider = gameSliderRes.isSuccess ? gameSliderRes.data : [];
-        // 新闻轮播
-        const newsSliders = newsSlidersRes.isSuccess ? newsSlidersRes.data : [];
-        await ctx.render('phone/index.nj', {
-          gameList,
-          gameSlider,
-          newsSliders,
-          newsList,
-        });
+        // const [ gameSliderRes, newsSlidersRes ] = await Promise.all([
+        //   ctx.helper.webHttp.get('/gamePlatform/navbarSwiperList'),
+        //   ctx.helper.webHttp.get('/gamePlatform/newsCarousel'),
+        // ]);
+        // // 轮播图片
+        // const gameSlider = gameSliderRes.isSuccess ? gameSliderRes.data : [];
+        // // 新闻轮播
+        // const newsSliders = newsSlidersRes.isSuccess ? newsSlidersRes.data : [];
+        // await ctx.render('phone/index.nj', {
+        //   gameList,
+        //   gameSlider,
+        //   newsSliders,
+        //   newsList,
+        // });
+        ctx.redirect('/m/homePage');
         return;
       }
       // pc

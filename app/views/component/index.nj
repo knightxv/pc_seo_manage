@@ -151,7 +151,7 @@
   <ul class="c_newsSide">
     {% for news in dataArr %}
       <li>
-        <a href="/news/newsDetail/{{news.id}}" class="new_brief">{{ news.newsBrief }}</a>
+        <a href="/news/newsDetail/{{news.id}}" class="new_brief">{{ news.newsTitle }}</a>
         <span class="news_time">{{ news.publicTime | format }}</span>
       </li>
     {% endfor %}

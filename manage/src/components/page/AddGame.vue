@@ -180,7 +180,20 @@
                 this.webHttp.get('/api/manage/addGame', body).then(res => {
                     if (res.success) {
                         this.$message.success('添加成功');
-                        this.$router.back();
+                        this.form = {
+                            gameName: '', // 游戏名
+                            gameBrief: '', // 游戏简介
+                            gameSize: '', // 游戏大小
+                            gameVersion: '', // 游戏版本
+                            gameType: gameTypeArr[0].type, // 游戏类型
+                            publicTime: new Date(), // 发布日期
+                            downUrl: '', // 游戏下载地址
+                            gameLoginUrl: '', // 代理登陆地址
+                            gameIntroduce: '', // 游戏介绍
+                            characteristic: '', // 新版特性
+                        };
+                        this.imageUrl = '';
+                        this.gameScreenshot = []; // 游戏截图
                     } else {
                         this.$message.error('添加失败');
                     }

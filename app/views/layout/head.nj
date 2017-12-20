@@ -49,8 +49,8 @@
 	{% endblock %}
   {% block javascript %}
   {% endblock %}
+  
 </body>
-  {# <script src="/public/js/jquery.min.js"></script> #}
+  {# <script src="/static/lib/js/jquery.min.js"></script> #}
   <!-- Built with love using Web Starter Kit -->
-
 </html>

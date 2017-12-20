@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ static }}/css/platfrom-99ba224722.css">
+<link rel="stylesheet" href="{{ static }}/css/platfrom-a71c2688a1.css">
 {% endblock %}
 
 {% set breadArr = [{label: '首页', href: '/'}, {label: '平台介绍', href: ''}] %}

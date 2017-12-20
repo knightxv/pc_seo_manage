@@ -13,9 +13,9 @@ class CommonService extends Service {
     if (!row || !row.id) {
       return false;
     }
-    const result = await this.app.mysql.update('htmlText', row);
+    const result = await this.app.mysql.update('htmltext', row);
     if (result.affectedRows === 0) {
-      const insertResult = await this.app.mysql.insert('htmlText', row);
+      const insertResult = await this.app.mysql.insert('htmltext', row);
       return insertResult.affectedRows === 1;
     }
     return true;
@@ -25,6 +25,9 @@ class CommonService extends Service {
       return null;
     }
     const result = await this.app.mysql.get('web_config', { id: configId });
+    if (!result) {
+      return null;
+    }
     let json_config = result.json_config;
     const isStr = Object.prototype.toString.call(json_config) === '[object String]';
     if (isStr) {

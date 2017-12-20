@@ -27,7 +27,7 @@ module.exports = appInfo => {
   };
 
   config.logger = {
-    dir: `${appInfo.root}/logs/${appInfo.name}`,
+    dir: `${appInfo.baseDir}/logs/${appInfo.name}`,
   };
 
   // 默认打开的端口
@@ -38,10 +38,17 @@ module.exports = appInfo => {
   };
 
   config.bodyParser = {
-    // jsonLimit: '1mb',
+    jsonLimit: '5mb',
     formLimit: '5mb',
   };
 
+  // post安全显示
+  config.security = {
+    csrf: {
+      // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
+      ignore: ctx => true,
+    },
+  };
   // config.nunjucks = {
   //   autoescape: true,
   //   throwOnUndefined: false,
@@ -67,7 +74,7 @@ module.exports = appInfo => {
     // 单数据库信息配置
     client: {
       // host
-      host: '192.168.2.2',
+      host: '192.168.2.3',
       // 端口号
       port: '3306',
       // 用户名

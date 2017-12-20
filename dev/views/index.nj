@@ -24,7 +24,7 @@
         {% for hotGame in hotGameList %}
           <a href="/games/gameDetail/{{ hotGame.id }}" class="home_hotGame_item" alt="胡了吗">
             <div>
-              <img src="{{ hotGame.gameIcon }}" alt="hotGame.gameName" />
+              <img src="{{ hotGame.gameIcon }}" alt="{{ hotGame.gameName }}" />
             </div>
             <div class="home_hotGame_gameName">{{ hotGame.gameName }}</div>
           </a>
