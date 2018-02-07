@@ -11,16 +11,23 @@ import "babel-polyfill";
 Vue.use(ElementUI);
 // Vue.prototype.$axios = axios
 
-
-
 new Vue({
     router,
     render: h => h(App)
 }).$mount('#app');
 
+let remoteUrl = '';
+if (process.env.NODE_ENV === 'development') {
+    remoteUrl = 'http://127.0.0.1:7001';
+}
+
+Vue.prototype.config = {
+    remoteUrl,
+};
+
 Vue.prototype.webHttp = {
 	get(url, params) {
-			return axios.get( url, {
+			return axios.get(remoteUrl + url, {
 					params: params,
 					method: 'GET',
 					// mode: 'cors',
@@ -32,12 +39,15 @@ Vue.prototype.webHttp = {
 							Vue.prototype.$message.error('登录过期');
 						}
 						return res;
-				});
+				}).catch(err => ({
+					success: false,
+					info: '404',
+				}));
 	},
 	post(url, body = {}) {
 			return axios({
 					method: 'POST',
-					url: url,
+					url: remoteUrl + url,
 					headers: {
 							'Content-Type': 'application/x-www-form-urlencoded',
 					},
@@ -77,7 +87,7 @@ Vue.prototype.webHttp = {
 			// .then(res => res.json());
 	},
 	form(url, data) {
-			return fetch(url, {
+			return fetch(remoteUrl + url, {
 					method: "POST",
 					// mode: 'cors',
 					// credentials: 'same-origin', // same-origin

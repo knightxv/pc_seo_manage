@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block main %}
-{{ component.headBanner(1, '厦门当当猫科技有限公司') }}
+{# {{ component.headBanner(1, '厦门当当猫科技有限公司') }} #}
     <div class="notFind_container">
         <img src="/static/images/404.png" />
         <div class="return_tip"> <span id="elseTime">3</span>秒后将自动跳回首页，如跳转不成功，请点击</div>
@@ -24,7 +24,7 @@
 var elseTime = 3;
 
 var oElseTime = document.getElementById('elseTime');
-runTime();
+{# runTime(); #}
 function runTime() {
 	setTimeout(function () {
 		elseTime --;

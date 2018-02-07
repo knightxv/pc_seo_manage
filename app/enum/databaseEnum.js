@@ -1,13 +1,23 @@
 'use strict';
 
+// 表结构中key代表的意思
 module.exports = {
   web_config: {
-    carousel: 0, // 首页轮播
-    hotGame: 1, // 首页热门游戏
-    friendLink: 2, // 首页友情链接
+    hotGame: 1, // 热门游戏 [1, 2]
+    appName: 2, // 应用名称
+    logoSrc: 3, // logo地址
+    recordNumber: 4, // 备案号
+    globalColor: 5, // 主题色(预留)
+    joinImg: 6, // 加入我们的图片地址
   },
   htmltext: {
-    platfrom: 1,
+    platform: 1,
     contact: 2,
+  },
+  banner: {
+    games: 1,
+    news: 2,
+    platform: 3,
+    contact: 4,
   },
 };

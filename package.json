@@ -1,5 +1,5 @@
 {
-  "name": "huleme",
+  "name": "hulema",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -8,7 +8,8 @@
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.1.0",
     "egg-view-nunjucks": "^2.1.4",
-    "mz": "^2.7.0"
+    "mz": "^2.7.0",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "autod": "^2.10.0",
@@ -38,8 +39,8 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon",
-    "stop": "egg-scripts stop",
+    "start": "egg-scripts start --daemon --title=hulema",
+    "stop": "egg-scripts stop --title=hulema",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",

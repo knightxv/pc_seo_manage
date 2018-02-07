@@ -29,25 +29,42 @@
             }
         },
         async created() {
+            // 游戏列表
             const gameListRes = await this.webHttp.get('/api/gameList');
             if (gameListRes.success) {
                 this.gameList = gameListRes.data || [];
-                const res = await this.webHttp.get('/api/manage/getHomeConfig');
+                const res = await this.webHttp.get('/api/manage/getWebConfig', {
+                    configKey: 'hotGame',
+                });
                 if (res.success) {
-                    const { hotGame } = res.data;
-                    this.selectGameLabel = hotGame.map(gameId => {
-                        let gameLabel;
-                        this.gameList.some(gameInfo => {
-                            if (gameInfo.id === gameId) {
-                                gameLabel = gameInfo.gameName;
-                                return true;
-                            }
-                            return false;
-                        })
-                        return gameLabel;
-                    });
+                    const { config } = res.data;
+                    let hotGames = [];
+                    if (config) {
+                        try {
+                            hotGames = JSON.parse(config);
+                            this.selectGameLabel = hotGames
+                                .filter(gameId => !isNaN(gameId))
+                                .map(gameId => {
+                                    let gameLabel;
+                                    this.gameList.some(gameInfo => {
+                                        if (gameInfo.id === gameId) {
+                                            gameLabel = gameInfo.gameName;
+                                            return true;
+                                        }
+                                        return false;
+                                    })
+                                    return gameLabel;
+                                });
+                        } catch(err) {
+                            console.log(hotGame);
+                            console.log(err);
+                        }
+                    } else {
+                        this.selectGameLabel = [];
+                    }
+                } else {
+                    this.selectGameLabel = [];
                 }
-
             }
         },
         methods: {
@@ -68,10 +85,10 @@
                     });
                     return selectId;
                 }).filter(item => (typeof item !=='undefiend'));
-                const configId = homeConfigEnum.hotGame;
-                this.webHttp.get('/api/manage/setHomeConfig', {
-                    configId,
-                    configText: JSON.stringify(gameSelect),
+                const filterNull = gameSelect.filter(gameId => !isNaN(gameId));
+                this.webHttp.get('/api/manage/setWebConfig', {
+                    configKey: 'hotGame',
+                    configText: JSON.stringify(filterNull),
                 }).then(res => {
                     if (res.success) {
                         this.$message.success('修改成功');

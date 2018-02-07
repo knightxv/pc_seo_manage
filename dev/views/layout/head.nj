@@ -5,7 +5,7 @@
   <meta http-quiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   {% block meta %}
-  <title>胡了吗</title>
+  <title>{{ appName }}</title>
   <meta name="keywords" content="阿当游戏 斗牛 阿当斗牛 比鸡 阿当比鸡 木虱鱼 阿当木虱鱼 十三水 阿当十三水 斗地主 阿当斗地主" />
   <meta name="description" content="阿当游戏官方网站——阿当游戏是提供棋牌与休闲的综合网络游戏大厅平台，阿当游戏包含麻将，扑克等多种地方性棋牌游戏，《阿当游戏》打比赛，赢奖品。组建俱乐部，促进牌友间友谊。">
   {% endblock %}
@@ -14,17 +14,17 @@
   <meta name="renderer" content="webkit">
   <!-- No Baidu Siteapp-->
   <meta http-equiv="Cache-Control" content="no-siteapp">
-  <link rel="icon" type="image/png" href="/i/favicon.png">
+  <link rel="icon" type="image/png" href="/static/images/favicon.ico">
   <!-- Add to homescreen -->
   <link rel="manifest" href="manifest.json">
   <!-- Fallback to homescreen for Chrome <39 on Android -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="胡了吗游戏平台">
+  <meta name="application-name" content="{{ appName }}">
   {# <link rel="icon" sizes="192x192" href="/public/i/touch/chrome-touch-icon-192x192.png"> #}
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="胡了吗">
+  <meta name="apple-mobile-web-app-title" content="{{ appName }}">
   {# <link rel="apple-touch-icon" href="/public/i/touch/apple-touch-icon.png">
   <!-- Tile icon for Win8 (144x144 + tile color) -->
   <meta name="msapplication-TileImage" content="/public/i/touch/ms-touch-icon-144x144-precomposed.png">
@@ -32,9 +32,10 @@
   <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
   <!--
   -->
-  <link rel="canonical" href="http://www.hulema.com/">
+  <link rel="canonical" href="/">
 	{# 设置静态放置的地址 #}
 	
+  
   {% block head %}
   {% endblock %}
   {% block css %}
@@ -53,4 +54,11 @@
 </body>
   {# <script src="/static/lib/js/jquery.min.js"></script> #}
   <!-- Built with love using Web Starter Kit -->
+  <script>
+(function(){
+  var c=document.createElement("script"),s=document.getElementsByTagName("script")[0];
+  c.src="//kefu.qycn.com/vclient/state.php?webid=129632";
+  s.parentNode.insertBefore(c,s);
+})();
+</script>
 </html>

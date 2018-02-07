@@ -53,7 +53,7 @@
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="游戏截图">
+                <el-form-item label="游戏截图(1360*760)">
                     <el-upload
                         action=""
                         list-type="picture-card"
@@ -91,6 +91,9 @@
                 </el-form-item>
                 <el-form-item label="游戏亮点">
                     <el-input type="textarea" v-model="form.characteristic"></el-input>
+                </el-form-item>
+                <el-form-item label="显示在手机">
+                    <el-switch on-text="yes" off-text="no" v-model="showInPhone"></el-switch>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -140,6 +143,7 @@
                 dialogImageUrl: '',
                 dialogVisible: false,
                 gameTypeArr,
+                showInPhone: false,
             }
         },
         methods: {
@@ -176,7 +180,12 @@
                     characteristic: characteristic.replace(/\r{0,}\n/g, '<br />'),
                     gameScreenshot: upGameScreenshotStr,
                     gameIcon: gameIcon,
+                    showInPhone: this.showInPhone,
                 };
+                if (gameName.length > 20) {
+                	this.$message.error('名字不能超过20个字');
+                	return;
+                }
                 this.webHttp.get('/api/manage/addGame', body).then(res => {
                     if (res.success) {
                         this.$message.success('添加成功');
@@ -191,6 +200,7 @@
                             gameLoginUrl: '', // 代理登陆地址
                             gameIntroduce: '', // 游戏介绍
                             characteristic: '', // 新版特性
+
                         };
                         this.imageUrl = '';
                         this.gameScreenshot = []; // 游戏截图
@@ -203,7 +213,7 @@
                 const file = row.file;
                 const imageForm = new FormData();
                 imageForm.append('files', file);
-                this.webHttp.form('/api/upload/image', imageForm).then(res => {
+                this.webHttp.form('/api/upload/image/games', imageForm).then(res => {
                     if (res.success) {
                         row.onSuccess(res.data, row);
                     }

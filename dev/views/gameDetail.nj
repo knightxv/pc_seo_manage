@@ -25,7 +25,9 @@
 	<div class="col-md-7 m_module gameDetail">
 		{% if gameDetail %}
 			<div class="gameDetail_baseInfo_wrap">
-				<img class="gameDetail_Icon" src="{{ gameDetail.gameIcon }}" />
+				<div>
+					<img class="gameDetail_Icon" src="{{ gameDetail.gameIcon }}" />
+				</div>
 				<section class="gameBaseInfo">
 					<h2>{{ gameDetail.gameName }}</h2>
 					<div>大小：{{ gameDetail.gameSize }}</div>
@@ -75,8 +77,8 @@
 							<img src="{{ gameInfo.gameIcon }}" />
 						</div>
 						<div class="game_label_wrap">
-							<div>{{ gameInfo.gameName }}</div>
-							<div>{{ gameInfo.gameBrief }}</div>
+							<div class="text_hide">{{ gameInfo.gameName }}</div>
+							<div class="text_hide">{{ gameInfo.gameBrief }}</div>
 						</div>
 					</li>
 				</a>

@@ -16,7 +16,9 @@
 
 {% block main %}
 {{ component.headBanner(3, '棋牌开发行业分析，棋牌新闻,棋牌资讯公告，') }}
-{{ component.BannerImg(static + "/images/banner/news.png") }}
+{% if banner %}
+	{{ component.BannerImg(banner.src, banner.alt) }}
+{% endif %}
 {{ component.Breadcrumb(breadArr) }}
 <section class="container">
 	<section class="col-md-3 m_module">

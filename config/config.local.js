@@ -28,18 +28,30 @@ module.exports = appInfo => {
       },
     },
     
-    middleware: [ 'cors', 'auth' ],
+    middleware: [ 'cors', 'notFoundHander' ],
     mysql: {
       // 单数据库信息配置
+      // client: {
+      //   // host
+      //   host: '120.55.57.25',
+      //   // 端口号
+      //   port: '3306',
+      //   // 用户名
+      //   user: 'DDCat_user',
+      //   // 密码
+      //   password: 'qU6DOf0lcjrV9djD5IEp',
+      //   // 数据库名
+      //   database: 'hulema',
+      // },
       client: {
         // host
-        host: '120.55.57.25',
+        host: '192.168.2.2',
         // 端口号
         port: '3306',
         // 用户名
-        user: 'DDCat_user',
+        user: 'root',
         // 密码
-        password: 'qU6DOf0lcjrV9djD5IEp',
+        password: '123456',
         // 数据库名
         database: 'hulema',
       },

@@ -21,7 +21,7 @@ export default new Router({
                 //     path: '/basetable',
                 //     component: resolve => require(['../components/page/BaseTable.vue'], resolve)
                 // },
-                
+
                 // {
                 //     path: '/vuetable',
                 //     component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
@@ -86,6 +86,30 @@ export default new Router({
                 {
                     path: '/pageManage_contact',
                     component: resolve => require(['../components/page/PageManage_contact.vue'], resolve)    // 联系我们
+                },
+                {
+                    path: '/friendLink',
+                    component: resolve => require(['../components/page/FriendLink.vue'], resolve)    // 友情链接
+                },
+                {
+                    path: '/homeCarouel',
+                    component: resolve => require(['../components/page/HomeCarouel.vue'], resolve)    // 首页轮播
+                },
+                {
+                    path: '/phone_homeCarouel',
+                    component: resolve => require(['../components/page/Phone_homeCarouel.vue'], resolve)    // 首页轮播
+                },
+                {
+                    path: '/banner',
+                    component: resolve => require(['../components/page/Banner.vue'], resolve)    // banner
+                },
+                {
+                    path: '/appConfig',
+                    component: resolve => require(['../components/page/AppConfig.vue'], resolve)    // 全局配置
+                },
+                {
+                    path: '/phone_join',
+                    component: resolve => require(['../components/page/Phone_join.vue'], resolve)    // 全局配置
                 },
             ]
         },

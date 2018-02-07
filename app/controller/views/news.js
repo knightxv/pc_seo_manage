@@ -1,5 +1,7 @@
 'use strict';
 
+const Controller = require('../../core/base_controller');
+
 module.exports = app => {
   const newsTypeArr = app.typeEnum.news;
 
@@ -35,7 +37,7 @@ module.exports = app => {
   const defaultPageLength = 5;
   const createPageArrFive = createPageArr(defaultPageLength);
 
-  class NewsController extends app.Controller {
+  class NewsController extends Controller {
     async index(ctx) {
       const { newsTypeValue } = ctx.params;
       const { page = 0, size = 10 } = ctx.query;
@@ -61,12 +63,15 @@ module.exports = app => {
       const selectNewsCount = await ctx.service.news.getCount(selectType); // 新闻的总长度
       const selectNewsPageCount = Math.ceil(selectNewsCount / size);
       const paginationArr = createPageArrFive(page, selectNewsPageCount);
-      await ctx.render('news.nj', {
+      const bannerKey = app.databaseEnum.banner.news;
+      const banner = await ctx.service.common.getBanner(bannerKey);
+      await this.webRender('news.nj', {
         page,
         newsList,
         sideTypeArr,
         gameSideIndex: sideIndex,
         paginationArr,
+        banner,
       });
     }
     async newsDetail(ctx) {
@@ -86,13 +91,13 @@ module.exports = app => {
         const nextNews = nextNewsResults[0];
         // const beforeNews = await ctx.service.news.find(+newsId - 1);
         // const nextNews = await ctx.service.news.find(+newsId + 1);
-        await ctx.render('newsDetail.nj', {
+        await this.webRender('newsDetail.nj', {
           news: newsDetail,
           beforeNews,
           nextNews,
         });
       } else {
-        await ctx.render('newsDetail.nj', {
+        await this.webRender('newsDetail.nj', {
           news: null,
         });
       }
