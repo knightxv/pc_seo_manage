@@ -9,6 +9,11 @@ module.exports = app => {
       const userAgent = ctx.request.headers['user-agent'];
       if (userAgent && userAgent.toLowerCase) {
         const deviceAgent = userAgent.toLowerCase();
+        const isWechat = /micromessenger/.test(userAgent.toLowerCase());
+        if (isWechat) {
+        	ctx.redirect('/m/games');
+        	return;
+        }
         const isPhone = !!deviceAgent.match(/(iphone|ipod|ipad|android|symbianos|phone|ipad|ipod)/);
         if (isPhone) {
           ctx.redirect('/m/games');
