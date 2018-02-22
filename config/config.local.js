@@ -3,7 +3,7 @@
 const path = require('path');
 
 module.exports = appInfo => {
-  const hulema_static = path.join(appInfo.root, 'upload');
+  const hulema_static = path.join(appInfo.baseDir, 'upload');
   return {
     // 请求地址配置
     httpConfig: {
@@ -12,7 +12,7 @@ module.exports = appInfo => {
     },
     // 日志地址 eg: /home/admin/logs/hulema
     logger: {
-      dir: `${appInfo.root}/logs/${appInfo.name}`,
+      dir: `${appInfo.baseDir}/logs/${appInfo.name}`,
     },
     static: {
       prefix: '/',
@@ -27,13 +27,34 @@ module.exports = appInfo => {
         port: 7001,
       },
     },
-    // post安全显示
-    security: {
-      csrf: {
-        // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
-        ignore: ctx => true,
+    
+    middleware: [ 'cors', 'notFoundHander' ],
+    mysql: {
+      // 单数据库信息配置
+      // client: {
+      //   // host
+      //   host: '120.55.57.25',
+      //   // 端口号
+      //   port: '3306',
+      //   // 用户名
+      //   user: 'DDCat_user',
+      //   // 密码
+      //   password: 'qU6DOf0lcjrV9djD5IEp',
+      //   // 数据库名
+      //   database: 'hulema',
+      // },
+      client: {
+        // host
+        host: '192.168.2.2',
+        // 端口号
+        port: '3306',
+        // 用户名
+        user: 'root',
+        // 密码
+        password: '123456',
+        // 数据库名
+        database: 'hulema',
       },
     },
-    middleware: [ 'cors', 'auth' ],
   };
 };

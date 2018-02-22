@@ -20,8 +20,11 @@
 
 {% block main %}
 {# 头部导航 #}
-{{ component.headBanner(2, '阿当游戏平台，棋牌游戏中心，地方棋牌') }}
-{{ component.BannerImg(static + "/images/banner/game.png") }}
+{{ component.headBanner(2, appName) }}
+{# banner图 #}
+{% if banner %}
+	{{ component.BannerImg(banner.src, banner.alt) }}
+{% endif %}
 {{ component.Breadcrumb(breadArr) }}
 <main class="container gameCenter">
 		<div class="col-md-3 m_module">

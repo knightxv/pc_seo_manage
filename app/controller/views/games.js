@@ -1,13 +1,17 @@
 'use strict';
 
+const Controller = require('../../core/base_controller');
+
 module.exports = app => {
   const gameTypeArr = app.typeEnum.game;
-  class GamesController extends app.Controller {
+  class GamesController extends Controller {
     async index(ctx) {
-      await ctx.render('games.nj');
+      await this.webRender('games.nj');
     }
     async gameType(ctx) {
       const { gameType } = ctx.params;
+      const bannerKey = app.databaseEnum.banner.games;
+      const banner = await ctx.service.common.getBanner(bannerKey);
       // const webPath = ctx.app.config.httpConfig.webServerPath;
       // 推荐游戏列表
       // const [ gameListRes ] = await Promise.all([
@@ -28,10 +32,11 @@ module.exports = app => {
         label: gameInfo.label,
         href: `/games/${gameInfo.value}`,
       }));
-      await ctx.render('games.nj', {
+      await this.webRender('games.nj', {
         gameList,
         sideTypeArr,
         gameSideIndex, // 侧边栏选择的类型
+        banner,
       });
     }
     async gameDetail(ctx) {
@@ -58,7 +63,7 @@ module.exports = app => {
       // 游戏详情
       const gameRecommend = await ctx.service.games.recommend();
       
-      await ctx.render('gameDetail.nj', {
+      await this.webRender('gameDetail.nj', {
         gameDetail: gameDetailResolve,
         gameRecommend,
         gameTypeInfo,

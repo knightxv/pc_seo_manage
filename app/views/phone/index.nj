@@ -2,7 +2,7 @@
 
 {% block css %}
   <link rel="stylesheet" href="{{ static }}/lib/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="{{ static }}/css/phone-3af5267552.css">
+  <link rel="stylesheet" href="{{ static }}/css/phone-70051c5cb4.css">
 {% endblock %}
 {% block script %}
 <script src="{{ static }}/lib/js/jquery.min.js"></script>

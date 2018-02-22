@@ -27,7 +27,7 @@ module.exports = appInfo => {
   };
 
   config.logger = {
-    dir: `${appInfo.root}/logs/${appInfo.name}`,
+    dir: `${appInfo.baseDir}/logs/${appInfo.name}`,
   };
 
   // 默认打开的端口
@@ -38,10 +38,17 @@ module.exports = appInfo => {
   };
 
   config.bodyParser = {
-    // jsonLimit: '1mb',
+    jsonLimit: '5mb',
     formLimit: '5mb',
   };
 
+  // post安全显示
+  config.security = {
+    csrf: {
+      // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
+      ignore: ctx => true,
+    },
+  };
   // config.nunjucks = {
   //   autoescape: true,
   //   throwOnUndefined: false,

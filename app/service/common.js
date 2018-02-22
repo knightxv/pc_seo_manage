@@ -13,44 +13,38 @@ class CommonService extends Service {
     if (!row || !row.id) {
       return false;
     }
-    const result = await this.app.mysql.update('htmlText', row);
+    const result = await this.app.mysql.update('htmltext', row);
     if (result.affectedRows === 0) {
-      const insertResult = await this.app.mysql.insert('htmlText', row);
+      const insertResult = await this.app.mysql.insert('htmltext', row);
       return insertResult.affectedRows === 1;
     }
     return true;
   }
-  async getConfig(configId) {
+  async getWebConfig(configId) {
     if (isNaN(configId)) {
       return null;
     }
     const result = await this.app.mysql.get('web_config', { id: configId });
-    let json_config = result.json_config;
-    const isStr = Object.prototype.toString.call(json_config) === '[object String]';
-    if (isStr) {
-      try {
-        json_config = JSON.parse(result.json_config.replace('\\', ''));
-      } catch (err) {
-        this.ctx.logger.info(`json_config:${json_config}`);
-        console.log(err);
-      }
+    if (!result) {
+      return null;
     }
-    return json_config;
+    return result;
   }
-  async setConfig(configData) {
-    if (!configData || !configData.json_config) {
+  async setWebConfig(configId, configText) {
+    if (isNaN(configId)) {
       return false;
     }
-    const { isObj } = this.ctx.helper;
-    const configDataSet = configData.json_config;
-    if (isObj(configDataSet) || Array.isArray(configDataSet)) {
-      configData.json_config = JSON.stringify(configDataSet);
-    }
-    const result = await this.app.mysql.update('web_config', configData);
+    const result = await this.app.mysql.update('web_config', {
+      id: configId,
+      config: configText,
+    });
     if (result.affectedRows === 1) {
       return true;
     }
-    const insertResult = await this.app.mysql.insert('web_config', configData);
+    const insertResult = await this.app.mysql.insert('web_config', {
+      id: configId,
+      config: configText,
+    });
     return insertResult.affectedRows === 1;
   }
   async login(userName, passWord) {
@@ -58,6 +52,32 @@ class CommonService extends Service {
       return true;
     }
     return false;
+  }
+  async getBanner(bannerKey) {
+    if (isNaN(bannerKey)) {
+      return null;
+    }
+    const banner = await this.app.mysql.get('banner', {
+      id: bannerKey,
+    });
+    return banner;
+  }
+  async setBanner(bannerKey, src = '') {
+    if (isNaN(bannerKey)) {
+      return false;
+    }
+    const result = await this.app.mysql.update('banner', {
+      id: bannerKey,
+      src,
+    });
+    if (result.affectedRows === 1) {
+      return true;
+    }
+    const insertResult = await this.app.mysql.insert('banner', {
+      id: bannerKey,
+      src,
+    });
+    return insertResult.affectedRows === 1;
   }
 }
 

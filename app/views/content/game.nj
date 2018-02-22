@@ -7,7 +7,7 @@
             {% endif %}
         </a>
     </nav>
-    <div class="vv_container">
+    <div class="phone_content_container">
         <!-- 内容主体 -->
         <div class="vv_content">
             <!-- 头部 -->
@@ -129,9 +129,9 @@
         };
         var tipShow = function () {
             if (/iphone|ipad|ipod/.test(ua)) {
-                $('.weixin_tipImg').attr('src', '/public/i/images/ios.png');
+                $('.weixin_tipImg').attr('src', '/static/images/ios.png');
             } else {
-                $('.weixin_tipImg').attr('src', '/public/i/images/android.png');
+                $('.weixin_tipImg').attr('src', '/static/images/android.png');
             }
             $('#weixin-tip').show();
         };

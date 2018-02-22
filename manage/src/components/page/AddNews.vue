@@ -34,7 +34,19 @@
                         :show-file-list="false"
                         :on-success="handleAvatarSuccess"
                         :before-upload="beforeAvatarUpload">
-                        <img v-if="form.newsIcon" :src="form.newsIcon" class="avatar">
+                        <img v-if="form.newsIcon" :src="remoteUrl + form.newsIcon" class="avatar">
+                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
+                </el-form-item>
+                <el-form-item label="手机预览图">
+                    <el-upload
+                        action=""
+                        class="avatar-uploader"
+                        :http-request="uploadImage"
+                        :show-file-list="false"
+                        :on-success="handlePhoneIconSuccess"
+                        :before-upload="beforeAvatarUpload">
+                        <img v-if="form.phoneIcon" :src="remoteUrl + form.phoneIcon" class="avatar">
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                     </el-upload>
                 </el-form-item>
@@ -77,6 +89,9 @@
                 <!-- <el-form-item label="新版特性">
                     <el-input type="textarea" v-model="form.characteristic"></el-input>
                 </el-form-item> -->
+                <el-form-item label="显示在手机">
+                    <el-switch on-text="yes" off-text="no" v-model="showInPhone"></el-switch>
+                </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">提交</el-button>
                     <el-button @click="onCancel">取消</el-button>
@@ -103,7 +118,9 @@ const newsTypeArr = [
 import { quillEditor } from 'vue-quill-editor';
     export default {
         data: function(){
+            const { remoteUrl } = this.config;
             return {
+                remoteUrl,
                 form: {
                     newsTitle: '', // 新闻标题
                     publicTime: new Date(), // 发布时间
@@ -111,6 +128,7 @@ import { quillEditor } from 'vue-quill-editor';
                     newsBrief: '', // 游戏版本
                     newsType: newsTypeArr[0].type, // 游戏类型
                     newsIcon: '', // 新闻简介图
+                    phoneIcon: '',
                 },
                 // dialogImageUrl: '',
                 // dialogVisible: false,
@@ -118,6 +136,7 @@ import { quillEditor } from 'vue-quill-editor';
 
                 },
                 newsTypeArr,
+                showInPhone: false,
             }
         },
         components: {
@@ -128,11 +147,20 @@ import { quillEditor } from 'vue-quill-editor';
                 const postBody = {
                     ...this.form,
                     publicTime: this.form.publicTime.getTime(),
+                    showInPhone: this.showInPhone,
                 };
                 this.webHttp.post('/api/manage/addNews', postBody).then(res => {
                     if (res.success) {
                         this.$message.success('添加成功');
-                        this.$router.back();
+                        this.form = {
+                            newsTitle: '', // 新闻标题
+                            publicTime: new Date(), // 发布时间
+                            newsContent: '', // 新闻内容
+                            newsBrief: '', // 游戏版本
+                            newsType: newsTypeArr[0].type, // 游戏类型
+                            newsIcon: '', // 新闻简介图
+                            phoneIcon: '', // 手机预览图
+                        };
                     } else {
                         this.$message.error('添加失败');
                     }
@@ -145,21 +173,24 @@ import { quillEditor } from 'vue-quill-editor';
                 const file = row.file;
                 const imageForm = new FormData();
                 imageForm.append('files', file);
-                this.webHttp.form('/api/upload/image', imageForm).then(res => {
+                this.webHttp.form('/api/upload/image/news', imageForm).then(res => {
                     if (res.success) {
                         row.onSuccess(res.data, row);
                     }
                 });
             },
-            // 游戏图标
+            // 新闻图标
             handleAvatarSuccess(res, row) {
                 // edit
                 this.form.newsIcon = res.url;
                 // this.imageUrl = res.url;
                 // this.imageUrl = URL.createObjectURL(res.url);
             },
+            handlePhoneIconSuccess() {
+                this.form.phoneIcon = res.url;
+            },
             beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
+                const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
                 const isLt2M = file.size / 1024 / 1024 < 2;
                 if (!isJPG) {
                 this.$message.error('上传头像图片只能是 JPG 格式!');

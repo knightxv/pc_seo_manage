@@ -10,7 +10,7 @@
 
 {% block main %}
 {# 头部导航 #}
-{{ component.headBanner(1) }}
+{{ component.headBanner(1, appName) }}
 {# 轮播图 #}
 {{ component.carousel(carousel, 'homeCarousel') }}
 {# 公告 #}
@@ -22,9 +22,9 @@
       <h2 class="home_hotGame_title">热门游戏</h2>
       <div class="home_hotGame_Wrap">
         {% for hotGame in hotGameList %}
-          <a href="/games/gameDetail/{{ hotGame.id }}" class="home_hotGame_item" alt="胡了吗">
+          <a href="/games/gameDetail/{{ hotGame.id }}" class="home_hotGame_item" alt="{{ appName }}">
             <div>
-              <img src="{{ hotGame.gameIcon }}" alt="hotGame.gameName" />
+              <img src="{{ hotGame.gameIcon }}" alt="{{ hotGame.gameName }}" />
             </div>
             <div class="home_hotGame_gameName">{{ hotGame.gameName }}</div>
           </a>

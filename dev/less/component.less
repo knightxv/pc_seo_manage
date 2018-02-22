@@ -27,7 +27,7 @@
 		width: 166px;
 		height: 64px;
 		background: url(../images/logo.png) no-repeat;
-		// background-size: 208px 41px;
+		background-size: 166px 64px;
 	}
 	.vv_header_right {
 		align-self: stretch;
@@ -92,6 +92,7 @@
     }
     span {
         display: block;
+        .text_hide();
     }
     a {
         text-decoration: none;
@@ -128,8 +129,18 @@
     .borBot();
     height: 36px;
     margin-bottom: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    // .container();
     .breadcrumb {
         background: none;
+        width: 1200px;
+        margin: 0 auto;
+        .flexRow();
+        li {
+            .text_hide();
+            max-width: 200px;
+        }
     }
 }
 

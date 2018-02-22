@@ -3,7 +3,7 @@
 {% block head %}
 <!-- Bootstrap -->
 <link href="{{ static }}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{{ static }}/css/component-68f298e70b.css">
+<link rel="stylesheet" href="{{ static }}/css/component-e9e2a1c82c.css">
 <!--[if lt IE 9]>
   <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -28,14 +28,14 @@
 
 <footer class="pc_footer">
   <div class="footer_item">
-    <a class="pc_footer_navLaebl" href="/">胡了吗首页</a>|
+    <a class="pc_footer_navLaebl" href="/">{{ appName }}首页</a>|
     <a class="pc_footer_navLaebl" href="/games">游戏中心</a>|
     <a class="pc_footer_navLaebl" href="/news">新闻资讯</a>|
     <a class="pc_footer_navLaebl" href="/platfrom">平台介绍</a>|
     <a class="pc_footer_navLaebl" href="/contact">联系我们</a>
   </div>
   <div class="footer_item">
-    <a target="_blank" href="http://www.miitbeian.gov.cn">闽ICP备16028156号-2</a>
+    <a target="_blank" href="http://www.miitbeian.gov.cn">{{ recordNumber }}</a>
   </div>
   <div class="footer_item">Copyright©2016-2017 All Rights Reserved</div>
   <div class="footer_item">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>

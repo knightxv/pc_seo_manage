@@ -48,7 +48,7 @@ const htmltextEnum = {
             onSubmit() {
                 const htmlText = this.contact;
                 const textId = htmltextEnum.contact;
-                this.webHttp.get('/api/manage/setHtmlText', { textId, htmlText }).then(res => {
+                this.webHttp.post('/api/manage/setHtmlText', { textId, htmlText }).then(res => {
                     if (res.success) {
                         this.$message.success('修改成功');
                     } else {

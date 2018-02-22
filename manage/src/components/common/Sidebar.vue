@@ -25,12 +25,12 @@
             return {
                 items: [
                     {
-                        icon: 'el-icon-setting',
+                        icon: 'el-icon-menu',
                         index: 'readme',
                         title: '首页'
                     },
                     {
-                        icon: 'el-icon-menu',
+                        icon: 'el-icon-setting',
                         index: '2',
                         title: '游戏管理',
                         subs: [
@@ -45,7 +45,7 @@
                         ]
                     },
                     {
-                        icon: 'el-icon-date',
+                        icon: 'el-icon-setting',
                         index: '3',
                         title: '新闻管理',
                         subs: [
@@ -60,14 +60,34 @@
                         ]
                     },
                     {
-                        icon: 'el-icon-upload2',
+                        icon: 'el-icon-setting',
                         index: '4',
-                        title: '页面管理',
+                        title: '首页管理',
                         subs: [
                             {
                                 index: 'pageManage_home',
-                                title: '首页'
+                                title: '热门游戏'
                             },
+                            {
+                                index: 'friendLink',
+                                title: '友情链接'
+                            },
+                            {
+                                index: 'homeCarouel',
+                                title: '轮播图片'
+                            },
+                            {
+                                index: 'phone_homeCarouel',
+                                title: '轮播图片(手机)'
+                            },
+                        ]
+                    },
+                    {
+                        icon: 'el-icon-setting',
+                        index: '5',
+                        title: '页面管理',
+                        subs: [
+
                             {
                                 index: 'pageManage_platfrom',
                                 title: '平台介绍'
@@ -75,7 +95,19 @@
                             {
                                 index: 'pageManage_contact',
                                 title: '联系我们'
-                            }
+                            },
+                            {
+                                index: 'banner',
+                                title: 'banner(横幅)'
+                            },
+                            {
+                                index: 'phone_join',
+                                title: '加入我们(手机)'
+                            },
+                            {
+                                index: 'appConfig',
+                                title: '全局配置'
+                            },
                         ]
                     },
                     // {
